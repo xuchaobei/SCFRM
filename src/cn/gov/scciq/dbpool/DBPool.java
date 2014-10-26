@@ -1,4 +1,4 @@
-package cn.gov.scciq.bussiness.dbpool;
+package cn.gov.scciq.dbpool;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
