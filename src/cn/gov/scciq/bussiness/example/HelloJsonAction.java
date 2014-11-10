@@ -1,5 +1,7 @@
 package cn.gov.scciq.bussiness.example;
 
+import java.io.IOException;
+
 import net.sf.json.JSONObject;
 
 import org.apache.commons.logging.Log;
@@ -73,8 +75,8 @@ public class HelloJsonAction{
         return Action.SUCCESS;
     }
     
-    public String getJson(){
-        result = jsonService.handleGetJson();
+    public String getJson() throws IOException{
+        result = jsonService.handleGetJsonFromFile();
         return Action.SUCCESS;   
     }
     

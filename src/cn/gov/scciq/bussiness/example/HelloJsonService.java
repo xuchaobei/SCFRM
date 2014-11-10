@@ -1,5 +1,11 @@
 package cn.gov.scciq.bussiness.example;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -32,6 +38,24 @@ public class HelloJsonService{
         JSONObject jo = JSONObject.fromObject(bean);
         JSONArray ja = JSONArray.fromObject(bean);
         log.info(ja.toString());
+        return jo;
+    }
+    
+    public JSONObject handleGetJsonFromFile() throws IOException{
+        File file = new File("D://data.json");
+        FileReader reader = new FileReader(file);
+        BufferedReader bre=new BufferedReader(reader);
+        String str = "";
+        StringBuilder builder = new StringBuilder();       
+        while((str=bre.readLine())!=null)   //●判断最后一行不存在，为空
+        {
+            builder.append(str);
+        }
+        bre.close();
+        reader.close();
+        
+        JSONObject jo = JSONObject.fromObject(builder.toString());
+        log.info(jo.toString());
         return jo;
     }
 }

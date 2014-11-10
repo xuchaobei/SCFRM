@@ -3,6 +3,7 @@ package cn.gov.scciq.bussiness.example;
 public class UserBean{
     private int id;
     private String name = "attr";
+  
     public int getId() {
         return id;
     }
