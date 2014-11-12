@@ -20,6 +20,27 @@ public class ConventionCtrlDao {
     
     private static Log log=LogFactory.getLog(ConventionCtrlDao.class);
     
+    /**
+     * 获取常规布控
+     * @param productClassCode
+     * @param productSubclassCode
+     * @param materialClassCode
+     * @param materialSubclassCode
+     * @param materialCode
+     * @param materialSourceCode
+     * @param processMethodCode
+     * @param packageTypeCode
+     * @param intendedUseCode
+     * @param countryCode
+     * @param productCode
+     * @param controlOrgCode
+     * @param controlDeptCode
+     * @param startIndex
+     * @param pageSize
+     * @param orderWord
+     * @param orderDirection
+     * @return
+     */
     public static Map<Integer, Object> getConvCtrl( String productClassCode,  String productSubclassCode,  String materialClassCode,  String materialSubclassCode, String materialCode, String materialSourceCode,  String processMethodCode,  String packageTypeCode,  String intendedUseCode, 
             String countryCode,  String productCode, String controlOrgCode, String controlDeptCode, int startIndex, int pageSize, String orderWord, String orderDirection){
         Map<Integer, Object> rsMap = new HashMap<Integer, Object>();
@@ -86,6 +107,11 @@ public class ConventionCtrlDao {
     }
 
     
+    /**
+     * 删除常规布控
+     * @param convCtrlId
+     * @return
+     */
     public static boolean delConvCtrlById(String convCtrlId) {
         // TODO Auto-generated method stub
         boolean retCode = true;
@@ -119,5 +145,52 @@ public class ConventionCtrlDao {
         }
         
         return retCode;
+    }
+    
+    /**
+     * 获取不控项目
+     * @param convCtrlId
+     * @return
+     */
+    public static List<ConventionCtrlItemDto> getConvCtrlItem(String convCtrlId){
+        List<ConventionCtrlItemDto> list = new ArrayList<ConventionCtrlItemDto>();
+        Connection conn = null;
+        CallableStatement proc = null;
+        ResultSet rs = null;
+        String call = "{call Pro_GetConvCtrlItem(?)}";
+        try {
+            conn = DBPool.ds.getConnection();
+            proc = conn.prepareCall(call);
+            proc.setString(1, convCtrlId);
+            proc.execute();
+            rs = proc.getResultSet();
+            ConventionCtrlItemDto dto = null;
+            while(rs.next()){
+                dto = RsToDtoUtil.tranRsToDto(rs, ConventionCtrlItemDto.class);
+                list.add(dto);
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            log.error("", e);
+        } catch (Exception e) {
+            log.error("", e);
+        } finally{
+            try {
+                if(rs != null){
+                    rs.close();
+                }
+                if(proc != null){
+                    proc.close();
+                }
+                if(conn != null){
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                log.error("", e);
+            }
+        }
+        
+        return list;
     }
 }

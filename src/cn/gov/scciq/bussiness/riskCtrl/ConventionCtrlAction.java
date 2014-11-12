@@ -7,6 +7,11 @@ import org.apache.commons.logging.LogFactory;
 
 import com.opensymphony.xwork2.Action;
 
+/**
+ * 常规布控
+ * @author chao.xu
+ *
+ */
 public class ConventionCtrlAction{
     
     private static Log log=LogFactory.getLog(ConventionCtrlAction.class);
@@ -115,13 +120,14 @@ public class ConventionCtrlAction{
     }
     
     /**
-     * 查询布控
+     * 获取布控项目
      * @return
      */
-    public String searchConvCtrl(){
-        result = convCtrlService.getConvCtrl(data, draw, start, length);
+    public String getItemCtrl(){
+        result = convCtrlService.getItemCtrl(convCtrlId);
         return Action.SUCCESS;
     }
+    
 }
 
 

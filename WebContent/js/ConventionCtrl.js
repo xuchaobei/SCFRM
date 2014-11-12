@@ -8,12 +8,14 @@ $(document).ready(function(){
 	var materialSubsubclassCode = 0;
 	var materialClassCode = 0;
 	var materialSubclassCode = 0;	
-	var curRow = null; 
+	var curConvCtrlID = 0;
+	var curConvCtrlRow = null; 
+	var curItemCtrlRow = null;
 	initInspOrgSelect();
 	initProductClassSelect();
 	initMaterialClassSelect();
 	
-	var columns = [
+	var convCtrlColumns = [
 	                  { "data": "convCtrlID" },
 	      	          { "data": "countryName" },
 	      	          { "data": "productClassName" },
@@ -31,8 +33,18 @@ $(document).ready(function(){
 	      	          { "data": "controlDatetime" },
 	     ];
 	
-	var table = $('#convCtrlTb').DataTable( {
-		  "scrollX": true,
+	var itemCtrlColumns = [
+	                  { "data": "convCtrlItemID" },
+	      	          { "data": "itemName" },
+	      	          { "data": "detectionStd" },
+	      	          { "data": "monitoringReason" },
+	      	          { "data": "unqualifyRatio" },
+	      	          { "data": "hazardLevel" },
+	      	          { "data": "countryReactLevel" },
+	      	          { "data": "limitReq" },
+	     ];
+	
+	var convCtrlTable = $('#convCtrlTb').DataTable( {
 	      "deferRender": true,
 		  "processing": true,
 		  "serverSide": true,
@@ -40,10 +52,10 @@ $(document).ready(function(){
 			  url : "ConventionCtrlAction_getConvCtrl",
 			  type : "GET",
 			  data : function(d){
-				  d.data = getRequestParam();
+				  d.data = getConvCtrlRequestParam();
 			  }
 		  },
-	      "columns": columns,
+	      "columns": convCtrlColumns,
 	      "columnDefs": [
 	                     {
 	                         "targets": [ 0 ],
@@ -52,8 +64,38 @@ $(document).ready(function(){
 	                 ]
 	  } );
 	
+
+	var itemCtrlTable = $('#itemCtrlTb').DataTable( {
+		  "info" : false,
+		  "paging" : false,
+		  "lengthChange" : false,
+	      "deferRender": true,
+		  "processing": true,
+		  "serverSide": true,
+		  "ajax":{
+			  url : "ConventionCtrlAction_getItemCtrl",
+			  type : "GET",
+			  data : function(d){
+				  return {data : curConvCtrlID};
+			  }
+		  },
+	      "columns": itemCtrlColumns,
+	      "columnDefs": [
+	                     {
+	                         "targets": [ 0 ],
+	                         "visible": false,
+	                     }
+	                 ]
+	  } );
 	
-	  $('#convCtrlTb tbody').on("click", "tr", clickRow );
+	  $('#convCtrlTb').on( 'draw.dt', function () {
+		  var dtRow = convCtrlTable.row(0);
+		  curConvCtrlID = dtRow.data().convCtrlID;
+		  $(dtRow.node()).click();
+		  itemCtrlTable.draw();
+	  } );
+
+	  $('#convCtrlTb tbody').on("click", "tr", clickConvCtrlRow );
 	  
 	  $('#delete').click( delConvCtrlRule );
 	  
@@ -62,8 +104,12 @@ $(document).ready(function(){
 		 $("#convCtrlSearch").show(); 
 	  });
 	  
+	  
+	  $('#itemCtrlTb tbody').on("click", "tr", clickItemCtrlRow );
+	  
+	  
 	  $("#searchConvCtrl").click(function(){
-		  table.draw();
+		  convCtrlTable.draw();
 		  $("#closeConvCtrl").click();
 	  });
 	  
@@ -93,7 +139,7 @@ $(document).ready(function(){
 	  });
 	  
 	  
-	  function getRequestParam(){
+	  function getConvCtrlRequestParam(){
 		  var data = {
 				    productClassCode : getSelectValue("productClass"),
 				    productSubclassCode : getSelectValue("productSubclas"),
@@ -113,15 +159,28 @@ $(document).ready(function(){
 		  return jsonstr;
 	  }
 	  
-	  function clickRow(){
+	  function clickConvCtrlRow(){
 		  var row = this;
 		  if ( $(row).hasClass('active') ) {
-			    curRow = null;
+			    curConvCtrlRow = null;
 	            $(row).removeClass('active');
 	        }
 	        else {
-	        	curRow = row;
-	            table.$('tr.active').removeClass('active');
+	        	curConvCtrlRow = row;
+	        	convCtrlTable.$('tr.active').removeClass('active');
+	            $(row).addClass('active');
+	        }
+	  }
+	  
+	  function clickItemCtrlRow(){
+		  var row = this;
+		  if ( $(row).hasClass('active') ) {
+			    curItemCtrlRow = null;
+	            $(row).removeClass('active');
+	        }
+	        else {
+	        	curItemCtrlRow = row;
+	        	itemCtrlTable.$('tr.active').removeClass('active');
 	            $(row).addClass('active');
 	        }
 	  }
@@ -131,7 +190,7 @@ $(document).ready(function(){
 			  alert("请先选择一条要删除的记录！");
 			  return;
 		  }
-		  if(confirm("sure to delete?")){
+		  if(confirm("确认要删除该条记录?")){
 			  var convCtrlId = table.row(curRow).data().convCtrlID;
 			  $.post("ConventionCtrlAction_delConvCtrl?&ts="
 						+ new Date().getTime(), {
@@ -139,7 +198,7 @@ $(document).ready(function(){
 				}, function(rdata) {
 					if(rdata.data == "true"){
 						alert("删除成功！");
-						table.row(curRow).remove().draw(false);
+						convCtrlTable.row(curRow).remove().draw(false);
 					}
 				}, 'json');
 		  }

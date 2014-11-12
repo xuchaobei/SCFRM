@@ -659,11 +659,16 @@ body {
    padding-left:10px;
    padding-right:10px;
    }
+
+th {
+	white-space: nowrap; 
+}   
    
-th, td { 
-   white-space: nowrap; 
-   text-align: center;
-} 
+.table-bordered>thead>tr>th,.table-bordered>tbody>tr>th,.table-bordered>tfoot>tr>th,.table-bordered>thead>tr>td,.table-bordered>tbody>tr>td,.table-bordered>tfoot>tr>td
+	{
+	 vertical-align : middle;
+	 text-align: center;
+}
 
 table.dataTable {
 	margin-top: 0px !important;
