@@ -9,6 +9,7 @@ import net.sf.json.JSONObject;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import cn.gov.scciq.util.ConstantStr;
 import cn.gov.scciq.util.DefaultResultUtil;
 
 public class ConventionCtrlService {
@@ -29,10 +30,23 @@ public class ConventionCtrlService {
         return result;
     }
     
+    public JSONObject saveConvCtrl(String data){
+        ConventionCtrlRuleReqDto convCtrl = (ConventionCtrlRuleReqDto)JSONObject.toBean(JSONObject.fromObject(data),ConventionCtrlRuleReqDto.class);
+        String retStr = ConventionCtrlDao.saveConvCtrl(convCtrl.getConvCtrlID(), convCtrl.getProductClassCode(), convCtrl.getProductSubclassCode(),
+                convCtrl.getProductCode(), convCtrl.getMaterialClassCode(), convCtrl.getMaterialSubclassCode(), convCtrl.getMaterialCode(), 
+                convCtrl.getMaterialSourceCode(), convCtrl.getProcessMethodCode(), convCtrl.getPackageTypeCode(), convCtrl.getIntendedUseCode(), convCtrl.getCountryCode(), 
+                convCtrl.getDifferenceCode(), convCtrl.getControlOrgCode(), convCtrl.getControlDeptCode(), convCtrl.getControlOperatorCode());
+        if("".equals(retStr)){
+            retStr = "true";
+        }
+        JSONObject result = DefaultResultUtil.getModificationResult(retStr);
+        return result;
+    }
+    
     public JSONObject delConvCtrl(String convCtrlId) {
         // TODO Auto-generated method stub
         boolean retCode = ConventionCtrlDao.delConvCtrlById(convCtrlId);
-        JSONObject jo = DefaultResultUtil.getDefaultResult(retCode);
+        JSONObject jo = DefaultResultUtil.getModificationResult(retCode);
         return jo;
     }
     

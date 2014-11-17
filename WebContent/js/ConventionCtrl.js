@@ -1,7 +1,7 @@
 //@ sourceURL=ConvertionalCtrl.js  
 $(document).ready(function(){
 	
-	initContentDivHeight();
+	//initContentDivHeight();
 	//产品大类编号 
 	var productClassCode = 0;
 	var productSubclassCode = 0;
@@ -89,13 +89,20 @@ $(document).ready(function(){
 	  } );
 	
 	  $('#convCtrlTb').on( 'draw.dt', function () {
-		  var dtRow = convCtrlTable.row(0);
-		  curConvCtrlID = dtRow.data().convCtrlID;
-		  $(dtRow.node()).click();
-		  itemCtrlTable.draw();
+		  if(convCtrlTable.rows().data().length > 0){
+			  var dtRow = convCtrlTable.row(0);
+			  curConvCtrlID = dtRow.data().convCtrlID;
+			  $(dtRow.node()).click();
+			  itemCtrlTable.draw();
+		  }
 	  } );
 
 	  $('#convCtrlTb tbody').on("click", "tr", clickConvCtrlRow );
+	  
+	  $("#add").click(function(){
+			 $(".overlay").show();
+			 $("#convCtrlAdd").show(); 
+	  });
 	  
 	  $('#delete').click( delConvCtrlRule );
 	  
@@ -107,57 +114,127 @@ $(document).ready(function(){
 	  
 	  $('#itemCtrlTb tbody').on("click", "tr", clickItemCtrlRow );
 	  
+	  $("#addConvCtrl").click(function(){
+          saveConvCtrl();		  
+		  $("#closeAddConvCtrl").click();
+	  });
 	  
 	  $("#searchConvCtrl").click(function(){
 		  convCtrlTable.draw();
-		  $("#closeConvCtrl").click();
+		  $("#closeSearchConvCtrl").click();
 	  });
 	  
-	  $("#closeConvCtrl").click(function(){
+	  $("#closeAddConvCtrl").click(function(){
+		  $(".overlay").hide();
+	      $("#convCtrlAdd").hide(); 
+	  });
+	  
+	  $("#closeSearchConvCtrl").click(function(){
 		  $(".overlay").hide();
 	      $("#convCtrlSearch").hide(); 
 	  });
 	  
-	  $("#processMethod-search").click(function(){
-		  searchProcessMethod();
+	  $("#aProcessMethod-search").click(function(){
+		  searchProcessMethod("aProcessMethod");
 	  });
 	  
-	  $("#materialSource-search").click(function(){
-		  searchMaterialSource();
+	  $("#sProcessMethod-search").click(function(){
+		  searchProcessMethod("sProcessMethod");
 	  });
 	  
-	  $("#intendedUse-search").click(function(){
-		  searchIntendedUse();
+	  $("#aMaterialSource-search").click(function(){
+		  searchMaterialSource("aMaterialSource");
 	  });
 	  
-	  $("#country-search").click(function(){
-		  searchCountry();
+	  $("#sMaterialSource-search").click(function(){
+		  searchMaterialSource("sMaterialSource");
 	  });
 	  
-	  $("#packageType-search").click(function(){
-		  searchPackageType();
+	  $("#aIntendedUse-search").click(function(){
+		  searchIntendedUse("aIntendedUse");
 	  });
 	  
+	  $("#sIntendedUse-search").click(function(){
+		  searchIntendedUse("sIntendedUse");
+	  });
+	  
+	  $("#aCountry-search").click(function(){
+		  searchCountry("aCountry");
+	  });
+	  
+	  $("#cCountry-search").click(function(){
+		  searchCountry("cCountry");
+	  });
+	  
+	  $("#aPackageType-search").click(function(){
+		  searchPackageType("aPackageType");
+	  });
+	  
+	  $("#sPackageType-search").click(function(){
+		  searchPackageType("sPackageType");
+	  });
 	  
 	  function getConvCtrlRequestParam(){
 		  var data = {
-				    productClassCode : getSelectValue("productClass"),
-				    productSubclassCode : getSelectValue("productSubclas"),
-				    materialClassCode : getSelectValue("materialClass"),
-				    materialSubclassCode : getSelectValue("materialSubclass") ,
-				    materialCode : getSelectValue("materialSubsubclass"),
-				    materialSourceCode : getSelectValue("materialSource"),
-				    processMethodCode : getSelectValue("processMethod"),
-				    packageTypeCode : getSelectValue("packageType"),
-				    intendedUseCode : getSelectValue("intendedUse"),
-				    countryCode : getSelectValue("country"),
-				    productCode : $("#productCode").val(),
-				    controlOrgCode : getSelectValue("controlOrg"),
-				    controlDeptCode : getSelectValue("controlDept"),
+				    productClassCode : getSelectValue("sProductClass"),
+				    productSubclassCode : getSelectValue("sProductSubclas"),
+				    materialClassCode : getSelectValue("sMaterialClass"),
+				    materialSubclassCode : getSelectValue("sMaterialSubclass") ,
+				    materialCode : getSelectValue("sMaterialSubsubclass"),
+				    materialSourceCode : getSelectValue("sMaterialSource"),
+				    processMethodCode : getSelectValue("sProcessMethod"),
+				    packageTypeCode : getSelectValue("sPackageType"),
+				    intendedUseCode : getSelectValue("sIntendedUse"),
+				    countryCode : getSelectValue("sCountry"),
+				    productCode : $("#sProductCode").val(),
+				    controlOrgCode : getSelectValue("sControlOrg"),
+				    controlDeptCode : getSelectValue("sControlDept"),
 		  };
 		  var jsonstr = JSON.stringify(data);
 		  return jsonstr;
 	  }
+	  
+	  function addConvCtrlRequestParam(){
+		  if(getSelectValue("aCountry") == ""){
+			  alert("国家或地区为必填项！");
+			  return false;
+		  }
+		  var data = {
+				    convCtrlID : 0,
+				    productClassCode : getSelectValue("aProductClass"),
+				    productSubclassCode : getSelectValue("aProductSubclas"),
+				    materialClassCode : getSelectValue("aMaterialClass"),
+				    materialSubclassCode : getSelectValue("aMaterialSubclass") ,
+				    materialCode : getSelectValue("aMaterialSubsubclass"),
+				    materialSourceCode : getSelectValue("aMaterialSource"),
+				    processMethodCode : getSelectValue("aProcessMethod"),
+				    packageTypeCode : getSelectValue("aPackageType"),
+				    intendedUseCode : getSelectValue("aIntendedUse"),
+				    countryCode : getSelectValue("aCountry"),
+				    productCode : $("#aProductCode").val(),
+				    differenceCode : $("#aDifferenceCode").val(),
+		  };
+		  var jsonstr = JSON.stringify(data);
+		  return jsonstr;
+	  }
+	  
+	  function saveConvCtrl(){
+		  var data = addConvCtrlRequestParam();
+		  if(!data){
+			  return;
+		  }
+		  $.post("ConventionCtrlAction_saveConvCtrl?&ts="
+					+ new Date().getTime(), {
+			    data : data
+			}, function(rdata) {
+				if(rdata.data == "true"){
+					alert("新增成功！");
+					convCtrlTable.draw();
+				}else{
+					alert(rdata.data);
+				}
+			}, 'json');
+	  }	
 	  
 	  function clickConvCtrlRow(){
 		  var row = this;
@@ -186,19 +263,21 @@ $(document).ready(function(){
 	  }
 	  
 	  function delConvCtrlRule(){
-		  if(curRow == null){
+		  if(curConvCtrlRow == null){
 			  alert("请先选择一条要删除的记录！");
 			  return;
 		  }
 		  if(confirm("确认要删除该条记录?")){
-			  var convCtrlId = table.row(curRow).data().convCtrlID;
+			  var convCtrlId = convCtrlTable.row(curConvCtrlRow).data().convCtrlID;
 			  $.post("ConventionCtrlAction_delConvCtrl?&ts="
 						+ new Date().getTime(), {
 				    convCtrlId : convCtrlId
 				}, function(rdata) {
 					if(rdata.data == "true"){
 						alert("删除成功！");
-						convCtrlTable.row(curRow).remove().draw(false);
+						convCtrlTable.row(curConvCtrlRow).remove().draw(false);
+					}else{
+						alert("删除失败！");
 					}
 				}, 'json');
 		  }
@@ -213,16 +292,18 @@ $(document).ready(function(){
 				$.each(rdata.data, function(index, value){
 					source[index] = value.classCode+" "+value.className;
 				});	
-				cus_autocomplete(source, "productClass", "productClass-select", null, selectProductClassCB);
+				cus_autocomplete(source, "sProductClass", "sProductClass-select", null, selectProductClassCB);
+				cus_autocomplete(source, "aProductClass", "aProductClass-select", null, selectProductClassCB);
 			}, 'json');
 	  }
 	  
 	  function selectProductClassCB(event, ui){
 		  var productClassCode = ui.item.value.split(" ")[0];
-		  initProductSubclassSelect(productClassCode);
+		  var input = $(event.target).parent().parent().next().next().children().children().filter("input").get(0);
+		  initProductSubclassSelect(productClassCode, input);
 	  }
 	  
-	  function initProductSubclassSelect(productClassCode){
+	  function initProductSubclassSelect(productClassCode, input){
 		  $.get("SelectDataAction_getProductSubclass?&ts="
 					+ new Date().getTime(), 
 			{productClassCode : productClassCode},
@@ -231,7 +312,9 @@ $(document).ready(function(){
 				$.each(rdata.data, function(index, value){
 					source[index] = value.subclassCode+" "+value.subclassName;
 				});	
-				cus_autocomplete(source, "productSubclass", "productSubclass-select", null, null);
+				//cus_autocomplete(source, "productClassCodeInput", "productClassCodeSelect", null, null);
+				var inputSelect = $(input).next().get(0).id;
+				cus_autocomplete(source, input.id, inputSelect, null, null);
 			}, 'json');
 		  
 	  }
@@ -244,16 +327,18 @@ $(document).ready(function(){
 				$.each(rdata.data, function(index, value){
 					source[index] = value.classCode+" "+value.className;
 				});	
-				cus_autocomplete(source, "materialClass", "materialClass-select", null, selectMaterialClassCB);
+				cus_autocomplete(source, "sMaterialClass", "sMaterialClass-select", null, selectMaterialClassCB);
+				cus_autocomplete(source, "aMaterialClass", "aMaterialClass-select", null, selectMaterialClassCB);
 			}, 'json');
 	  }
 	  
 	  function selectMaterialClassCB(event, ui){
 		  var materialClassCode = ui.item.value.split(" ")[0];
-		  initMaterialSubclassSelect(materialClassCode);
+		  var input = $(this).parent().parent().next().next().children().children().filter("input").get(0);
+		  initMaterialSubclassSelect(materialClassCode, input);
 	  }
 	  
-	  function initMaterialSubclassSelect(materialClassCode){
+	  function initMaterialSubclassSelect(materialClassCode, input){
 		  $.get("SelectDataAction_getMaterialSubclass?&ts="
 					+ new Date().getTime(), 
 			{materialClassCode : materialClassCode},
@@ -262,17 +347,19 @@ $(document).ready(function(){
 				$.each(rdata.data, function(index, value){
 					source[index] = value.subclassCode+" "+value.subclassName;
 				});	
-				cus_autocomplete(source, "materialSubclass", "materialSubclass-select", null, selectMaterialSubclassCB);
+				var inputSelect = $(input).next().get(0).id;
+				cus_autocomplete(source, input.id, inputSelect, null, selectMaterialSubclassCB);
 			}, 'json');
 		  
 	  }
 	  
 	  function selectMaterialSubclassCB(event, ui){
 		  var materialSubsubclassCode = ui.item.value.split(" ")[0];
-		  initMaterialSubsubclassSelect(materialSubsubclassCode);
+		  var input = $(this).parent().parent().next().next().children().children().filter("input").get(0);
+		  initMaterialSubsubclassSelect(materialSubsubclassCode, input);
 	  }
 	  
-	  function initMaterialSubsubclassSelect(materialSubsubclassCode){
+	  function initMaterialSubsubclassSelect(materialSubsubclassCode, input){
 		  $.get("SelectDataAction_getMaterialSubsubclass?&ts="
 					+ new Date().getTime(), 
 			{materialClassCode : materialClassCode, materialSubclassCode : materialSubclassCode, showFlag : 0},
@@ -281,7 +368,8 @@ $(document).ready(function(){
 				$.each(rdata.data, function(index, value){
 					source[index] = value.subsubclassCode+" "+value.subsubclassName;
 				});	
-				cus_autocomplete(source, "materialSubsubclass", "materialSubsubclass-select", null, null);
+				var inputSelect = $(input).next().get(0).id;
+				cus_autocomplete(source, input.id, inputSelect, null, null);
 			}, 'json');
 	  }
 	  
@@ -294,7 +382,7 @@ $(document).ready(function(){
 				$.each(rdata.data, function(index, value){
 					source[index] = value.orgCode+" "+value.orgName;
 				});	
-				cus_autocomplete(source, "controlOrg", "controlOrg-select", null, selectInspOrgCB);		
+				cus_autocomplete(source, "sControlOrg", "sControlOrg-select", null, selectInspOrgCB);		
 			}, 'json');
 	  }
 	  
@@ -312,12 +400,12 @@ $(document).ready(function(){
 				$.each(rdata.data, function(index, value){
 					source[index] = value.deptCode+" "+value.deptName;
 				});	
-				cus_autocomplete(source, "controlDept", "controlDept-select", null, null);		
+				cus_autocomplete(source, "sControlDept", "sControlDept-select", null, null);		
 			}, 'json');
 	  }
 	  
-	  function searchProcessMethod(){
-		  var methodName = $("#processMethod").val();
+	  function searchProcessMethod(input){
+		  var methodName = $("#"+input).val();
 			 $.get("SearchSelectAction_getProcessingMethod?&ts="
 						+ new Date().getTime(), 
 			    {methodName : methodName},
@@ -326,13 +414,13 @@ $(document).ready(function(){
 					$.each(rdata.data, function(index, value){
 						source[index] = value.methodCode+" "+value.methodName;
 					});	
-					cus_autocomplete(source, "processMethod", null, null, null);
-					$("#processMethod").autocomplete( "search", "" );
+					cus_autocomplete(source, input, null, null, null);
+					$("#"+input).autocomplete( "search", "" );
 				}, 'json');
 	  }
 	  
-	  function searchMaterialSource(){
-		  var sourceName = $("#materialSource").val();
+	  function searchMaterialSource(input){
+		  var sourceName = $("#"+input).val();
 			 $.get("SearchSelectAction_getMaterialSource?&ts="
 						+ new Date().getTime(), 
 			    {sourceName : sourceName},
@@ -341,28 +429,28 @@ $(document).ready(function(){
 					$.each(rdata.data, function(index, value){
 						source[index] = value.sourceCode+" "+value.sourceName;
 					});	
-					cus_autocomplete(source, "materialSource", null, null, null);
-					$("#materialSource").autocomplete( "search", "" );
+					cus_autocomplete(source, input, null, null, null);
+					$("#"+input).autocomplete( "search", "" );
 				}, 'json');
 	  }
 	  
-	  function searchPackageType(){
-		  var typeName = $("#packageType").val();
+	  function searchPackageType(input){
+		  var typeName = $("#"+input).val();
 			 $.get("SearchSelectAction_getPackageType?&ts="
 						+ new Date().getTime(), 
 			    {typeName : typeName},
 			    function(rdata) {
 					var source = new Array();
 					$.each(rdata.data, function(index, value){
-						source[index] = value.methodCode+" "+value.methodName;
+						source[index] = value.typeCode+" "+value.typeName;
 					});	
-					cus_autocomplete(source, "packageType", null, null, null);
-					$("#packageType").autocomplete( "search", "" );
+					cus_autocomplete(source, input, null, null, null);
+					$("#"+input).autocomplete( "search", "" );
 				}, 'json');
 	  }
 	  
-	  function searchIntendedUse(){
-		  var useName = $("#intendedUse").val();
+	  function searchIntendedUse(input){
+		  var useName = $("#"+input).val();
 			 $.get("SearchSelectAction_getIntendedUse?&ts="
 						+ new Date().getTime(), 
 			    {useName : useName},
@@ -371,14 +459,14 @@ $(document).ready(function(){
 					$.each(rdata.data, function(index, value){
 						source[index] = value.useCode+" "+value.useName;
 					});	
-					cus_autocomplete(source, "intendedUse", null, null, null);
-					$("#intendedUse").autocomplete( "search", "" );
+					cus_autocomplete(source, input, null, null, null);
+					$("#"+input).autocomplete( "search", "" );
 				}, 'json');
 	  }
 	  
 	  
-	  function searchCountry(){
-		  var countryName = $("#country").val();
+	  function searchCountry(input){
+		  var countryName = $("#"+input).val();
 			 $.get("SearchSelectAction_getCountry?&ts="
 						+ new Date().getTime(), 
 			    {countryName : countryName},
@@ -387,8 +475,8 @@ $(document).ready(function(){
 					$.each(rdata.data, function(index, value){
 						source[index] = value.countryCode+" "+value.countryName;
 					});	
-					cus_autocomplete(source, "country", null, null, null);
-					$("#country").autocomplete( "search", "" );
+					cus_autocomplete(source, input, null, null, null);
+					$("#"+input).autocomplete( "search", "" );
 				}, 'json');
 	  }
 	  

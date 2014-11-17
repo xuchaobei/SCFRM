@@ -80,13 +80,132 @@
 </div>
 
 
+
+<div id="convCtrlAdd" class="col-md-10 panel-info alertForm">
+	<div class="content-box-header panel-heading">
+		<div class="panel-title ">新增布控规则</div>
+
+		<div class="panel-options">
+			<a id="addConvCtrl" href="#" data-rel="collapse"><i
+				class="glyphicon glyphicon-search"></i>保存</a> <a id="closeAddConvCtrl" href="#"
+				data-rel="reload"><i class="glyphicon glyphicon-remove-circle"></i>取消</a>
+		</div>
+	</div>
+
+<div class="content-box-large box-with-header">
+		<form class="form-horizontal" role="form">
+			<div class="form-group">
+				<label class="col-sm-1 control-label">产品大类</label>
+				<div class="col-sm-3">
+					<div class="input-group">
+						<input type="text" id="aProductClass" class="form-control" /> <span
+							id="aProductClass-select" class="input-group-addon"><i
+							class="glyphicon glyphicon-chevron-down"></i></span>
+					</div>
+				</div>
+				<label class="col-sm-1 control-label">产品小类</label>
+				<div class="col-sm-3">
+					<div class="input-group">
+						<input type="text" id="aProductSubclass" class="form-control" /> <span
+							id="aProductSubclass-select" class="input-group-addon"><i
+							class="glyphicon glyphicon-chevron-down"></i></span>
+					</div>
+				</div>
+				<label class="col-sm-1 control-label">加工方式</label>
+				<div class="col-sm-3">
+					<div class="input-group">
+						<input type="text" id="aProcessMethod" class="form-control">
+						<span id="aProcessMethod-search" class="input-group-addon"><i
+							class="glyphicon glyphicon-search"></i></span>
+					</div>
+				</div>
+			</div>
+			<hr>
+			<div class="form-group">
+				<label class="col-sm-1 control-label">原料大类</label>
+				<div class="col-sm-3">
+					<div class="input-group">
+						<input type="text" id="aMaterialClass" class="form-control">
+						<span id="aMaterialClass-select" class="input-group-addon"><i
+							class="glyphicon glyphicon-chevron-down"></i></span>
+					</div>
+				</div>
+				<label class="col-sm-1 control-label">原料小类</label>
+				<div class="col-sm-3">
+					<div class="input-group">
+						<input type="text" id="aMaterialSubclass" class="form-control">
+						<span id="aMaterialSubclass-select" class="input-group-addon"><i
+							class="glyphicon glyphicon-chevron-down"></i></span>
+					</div>
+				</div>
+				<label class="col-sm-1 control-label">原料细类</label>
+				<div class="col-sm-3">
+					<div class="input-group">
+						<input type="text" id="aMaterialCode" class="form-control">
+						<span id="aMaterialCode-select" class="input-group-addon"><i
+							class="glyphicon glyphicon-chevron-down"></i></span>
+					</div>
+				</div>
+			</div>
+			<hr>
+			<div class="form-group">
+				<label  class="col-sm-1 control-label">原料来源</label>
+				<div class="col-sm-3">
+					<div class="input-group">
+						<input type="text" id="aMaterialSource" class="form-control">
+						<span id="aMaterialSource-search" class="input-group-addon"><i
+							class="glyphicon glyphicon-search"></i></span>
+					</div>
+				</div>
+				<label  class="col-sm-1 control-label">包装类型</label>
+				<div class="col-sm-3">
+					<div class="input-group">
+						<input type="text" id="aPackageType" class="form-control">
+						<span id="aPackageType-search" class="input-group-addon"><i
+							class="glyphicon glyphicon-search"></i></span>
+					</div>
+				</div>
+				<label  class="col-sm-1 control-label">预期用途</label>
+				<div class="col-sm-3">
+					<div class="input-group">
+						<input type="text" id="aIntendedUse" class="form-control">
+						<span id="aIntendedUse-search" class="input-group-addon"><i
+							class="glyphicon glyphicon-search"></i></span>
+					</div>
+				</div>
+			</div>
+			<hr>
+			<div class="form-group">
+				<label  class="col-sm-1 control-label">国家/地区</label>
+				<div class="col-sm-3">
+					<div class="input-group">
+						<input type="text" id="aCountry" class="form-control"> <span
+							id="aCountry-search" class="input-group-addon"><i
+							class="glyphicon glyphicon-search"></i></span>
+					</div>
+				</div>
+				<label  class="col-sm-1 control-label">产品编号</label>
+				<div class="col-sm-3">
+					<input type="text" id="aProductCode" class="form-control">
+				</div>
+				<label  class="col-sm-1 control-label">识别码</label>
+				<div class="col-sm-3">
+					<input type="text" id="aDifferenceCode" class="form-control">
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+
+
 <div id="convCtrlSearch" class="col-md-10 panel-info alertForm">
 	<div class="content-box-header panel-heading">
 		<div class="panel-title ">布控查询</div>
 
 		<div class="panel-options">
 			<a id="searchConvCtrl" href="#" data-rel="collapse"><i
-				class="glyphicon glyphicon-search"></i>查询</a> <a id="closeConvCtrl" href="#"
+				class="glyphicon glyphicon-search"></i>查询</a> <a id="closeSearchConvCtrl" href="#"
 				data-rel="reload"><i class="glyphicon glyphicon-remove-circle"></i>取消</a>
 		</div>
 	</div>
@@ -97,24 +216,24 @@
 				<label class="col-sm-1 control-label">产品大类</label>
 				<div class="col-sm-3">
 					<div class="input-group">
-						<input type="text" id="productClass" class="form-control" /> <span
-							id="productClass-select" class="input-group-addon"><i
+						<input type="text" id="sProductClass" class="form-control" /> <span
+							id="sProductClass-select" class="input-group-addon"><i
 							class="glyphicon glyphicon-chevron-down"></i></span>
 					</div>
 				</div>
 				<label class="col-sm-1 control-label">产品小类</label>
 				<div class="col-sm-3">
 					<div class="input-group">
-						<input type="text" id="productSubclass" class="form-control" /> <span
-							id="productSubclass-select" class="input-group-addon"><i
+						<input type="text" id="sProductSubclass" class="form-control" /> <span
+							id="sProductSubclass-select" class="input-group-addon"><i
 							class="glyphicon glyphicon-chevron-down"></i></span>
 					</div>
 				</div>
 				<label class="col-sm-1 control-label">加工方式</label>
 				<div class="col-sm-3">
 					<div class="input-group">
-						<input type="text" id="processMethod" class="form-control">
-						<span id="processMethod-search" class="input-group-addon"><i
+						<input type="text" id="sProcessMethod" class="form-control">
+						<span id="sProcessMethod-search" class="input-group-addon"><i
 							class="glyphicon glyphicon-search"></i></span>
 					</div>
 				</div>
@@ -124,24 +243,24 @@
 				<label class="col-sm-1 control-label">原料大类</label>
 				<div class="col-sm-3">
 					<div class="input-group">
-						<input type="text" id="materialClass" class="form-control">
-						<span id="materialClass-select" class="input-group-addon"><i
+						<input type="text" id="sMaterialClass" class="form-control">
+						<span id="sMaterialClass-select" class="input-group-addon"><i
 							class="glyphicon glyphicon-chevron-down"></i></span>
 					</div>
 				</div>
 				<label class="col-sm-1 control-label">原料小类</label>
 				<div class="col-sm-3">
 					<div class="input-group">
-						<input type="text" id="materialSubclass" class="form-control">
-						<span id="materialSubclass-select" class="input-group-addon"><i
+						<input type="text" id="sMaterialSubclass" class="form-control">
+						<span id="sMaterialSubclass-select" class="input-group-addon"><i
 							class="glyphicon glyphicon-chevron-down"></i></span>
 					</div>
 				</div>
 				<label class="col-sm-1 control-label">原料细类</label>
 				<div class="col-sm-3">
 					<div class="input-group">
-						<input type="text" id="materialCode" class="form-control">
-						<span id="materialCode-select" class="input-group-addon"><i
+						<input type="text" id="sMaterialCode" class="form-control">
+						<span id="sMaterialCode-select" class="input-group-addon"><i
 							class="glyphicon glyphicon-chevron-down"></i></span>
 					</div>
 				</div>
@@ -151,24 +270,24 @@
 				<label  class="col-sm-1 control-label">原料来源</label>
 				<div class="col-sm-3">
 					<div class="input-group">
-						<input type="text" id="materialSource" class="form-control">
-						<span id="materialSource-search" class="input-group-addon"><i
+						<input type="text" id="sMaterialSource" class="form-control">
+						<span id="sMaterialSource-search" class="input-group-addon"><i
 							class="glyphicon glyphicon-search"></i></span>
 					</div>
 				</div>
 				<label  class="col-sm-1 control-label">包装类型</label>
 				<div class="col-sm-3">
 					<div class="input-group">
-						<input type="text" id="packageType" class="form-control">
-						<span id="packageType-search" class="input-group-addon"><i
+						<input type="text" id="sPackageType" class="form-control">
+						<span id="sPackageType-search" class="input-group-addon"><i
 							class="glyphicon glyphicon-search"></i></span>
 					</div>
 				</div>
 				<label  class="col-sm-1 control-label">预期用途</label>
 				<div class="col-sm-3">
 					<div class="input-group">
-						<input type="text" id="intendedUse" class="form-control">
-						<span id="intendedUse-search" class="input-group-addon"><i
+						<input type="text" id="sIntendedUse" class="form-control">
+						<span id="sIntendedUse-search" class="input-group-addon"><i
 							class="glyphicon glyphicon-search"></i></span>
 					</div>
 				</div>
@@ -178,24 +297,24 @@
 				<label  class="col-sm-1 control-label">国家/地区</label>
 				<div class="col-sm-3">
 					<div class="input-group">
-						<input type="text" id="country" class="form-control"> <span
-							id="country-search" class="input-group-addon"><i
+						<input type="text" id="sCountry" class="form-control"> <span
+							id="sCountry-search" class="input-group-addon"><i
 							class="glyphicon glyphicon-search"></i></span>
 					</div>
 				</div>
 				<label  class="col-sm-1 control-label">布控机构</label>
 				<div class="col-sm-3">
 					<div class="input-group">
-						<input type="text" id="controlOrg" class="form-control">
-						<span id="controlOrg-select" class="input-group-addon"><i
+						<input type="text" id="sControlOrg" class="form-control">
+						<span id="sControlOrg-select" class="input-group-addon"><i
 							class="glyphicon glyphicon-chevron-down"></i></span>
 					</div>
 				</div>
 				<label  class="col-sm-1 control-label">布控部门</label>
 				<div class="col-sm-3">
 					<div class="input-group">
-						<input type="text" id="controlDept" class="form-control">
-						<span id="controlDept-select" class="input-group-addon"><i
+						<input type="text" id="sControlDept" class="form-control">
+						<span id="sControlDept-select" class="input-group-addon"><i
 							class="glyphicon glyphicon-chevron-down"></i></span>
 					</div>
 				</div>
@@ -204,12 +323,13 @@
 			<div class="form-group">
 				<label  class="col-sm-1 control-label">产品编号</label>
 				<div class="col-sm-3">
-					<input type="text" id="productCode" class="form-control">
+					<input type="text" id="sProductCode" class="form-control">
 				</div>
 			</div>
 		</form>
 	</div>
-
 </div>
+
+
 
 <script src="js/ConventionCtrl.js"></script>

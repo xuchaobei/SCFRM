@@ -75,7 +75,7 @@ public class SearchSelectAction {
         int startIndex = 0;
         int pageSize = 0;
         int showFlg = 0;
-        String orderWord = "TypeCode";
+        String orderWord = "UseCode";
         String orderDirection = "ASC";
         result = SearchSelectService.getIntendedUse(useName, showFlg, startIndex, pageSize, orderWord, orderDirection);
         return Action.SUCCESS;
@@ -98,6 +98,28 @@ public class SearchSelectAction {
         return Action.SUCCESS;
     }
 
+    private String levelType;
+    
+    /**
+     * 等级类型
+     * @return
+     */
+    public String getEvlLevel(){
+        result = SearchSelectService.getEvlLevel(levelType);
+        return Action.SUCCESS;
+    }
+
+    private String itemName;
+    
+    /**
+     * 检测项目
+     * @return
+     */
+    public String getItem(){
+        result = SearchSelectService.getItem(itemName, "", 0, 0, 0, "ItemCode", "ASC");
+        return Action.SUCCESS;
+    }
+    
     public JSONObject getResult() {
         return result;
     }

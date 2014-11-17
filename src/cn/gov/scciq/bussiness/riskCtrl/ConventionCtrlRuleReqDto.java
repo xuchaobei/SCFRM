@@ -22,6 +22,10 @@ public class ConventionCtrlRuleReqDto {
     private String controlOrgCode;
     private String controlDeptCode;
     
+    private String convCtrlID;
+    private String differenceCode;
+    private String controlOperatorCode;
+    
     
     
     public String getProductCode() {
@@ -126,6 +130,30 @@ public class ConventionCtrlRuleReqDto {
 
     public void setControlDeptCode(String controlDeptCode) {
         this.controlDeptCode = controlDeptCode;
+    }
+
+    public String getConvCtrlID() {
+        return convCtrlID;
+    }
+
+    public void setConvCtrlID(String convCtrlID) {
+        this.convCtrlID = convCtrlID;
+    }
+
+    public String getDifferenceCode() {
+        return differenceCode;
+    }
+
+    public void setDifferenceCode(String differenceCode) {
+        this.differenceCode = differenceCode;
+    }
+
+    public String getControlOperatorCode() {
+        return controlOperatorCode;
+    }
+
+    public void setControlOperatorCode(String controlOperatorCode) {
+        this.controlOperatorCode = controlOperatorCode;
     }
 
     public ConventionCtrlRuleReqDto() {

@@ -14,6 +14,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import cn.gov.scciq.dbpool.DBPool;
+import cn.gov.scciq.util.ConstantStr;
 import cn.gov.scciq.util.RsToDtoUtil;
 
 public class ConventionCtrlDao {
@@ -106,6 +107,63 @@ public class ConventionCtrlDao {
         return rsMap;
     }
 
+    /**
+     * 保存常规布控
+     * @return
+     */
+    public static String saveConvCtrl(String convCtrlID,String productClassCode,String productSubclassCode,String productCode,
+            String materialClassCode,String materialSubclassCode,String materialCode,String materialSourceCode,
+            String processMethodCode,String packageTypeCode,String intentedUseCode,String countryCode,
+            String differenceCode,String controlOrgCode,String controlDeptCode,String controlOperatorCode){
+        String retStr = ConstantStr.SAVE_ERROR_MSG;
+        Connection conn = null;
+        CallableStatement proc = null;
+        String call = "{call Pro_SaveConvCtrl(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}";
+        try {
+            conn = DBPool.ds.getConnection();
+            proc = conn.prepareCall(call);
+            proc.setString(1, convCtrlID);
+            proc.setString(2, productClassCode);
+            proc.setString(3, productSubclassCode);
+            proc.setString(4, productCode);
+            proc.setString(5, materialClassCode);
+            proc.setString(6, materialSubclassCode);
+            proc.setString(7, materialCode);
+            proc.setString(8, materialSourceCode);
+            proc.setString(9, processMethodCode);
+            proc.setString(10, packageTypeCode);
+            proc.setString(11, intentedUseCode);
+            proc.setString(12, countryCode);
+            proc.setString(13, differenceCode);
+            proc.setString(14, controlOrgCode);
+            proc.setString(15, controlDeptCode);
+            proc.setString(16, controlOperatorCode);
+            proc.registerOutParameter(17, Types.VARCHAR);
+            proc.registerOutParameter(18, Types.INTEGER);
+            proc.execute();
+            retStr = proc.getString(17);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            log.error("", e);
+        } catch (Exception e) {
+            log.error("", e);
+        } finally{
+            try {
+                if(proc != null){
+                    proc.close();
+                }
+                if(conn != null){
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                log.error("", e);
+            }
+        }
+        return retStr;
+    }
+    
+    
     
     /**
      * 删除常规布控

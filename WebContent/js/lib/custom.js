@@ -14,7 +14,7 @@ $(document).ready(function() {
 			$li.addClass("open");
 		}
 	});
-
+	
 });
 
 $.extend( $.fn.dataTable.defaults, {
@@ -67,14 +67,14 @@ function getSelectValue(selectId){
 	return code;
 }
 
-function initContentDivHeight() {
+function setMinContentDivHeight() {
 	var windowHeight = $(window).height();
 	var headerHeight = $(".header").outerHeight();
-	var contentHeight = $(".page-content").outerHeight();
+	var contentHeight = $("#content").outerHeight();
 	var footerHeight = $("footer").outerHeight();
 	var minContHeight = windowHeight - headerHeight - footerHeight - 30;
 	if (minContHeight > contentHeight) {
-		$(".page-content").height(minContHeight);
+		$("#content").css("min-height", minContHeight);
 	}
 }
 

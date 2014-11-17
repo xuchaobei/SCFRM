@@ -14,6 +14,7 @@ import org.apache.commons.logging.LogFactory;
 import cn.gov.scciq.dbpool.DBPool;
 import cn.gov.scciq.dto.InspDeptDto;
 import cn.gov.scciq.dto.InspOrgDto;
+import cn.gov.scciq.dto.LimitTypeDto;
 import cn.gov.scciq.dto.MaterialClassDto;
 import cn.gov.scciq.dto.MaterialSubclassDto;
 import cn.gov.scciq.dto.MaterialSubsubclassDto;
@@ -343,6 +344,50 @@ public class SelectDataDao {
             MaterialSubsubclassDto dto = null;
             while(rs.next()){
                 dto = RsToDtoUtil.tranRsToDto(rs, MaterialSubsubclassDto.class);
+                list.add(dto);
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            log.error("", e);
+        } catch (Exception e) {
+            log.error("", e);
+        } finally{
+            try {
+                if(rs != null){
+                    rs.close();
+                }
+                if(proc != null){
+                    proc.close();
+                }
+                if(conn != null){
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                log.error("", e);
+            }
+        }
+        return list;
+    }
+    
+    /**
+     * 限量类型
+     * @return
+     */
+    public static List<LimitTypeDto> getLimitType(){
+        List<LimitTypeDto> list  = new ArrayList<LimitTypeDto>();
+        Connection conn = null;
+        CallableStatement proc = null;
+        ResultSet rs = null;
+        String call = "{call Pro_GetLimitType()}";
+        try {
+            conn = DBPool.ds.getConnection();
+            proc = conn.prepareCall(call);
+            proc.execute();
+            rs = proc.getResultSet();
+            LimitTypeDto dto = null;
+            while(rs.next()){
+                dto = RsToDtoUtil.tranRsToDto(rs, LimitTypeDto.class);
                 list.add(dto);
             }
         } catch (SQLException e) {

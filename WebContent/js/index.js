@@ -1,5 +1,4 @@
 $(document).ready(function(){
-	initContentDivHeight();
 	
 	$("#risk-nav ul li").each(function(i){
 		switch(i){
@@ -16,5 +15,5 @@ $(document).ready(function(){
 		}
 	});
 	
-	
+	setMinContentDivHeight();
 });

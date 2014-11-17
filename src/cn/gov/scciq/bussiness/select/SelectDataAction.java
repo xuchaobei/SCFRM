@@ -121,7 +121,16 @@ public class SelectDataAction {
         result = SelectDataService.getMaterialSubsubclass(materialClassCode, materialClassCode, showFlag, startIndex, pageSize, orderWord, orderDirection);
         return Action.SUCCESS;
     }
-
+    
+    
+    /**
+     * 限量类型
+     * @return
+     */
+    public String getLimitType(){
+        result = SelectDataService.getLimitType();
+        return Action.SUCCESS;
+    }
     
 
     public String getProductClassCode() {

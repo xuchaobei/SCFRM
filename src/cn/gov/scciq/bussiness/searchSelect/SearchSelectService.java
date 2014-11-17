@@ -4,7 +4,9 @@ import java.util.List;
 
 import net.sf.json.JSONObject;
 import cn.gov.scciq.dto.CountryDto;
+import cn.gov.scciq.dto.EvlLevelDto;
 import cn.gov.scciq.dto.IntendedUseDto;
+import cn.gov.scciq.dto.ItemDto;
 import cn.gov.scciq.dto.MaterialSourceDto;
 import cn.gov.scciq.dto.PackageTypeDto;
 import cn.gov.scciq.dto.ProcessingMethodDto;
@@ -64,6 +66,27 @@ public class SearchSelectService {
     public static JSONObject getCountry(String methodName, int showFlg,  int startIndex, int pageSize, String orderWord, String orderDirection){
         List<CountryDto> countryList = SearchSelectDao.getCountry( methodName, showFlg, 0, 0, orderWord, orderDirection);
         JSONObject rs = DefaultResultUtil.getDefaultResult(countryList);
+        return rs;
+    }
+    
+    /**
+     * 等级类型
+     * @param levelType
+     * @return
+     */
+    public static JSONObject getEvlLevel(String levelType){
+        List<EvlLevelDto> evlLevelList = SearchSelectDao.getEvlLevel(levelType);
+        JSONObject rs = DefaultResultUtil.getDefaultResult(evlLevelList);
+        return rs;
+    }
+    
+    /**
+     * 检测项目
+     * @return
+     */
+    public static JSONObject getItem(String itemName, String riskClassCode, int showFlg, int startIndex, int  pageSize, String orderWord, String orderDirection){
+        List<ItemDto> itemList = SearchSelectDao.getItem(itemName, riskClassCode, showFlg, startIndex, pageSize, orderWord, orderDirection);
+        JSONObject rs = DefaultResultUtil.getDefaultResult(itemList);
         return rs;
     }
     

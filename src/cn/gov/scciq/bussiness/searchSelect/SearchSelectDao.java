@@ -13,7 +13,10 @@ import org.apache.commons.logging.LogFactory;
 
 import cn.gov.scciq.dbpool.DBPool;
 import cn.gov.scciq.dto.CountryDto;
+import cn.gov.scciq.dto.EvlLevelDto;
 import cn.gov.scciq.dto.IntendedUseDto;
+import cn.gov.scciq.dto.ItemDto;
+import cn.gov.scciq.dto.LimitTypeDto;
 import cn.gov.scciq.dto.MaterialSourceDto;
 import cn.gov.scciq.dto.PackageTypeDto;
 import cn.gov.scciq.dto.ProcessingMethodDto;
@@ -284,4 +287,101 @@ public class SearchSelectDao {
         return list;
     }
     
+    /**
+     * 等级类型
+     * @return
+     */
+    public static List<EvlLevelDto> getEvlLevel(String levelType){
+        List<EvlLevelDto> list  = new ArrayList<EvlLevelDto>();
+        Connection conn = null;
+        CallableStatement proc = null;
+        ResultSet rs = null;
+        String call = "{call Pro_GetEvlLevel(?)}";
+        try {
+            conn = DBPool.ds.getConnection();
+            proc = conn.prepareCall(call);
+            proc.setString(1, levelType);
+            proc.execute();
+            rs = proc.getResultSet();
+            EvlLevelDto dto = null;
+            while(rs.next()){
+                dto = RsToDtoUtil.tranRsToDto(rs, EvlLevelDto.class);
+                list.add(dto);
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            log.error("", e);
+        } catch (Exception e) {
+            log.error("", e);
+        } finally{
+            try {
+                if(rs != null){
+                    rs.close();
+                }
+                if(proc != null){
+                    proc.close();
+                }
+                if(conn != null){
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                log.error("", e);
+            }
+        }
+        return list;
+    }
+    
+    
+    /**
+     * 检测项目
+     * @return
+     */
+    public static List<ItemDto> getItem(String itemName, String riskClassCode, int showFlg, int startIndex, int pageSize, String orderWord, String orderDirection){
+        List<ItemDto> list  = new ArrayList<ItemDto>();
+        Connection conn = null;
+        CallableStatement proc = null;
+        ResultSet rs = null;
+        String call = "{call Pro_GetItem(?,?,?,?,?,?,?,?)}";
+        try {
+            conn = DBPool.ds.getConnection();
+            proc = conn.prepareCall(call);
+            proc.setString(1, itemName);
+            proc.setString(2, riskClassCode);
+            proc.setInt(3, showFlg);
+            proc.setInt(4, startIndex);
+            proc.setInt(5, pageSize);
+            proc.setString(6, orderWord);
+            proc.setString(7, orderDirection);
+            proc.registerOutParameter(8, Types.INTEGER);
+            proc.execute();
+            rs = proc.getResultSet();
+            ItemDto dto = null;
+            while(rs.next()){
+                dto = RsToDtoUtil.tranRsToDto(rs, ItemDto.class);
+                list.add(dto);
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            log.error("", e);
+        } catch (Exception e) {
+            log.error("", e);
+        } finally{
+            try {
+                if(rs != null){
+                    rs.close();
+                }
+                if(proc != null){
+                    proc.close();
+                }
+                if(conn != null){
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                log.error("", e);
+            }
+        }
+        return list;
+    }
 }

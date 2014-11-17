@@ -5,6 +5,7 @@ import java.util.List;
 import net.sf.json.JSONObject;
 import cn.gov.scciq.dto.InspDeptDto;
 import cn.gov.scciq.dto.InspOrgDto;
+import cn.gov.scciq.dto.LimitTypeDto;
 import cn.gov.scciq.dto.MaterialClassDto;
 import cn.gov.scciq.dto.MaterialSubclassDto;
 import cn.gov.scciq.dto.MaterialSubsubclassDto;
@@ -91,5 +92,17 @@ public class SelectDataService {
         JSONObject rs = DefaultResultUtil.getDefaultResult(materialSubsubList);
         return rs;
     }
+    
+    
+    /**
+     * 限量类型
+     * @return
+     */
+    public static JSONObject getLimitType(){
+        List<LimitTypeDto> limitTypeList = SelectDataDao.getLimitType();
+        JSONObject rs = DefaultResultUtil.getDefaultResult(limitTypeList);
+        return rs;
+    }
+    
     
 }

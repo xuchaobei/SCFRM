@@ -19,6 +19,17 @@ public class DefaultResultUtil {
     }
     
     /**
+     * 获取执行增删改动作后的结果格式
+     * @param obj
+     * @return
+     */
+    public static JSONObject getModificationResult(Object obj){
+        JSONObject data = new JSONObject();
+        data.put("data", obj);
+        return data;
+    }
+    
+    /**
      * 获取传递到前台table中的结果格式
      * @param draw
      * @param recordsTotal
@@ -34,5 +45,9 @@ public class DefaultResultUtil {
         result.setRecordsFiltered(recordsTotal);
         result.setData(ja);
         return JSONObject.fromObject(result);
+    }
+    
+    public static void main(String[] args) {
+        getDefaultResult("true");
     }
 }

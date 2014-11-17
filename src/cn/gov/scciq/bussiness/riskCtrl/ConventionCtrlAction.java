@@ -111,6 +111,15 @@ public class ConventionCtrlAction{
     }
     
     /**
+     * 保存常规布控
+     * @return
+     */
+    public String saveConvCtrl(){
+        result = convCtrlService.saveConvCtrl(data);
+        return Action.SUCCESS;
+    }
+    
+    /**
      * 删除布控
      * @return
      */
