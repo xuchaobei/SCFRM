@@ -2,7 +2,6 @@ package cn.gov.scciq.bussiness.example;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -57,6 +56,22 @@ public class HelloJsonService{
         JSONObject jo = JSONObject.fromObject(builder.toString());
         log.info(jo.toString());
         return jo;
+    }
+    
+    public static void main(String[] args) {
+        String str = "{\"id\":\"123\",\"name\":\"aaa\",\"limitType\":[{\"type\":\"3\", \"limit\":\"bcd\"},{\"type\":\"4\", \"limit\":\"bgf\"}]}";
+        String str2 = "{\"id\":\"123\",\"name\":\"aaa\",\"limitType\":[]}";
+        JSONObject jo = JSONObject.fromObject(str2);
+        log.info(jo.toString());
+        
+        UserBean bean = (UserBean)JSONObject.toBean(jo, UserBean.class);
+        
+        LimitType[] arr =(LimitType[]) JSONArray.toArray(JSONArray.fromObject(jo.get("limitType")), LimitType.class);
+        log.info(arr);
+        
+        LimitType[] arr2 =(LimitType[]) JSONArray.toArray(JSONArray.fromObject(bean.getLimitType()), LimitType.class);
+        log.info(arr);
+
     }
 }
 

@@ -29,6 +29,11 @@
                  <param name="root">result</param>
              </result>
         </action>
+        <action name="CIQCtrlAction_*" class="cn.gov.scciq.bussiness.ciqCtrl.CIQCtrlAction" method="{1}">
+             <result type="json">
+                 <param name="root">result</param>
+             </result>
+        </action>
     </package>
 
 </struts>

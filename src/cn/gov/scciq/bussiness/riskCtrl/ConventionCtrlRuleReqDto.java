@@ -15,7 +15,7 @@ public class ConventionCtrlRuleReqDto {
     private String materialSubclassCode;
     private String materialCode;
     private String materialSourceCode;
-    private String processMethodCode;
+    private String processingMethodCode;
     private String packageTypeCode;
     private String intendedUseCode;
     private String countryCode;
@@ -84,12 +84,12 @@ public class ConventionCtrlRuleReqDto {
         this.materialSourceCode = materialSourceCode;
     }
 
-    public String getProcessMethodCode() {
-        return processMethodCode;
+    public String getProcessingMethodCode() {
+        return processingMethodCode;
     }
 
-    public void setProcessMethodCode(String processMethodCode) {
-        this.processMethodCode = processMethodCode;
+    public void setProcessingMethodCode(String processMethodCode) {
+        this.processingMethodCode = processMethodCode;
     }
 
     public String getPackageTypeCode() {

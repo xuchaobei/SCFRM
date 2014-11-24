@@ -1,14 +1,14 @@
 package cn.gov.scciq.bussiness.riskCtrl;
 
 /**
- * 布控项目
+ * 布控项目table返回数据
  * 
  * @author chao.xu
  * 
  */
-public class ConventionCtrlItemDto {
+public class ConventionCtrlItemResDto {
 
-    private String convCtrlItemId;
+    private String convCtrlItemID;
 
     private String itemCode;
 
@@ -32,12 +32,13 @@ public class ConventionCtrlItemDto {
     /** 限量要求 */
     private String limitReq;
 
-    public String getConvCtrlItemId() {
-        return convCtrlItemId;
+
+    public String getConvCtrlItemID() {
+        return convCtrlItemID;
     }
 
-    public void setConvCtrlItemId(String convCtrlItemId) {
-        this.convCtrlItemId = convCtrlItemId;
+    public void setConvCtrlItemID(String convCtrlItemID) {
+        this.convCtrlItemID = convCtrlItemID;
     }
 
     public String getItemCode() {

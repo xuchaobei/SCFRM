@@ -12,7 +12,7 @@ public class ConventionCtrlRuleResDto {
     private String countryName;
     private String productClassName;
     private String productSubclassName;
-    private String processMethodName;
+    private String processingMethodName;
     private String materialClassName;
     private String materialSubclassName;
     private String materialName;
@@ -57,12 +57,12 @@ public class ConventionCtrlRuleResDto {
         this.productSubclassName = productSubclassName;
     }
 
-    public String getProcessMethodName() {
-        return processMethodName;
+    public String getProcessingMethodName() {
+        return processingMethodName;
     }
 
-    public void setProcessMethodName(String processMethodName) {
-        this.processMethodName = processMethodName;
+    public void setProcessingMethodName(String processMethodName) {
+        this.processingMethodName = processMethodName;
     }
 
     public String getMaterialClassName() {

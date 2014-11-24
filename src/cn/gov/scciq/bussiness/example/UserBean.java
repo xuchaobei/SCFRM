@@ -1,8 +1,12 @@
 package cn.gov.scciq.bussiness.example;
 
+import net.sf.json.JSONArray;
+
 public class UserBean{
     private int id;
     private String name = "attr";
+    
+    private JSONArray limitType;
   
     public int getId() {
         return id;
@@ -16,4 +20,14 @@ public class UserBean{
     public void setName(String attr) {
         this.name = attr;
     }
+    public JSONArray getLimitType() {
+        return limitType;
+    }
+    public void setLimitType(JSONArray limitType) {
+        this.limitType = limitType;
+    }
+
+    
+    
+    
 }

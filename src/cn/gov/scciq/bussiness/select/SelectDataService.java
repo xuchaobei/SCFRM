@@ -3,6 +3,7 @@ package cn.gov.scciq.bussiness.select;
 import java.util.List;
 
 import net.sf.json.JSONObject;
+import cn.gov.scciq.dto.EvlLevelDto;
 import cn.gov.scciq.dto.InspDeptDto;
 import cn.gov.scciq.dto.InspOrgDto;
 import cn.gov.scciq.dto.LimitTypeDto;
@@ -93,6 +94,16 @@ public class SelectDataService {
         return rs;
     }
     
+    /**
+     * 等级类型
+     * @param levelType
+     * @return
+     */
+    public static JSONObject getEvlLevel(String levelType){
+        List<EvlLevelDto> evlLevelList = SelectDataDao.getEvlLevel(levelType);
+        JSONObject rs = DefaultResultUtil.getDefaultResult(evlLevelList);
+        return rs;
+    }
     
     /**
      * 限量类型

@@ -695,6 +695,14 @@ table.dataTable {
 	z-index: 10;
 }
 
+.alertForm2 {
+	position: fixed;
+	top: 20%;
+	left: 0;
+	display: none;
+	z-index: 10;
+}
+
 /*autocomplete显示最大高度*/
 .ui-menu {
 	max-height: 200px;

@@ -53,6 +53,8 @@ function cus_autocomplete(collection, input_id, btn_id, create_cb, select_cb){
 				$("#"+input_id).autocomplete("search", "");	
 				$("#"+input_id).focus();
 		});		
+	}else{
+		$("#"+input_id).focus();
 	}
  }
 
@@ -67,6 +69,9 @@ function getSelectValue(selectId){
 	return code;
 }
 
+/**
+ * 设置内容区域的最小高度
+ */
 function setMinContentDivHeight() {
 	var windowHeight = $(window).height();
 	var headerHeight = $(".header").outerHeight();
@@ -76,6 +81,15 @@ function setMinContentDivHeight() {
 	if (minContHeight > contentHeight) {
 		$("#content").css("min-height", minContHeight);
 	}
+}
+
+/**
+ * 清空弹出div中input标签的输入内容
+ */
+function clearAlertDiv(divID){
+	$("#"+divID + " input").each(function(){
+		$(this).val("");
+	});
 }
 
 	

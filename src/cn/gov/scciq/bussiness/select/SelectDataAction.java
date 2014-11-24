@@ -122,6 +122,16 @@ public class SelectDataAction {
         return Action.SUCCESS;
     }
     
+    private String levelType;
+    
+    /**
+     * 等级类型
+     * @return
+     */
+    public String getEvlLevel(){
+        result = SelectDataService.getEvlLevel(levelType);
+        return Action.SUCCESS;
+    }
     
     /**
      * 限量类型
@@ -181,8 +191,14 @@ public class SelectDataAction {
         this.orgCode = orgCode;
     }
 
-    
-    
+    public String getLevelType() {
+        return levelType;
+    }
+
+    public void setLevelType(String levelType) {
+        this.levelType = levelType;
+    }
+
     
     
     

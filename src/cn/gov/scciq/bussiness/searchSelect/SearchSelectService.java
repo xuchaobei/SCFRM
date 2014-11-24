@@ -4,7 +4,6 @@ import java.util.List;
 
 import net.sf.json.JSONObject;
 import cn.gov.scciq.dto.CountryDto;
-import cn.gov.scciq.dto.EvlLevelDto;
 import cn.gov.scciq.dto.IntendedUseDto;
 import cn.gov.scciq.dto.ItemDto;
 import cn.gov.scciq.dto.MaterialSourceDto;
@@ -69,16 +68,6 @@ public class SearchSelectService {
         return rs;
     }
     
-    /**
-     * 等级类型
-     * @param levelType
-     * @return
-     */
-    public static JSONObject getEvlLevel(String levelType){
-        List<EvlLevelDto> evlLevelList = SearchSelectDao.getEvlLevel(levelType);
-        JSONObject rs = DefaultResultUtil.getDefaultResult(evlLevelList);
-        return rs;
-    }
     
     /**
      * 检测项目

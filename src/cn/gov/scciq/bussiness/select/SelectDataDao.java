@@ -12,13 +12,13 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import cn.gov.scciq.dbpool.DBPool;
+import cn.gov.scciq.dto.EvlLevelDto;
 import cn.gov.scciq.dto.InspDeptDto;
 import cn.gov.scciq.dto.InspOrgDto;
 import cn.gov.scciq.dto.LimitTypeDto;
 import cn.gov.scciq.dto.MaterialClassDto;
 import cn.gov.scciq.dto.MaterialSubclassDto;
 import cn.gov.scciq.dto.MaterialSubsubclassDto;
-import cn.gov.scciq.dto.ProcessingMethodDto;
 import cn.gov.scciq.dto.ProductClassDto;
 import cn.gov.scciq.dto.ProductSubclassDto;
 import cn.gov.scciq.util.RsToDtoUtil;
@@ -369,6 +369,52 @@ public class SelectDataDao {
         }
         return list;
     }
+    
+    /**
+     * 等级类型
+     * @return
+     */
+    public static List<EvlLevelDto> getEvlLevel(String levelType){
+        List<EvlLevelDto> list  = new ArrayList<EvlLevelDto>();
+        Connection conn = null;
+        CallableStatement proc = null;
+        ResultSet rs = null;
+        String call = "{call Pro_GetEvlLevel(?)}";
+        try {
+            conn = DBPool.ds.getConnection();
+            proc = conn.prepareCall(call);
+            proc.setString(1, levelType);
+            proc.execute();
+            rs = proc.getResultSet();
+            EvlLevelDto dto = null;
+            while(rs.next()){
+                dto = RsToDtoUtil.tranRsToDto(rs, EvlLevelDto.class);
+                list.add(dto);
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            log.error("", e);
+        } catch (Exception e) {
+            log.error("", e);
+        } finally{
+            try {
+                if(rs != null){
+                    rs.close();
+                }
+                if(proc != null){
+                    proc.close();
+                }
+                if(conn != null){
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                log.error("", e);
+            }
+        }
+        return list;
+    }
+    
     
     /**
      * 限量类型

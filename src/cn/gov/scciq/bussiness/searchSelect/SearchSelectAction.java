@@ -98,16 +98,6 @@ public class SearchSelectAction {
         return Action.SUCCESS;
     }
 
-    private String levelType;
-    
-    /**
-     * 等级类型
-     * @return
-     */
-    public String getEvlLevel(){
-        result = SearchSelectService.getEvlLevel(levelType);
-        return Action.SUCCESS;
-    }
 
     private String itemName;
     
@@ -166,6 +156,14 @@ public class SearchSelectAction {
 
     public void setCountryName(String countryName) {
         this.countryName = countryName;
+    }
+
+    public String getItemName() {
+        return itemName;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
     }
     
     
