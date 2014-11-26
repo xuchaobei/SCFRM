@@ -571,6 +571,7 @@ $(document).ready(function(){
 				if(rdata.data == "true"){
 					alert("保存成功！");
 					itemCtrlTable.draw();
+					curItemCtrlRow = null;
 					$("#closeAddCtrlItem").click();
 				}else{
 					alert(rdata.data);
