@@ -110,6 +110,22 @@ public class SearchSelectAction {
         return Action.SUCCESS;
     }
     
+    
+    private String ciqControlID;
+    
+    private String definedField;
+    
+    private String keywords;
+    
+    /**
+     * 根据应急布控ID以及所选的字段名称，查询得到对应的字段值
+     * @return
+     */
+    public String getCIQControlKeyValue(){
+        result = SearchSelectService.getCIQControlKeyValue(ciqControlID, definedField, keywords);
+        return Action.SUCCESS;
+    }
+    
     public JSONObject getResult() {
         return result;
     }
@@ -165,7 +181,30 @@ public class SearchSelectAction {
     public void setItemName(String itemName) {
         this.itemName = itemName;
     }
-    
+
+    public String getCiqControlID() {
+        return ciqControlID;
+    }
+
+    public void setCiqControlID(String ciqControlID) {
+        this.ciqControlID = ciqControlID;
+    }
+
+    public String getDefinedField() {
+        return definedField;
+    }
+
+    public void setDefinedField(String definedField) {
+        this.definedField = definedField;
+    }
+
+    public String getKeywords() {
+        return keywords;
+    }
+
+    public void setKeywords(String keywords) {
+        this.keywords = keywords;
+    }
     
     
     

@@ -53,12 +53,12 @@ $(document).ready(function(){
 			  type : "GET",
 			  data : function(d){
 				  d.data = getConvCtrlRequestParam();
-			  }
+			  },
 		  },
 	      "columns": convCtrlColumns,
 	      "columnDefs": [
 	                     {
-	                         "targets": [ 0 ],
+	                         "targets": [ 0 ,13,14],
 	                         "visible": false,
 	                     }
 	                 ]
@@ -81,8 +81,7 @@ $(document).ready(function(){
 				  }else{
 					  return {convCtrlID : convCtrlTable.row(curConvCtrlRow).data().convCtrlID};
 				  }
-				  
-			  }
+			  },
 		  },
 	      "columns": itemCtrlColumns,
 	      "columnDefs": [
@@ -112,12 +111,25 @@ $(document).ready(function(){
 	  } );
 	
 	  $('#convCtrlTb').on( 'draw.dt', function () {
-		  if(convCtrlTable.rows().data().length > 0){
-			  var dtRow = convCtrlTable.row(0);
-			  $(dtRow.node()).click();
-		  }
 		  curItemCtrlRow = null;
-	  } );
+		  if(convCtrlTable.rows().data().length > 0){
+			  var dtRow = null;
+			  var node = null;
+			  if(curConvCtrlRow != null){
+				  dtRow = convCtrlTable.row($(curConvCtrlRow).context._DT_RowIndex);
+				  node = dtRow.node();
+				  if(node != null){
+					  $(node).click();
+					  return;
+				  }
+			  }
+			  dtRow = convCtrlTable.row(0);
+			  node = dtRow.node();
+			  $(node).click();
+		  }else{
+			  curConvCtrlRow = null;
+		  }
+	  });
 
 	  $('#convCtrlTb tbody').on("click", "tr", clickConvCtrlRow );
 	  
@@ -149,8 +161,11 @@ $(document).ready(function(){
 	  $('#itemCtrlTb tbody').on("click", "tr", clickItemCtrlRow );
 	  
 	  $("#searchConvCtrl").click(function(){
-		  convCtrlTable.draw();
-		  $("#closeSearchConvCtrl").click();
+		  var data = getConvCtrlRequestParam();
+		  if(checkJsonParam(JSON.parse(data))){
+			  convCtrlTable.draw();
+			  $("#closeSearchConvCtrl").click();
+		  }
 	  });
 	  
 	  $("#addConvCtrl").click(function(){
@@ -179,16 +194,9 @@ $(document).ready(function(){
 	      $("#convCtrlEdit").hide(); 
 	  });
 	  
-	  $("#addItem").click(function(){
-		  itemCtrlOperation = 0;
-		  $(".overlay").show();
-		  $("#ctrlItemAdd").show();
-	  });
+	  $("#addItem").click(addConvCtrlItem);
 	  
-	  $("#editItem").click(function(){
-		  itemCtrlOperation = 1;
-		  getCtrlItemDetail();
-	  });
+	  $("#editItem").click(getCtrlItemDetail);
 	  
 	  $("#deleteItem").click(delConvCtrlItem);
 	  
@@ -216,9 +224,7 @@ $(document).ready(function(){
 	  });
 	  
 	  $("#deleteLimitTable").click(function(){
-		  limitTableOperation = 2;
-		  $("#ctrlItemAdd").hide(); 
-		  $("#limitTable").show();
+		  deleteLimitTable();
 	  });
 	  
       $("#confirmLimitTable").click(function(){
@@ -228,9 +234,6 @@ $(document).ready(function(){
     	    	  break;
     	      case 1: 
     	    	  saveLimitTable(1);   //修改
-    	    	  break;
-    	      case 2:
-    	    	  deleteLimitTable();
     	    	  break;
     	  }
 	  });
@@ -278,6 +281,10 @@ $(document).ready(function(){
 		  searchIntendedUse("sIntendedUse");
 	  });
 	  
+	  $("#sCountry-search").click(function(){
+		  searchCountry("sCountry");
+	  });
+	  
 	  $("#aCountry-search").click(function(){
 		  searchCountry("aCountry");
 	  });
@@ -316,12 +323,12 @@ $(document).ready(function(){
 	  function getConvCtrlRequestParam(){
 		  var data = {
 				    productClassCode : getSelectValue("sProductClass"),
-				    productSubclassCode : getSelectValue("sProductSubclas"),
+				    productSubclassCode : getSelectValue("sProductSubclass"),
 				    materialClassCode : getSelectValue("sMaterialClass"),
 				    materialSubclassCode : getSelectValue("sMaterialSubclass") ,
-				    materialCode : getSelectValue("sMaterialSubsubclass"),
+				    materialCode : getSelectValue("sMaterialCode"),
 				    materialSourceCode : getSelectValue("sMaterialSource"),
-				    processMethodCode : getSelectValue("sProcessMethod"),
+				    processingMethodCode : getSelectValue("sProcessMethod"),
 				    packageTypeCode : getSelectValue("sPackageType"),
 				    intendedUseCode : getSelectValue("sIntendedUse"),
 				    countryCode : getSelectValue("sCountry"),
@@ -341,6 +348,11 @@ $(document).ready(function(){
 				  alert("国家或地区为必填项！");
 				  return false;
 			  }
+			  var differenceCode = $("#aDifferenceCode").val().trim();
+			  if(differenceCode != null && differenceCode.length > 1){
+				  alert("识别码必须为1位字符！");
+				  return false;
+			  }
 			  data = {
 					    convCtrlID : convCtrlID,
 					    productClassCode : getSelectValue("aProductClass"),
@@ -349,7 +361,7 @@ $(document).ready(function(){
 					    materialSubclassCode : getSelectValue("aMaterialSubclass") ,
 					    materialCode : getSelectValue("aMaterialCode"),
 					    materialSourceCode : getSelectValue("aMaterialSource"),
-					    processMethodCode : getSelectValue("aProcessMethod"),
+					    processingMethodCode : getSelectValue("aProcessMethod"),
 					    packageTypeCode : getSelectValue("aPackageType"),
 					    intendedUseCode : getSelectValue("aIntendedUse"),
 					    countryCode : getSelectValue("aCountry"),
@@ -361,6 +373,11 @@ $(document).ready(function(){
 				  alert("国家或地区为必填项！");
 				  return false;
 			  }
+			  var differenceCode = $("#aDifferenceCode").val().trim();
+			  if(differenceCode != null && differenceCode.length > 1){
+				  alert("识别码必须为1位字符！");
+				  return false;
+			  }
 			  data = {
 					    convCtrlID : convCtrlID,
 					    productClassCode : getSelectValue("eProductClass"),
@@ -369,7 +386,7 @@ $(document).ready(function(){
 					    materialSubclassCode : getSelectValue("eMaterialSubclass") ,
 					    materialCode : getSelectValue("eMaterialCode"),
 					    materialSourceCode : getSelectValue("eMaterialSource"),
-					    processMethodCode : getSelectValue("eProcessMethod"),
+					    processingMethodCode : getSelectValue("eProcessMethod"),
 					    packageTypeCode : getSelectValue("ePackageType"),
 					    intendedUseCode : getSelectValue("eIntendedUse"),
 					    countryCode : getSelectValue("eCountry"),
@@ -381,6 +398,11 @@ $(document).ready(function(){
 				  alert("国家或地区为必填项！");
 				  return false;
 			  }
+			  var differenceCode = $("#aDifferenceCode").val().trim();
+			  if(differenceCode != null && differenceCode.length > 1){
+				  alert("识别码必须为1位字符！");
+				  return false;
+			  }
 			  data = {
 					    convCtrlID : 0,
 					    productClassCode : getSelectValue("eProductClass"),
@@ -389,13 +411,16 @@ $(document).ready(function(){
 					    materialSubclassCode : getSelectValue("eMaterialSubclass") ,
 					    materialCode : getSelectValue("eMaterialCode"),
 					    materialSourceCode : getSelectValue("eMaterialSource"),
-					    processMethodCode : getSelectValue("eProcessMethod"),
+					    processingMethodCode : getSelectValue("eProcessMethod"),
 					    packageTypeCode : getSelectValue("ePackageType"),
 					    intendedUseCode : getSelectValue("eIntendedUse"),
 					    countryCode : getSelectValue("eCountry"),
 					    productCode : $("#eProductCode").val().trim(),
 					    differenceCode : $("#eDifferenceCode").val().trim(),
 			  };
+		  }
+		  if(!checkJsonParam(data)){
+			  return false;
 		  }
 		  var jsonstr = JSON.stringify(data);
 		  return jsonstr;
@@ -405,7 +430,7 @@ $(document).ready(function(){
 	  function saveConvCtrl(){
 		  var data = null;
 		  if(convCtrlOperation == 0){
-			  data = saveConvCtrlRequestParam(0);
+			  data = saveConvCtrlRequestParam(0);			  
 		  }else{
 			  if(curConvCtrlRow == null){
 				  alert("请先选择一条布控规则");
@@ -423,10 +448,12 @@ $(document).ready(function(){
 			}, function(rdata) {
 				if(rdata.data == "true"){
 					alert("保存成功！");
-					convCtrlTable.draw();
 					if(convCtrlOperation == 0){
+						curConvCtrlRow = null;     //保证新增后选中第一条新增的记录
+						convCtrlTable.draw();
 						$("#closeAddConvCtrl").click();
 					}else{
+						convCtrlTable.draw(false);
 						$("#closeEditConvCtrl").click();
 					}
 				}else{
@@ -640,7 +667,7 @@ $(document).ready(function(){
 		  var data = {
 				    convCtrlID : convCtrlID,
 				    convCtrlItemID : convCtrlItemID,
-				    itemCode : detectionItem.split(" ")[0],
+				    itemCode : getSelectValue("aDetectionItem"),
 				    itemName : detectionItem.split(" ")[1],
 				    detectionStd : $("#aDetectionStd").val().trim() ,
 				    monitoringReason : monitoringReason,
@@ -652,17 +679,35 @@ $(document).ready(function(){
 				    limitUnit :limitUnit,
 				    itemLimitList : itemLimitList
 		  };
+		  if(!checkJsonParam(data)){
+			  return false;
+		  }
 		  var jsonstr = JSON.stringify(data);
 		  return jsonstr;
 	  }
 	  
+	  //新增布控项目
+	  function addConvCtrlItem(){
+		  if(curConvCtrlRow == null){
+			  alert("请先选择一条布控规则");
+			  return;
+		  }
+		  itemCtrlOperation = 0;
+		  $(".overlay").show();
+		  $("#ctrlItemAdd").show();
+	  }
 	  
 	  //获取布控项目详情
 	  function getCtrlItemDetail(){
-		  if(curItemCtrlRow == null){
-			  alert("请先选择一条要编辑的布控项目");
+		  if(curConvCtrlRow == null){
+			  alert("请先选择一条布控规则");
 			  return;
 		  }
+		  if(curItemCtrlRow == null){
+			  alert("请先选择一条布控项目");
+			  return;
+		  }
+		  itemCtrlOperation = 1;
 		  $(".overlay").show();
 		  $("#ctrlItemAdd").show();
 		  var convCtrlItemID = itemCtrlTable.row(curItemCtrlRow).data().convCtrlItemID;
@@ -730,6 +775,7 @@ $(document).ready(function(){
 	  function selectProductClassCB(event, ui){
 		  var productClassCode = ui.item.value.split(" ")[0];
 		  var input = $(event.target).parent().parent().next().next().children().children().filter("input").get(0);
+		  $(input).val("");
 		  initProductSubclassSelect(productClassCode, input);
 	  }
 	  
@@ -765,6 +811,7 @@ $(document).ready(function(){
 	  function selectMaterialClassCB(event, ui){
 		  materialClassCode = ui.item.value.split(" ")[0];
 		  var input = $(this).parent().parent().next().next().children().children().filter("input").get(0);
+		  $(input).val("");
 		  initMaterialSubclassSelect(materialClassCode, input);
 	  }
 	  
@@ -786,6 +833,7 @@ $(document).ready(function(){
 	  function selectMaterialSubclassCB(event, ui){
 		  var materialSubclassCode = ui.item.value.split(" ")[0];
 		  var input = $(this).parent().parent().next().next().children().children().filter("input").get(0);
+		  $(input).val("");
 		  initMaterialSubsubclassSelect(materialSubclassCode, input);
 	  }
 	  
@@ -818,6 +866,7 @@ $(document).ready(function(){
 	  
 	  function selectInspOrgCB(event, ui){
 		  var orgCode = ui.item.value.split(" ")[0];
+		  $("#sControlDept").val("");
 		  initInspDeptSelect(orgCode);
 	  }
 	  
@@ -864,16 +913,12 @@ $(document).ready(function(){
 		  $.get("SelectDataAction_getLimitType?&ts="
 					+ new Date().getTime(), 
 		    function(rdata) {
-				var source = new Array();
-				$.each(rdata.data, function(index, value){
-					source[index] = value.limitType;
-				});	
-				cus_autocomplete(source, "aLimitType", "aLimitType-select", null, null);		
+				cus_autocomplete(rdata.data, "aLimitType", "aLimitType-select", null, null);		
 			}, 'json');
 	  }
 	  
 	  function searchProcessMethod(input){
-		  var methodName = $("#"+input).val().trim();
+		  var methodName =getSearchParam(input);
 			 $.get("SearchSelectAction_getProcessingMethod?&ts="
 						+ new Date().getTime(), 
 			    {methodName : methodName},
@@ -882,13 +927,17 @@ $(document).ready(function(){
 					$.each(rdata.data, function(index, value){
 						source[index] = value.methodCode+" "+value.methodName;
 					});	
+					if(source.length == 0){
+						alert("查询结果为空！");
+						return;
+					}
 					cus_autocomplete(source, input, null, null, null);
 					$("#"+input).autocomplete( "search", "" );
 				}, 'json');
 	  }
 	  
 	  function searchMaterialSource(input){
-		  var sourceName = $("#"+input).val().trim();
+		  var sourceName = getSearchParam(input);
 			 $.get("SearchSelectAction_getMaterialSource?&ts="
 						+ new Date().getTime(), 
 			    {sourceName : sourceName},
@@ -897,13 +946,17 @@ $(document).ready(function(){
 					$.each(rdata.data, function(index, value){
 						source[index] = value.sourceCode+" "+value.sourceName;
 					});	
+					if(source.length == 0){
+						alert("查询结果为空！");
+						return;
+					}
 					cus_autocomplete(source, input, null, null, null);
 					$("#"+input).autocomplete( "search", "" );
 				}, 'json');
 	  }
 	  
 	  function searchPackageType(input){
-		  var typeName = $("#"+input).val().trim();
+		  var typeName = getSearchParam(input);
 			 $.get("SearchSelectAction_getPackageType?&ts="
 						+ new Date().getTime(), 
 			    {typeName : typeName},
@@ -912,13 +965,17 @@ $(document).ready(function(){
 					$.each(rdata.data, function(index, value){
 						source[index] = value.typeCode+" "+value.typeName;
 					});	
+					if(source.length == 0){
+						alert("查询结果为空！");
+						return;
+					}
 					cus_autocomplete(source, input, null, null, null);
 					$("#"+input).autocomplete( "search", "" );
 				}, 'json');
 	  }
 	  
 	  function searchIntendedUse(input){
-		  var useName = $("#"+input).val().trim();
+		  var useName = getSearchParam(input);
 			 $.get("SearchSelectAction_getIntendedUse?&ts="
 						+ new Date().getTime(), 
 			    {useName : useName},
@@ -927,6 +984,10 @@ $(document).ready(function(){
 					$.each(rdata.data, function(index, value){
 						source[index] = value.useCode+" "+value.useName;
 					});	
+					if(source.length == 0){
+						alert("查询结果为空！");
+						return;
+					}
 					cus_autocomplete(source, input, null, null, null);
 					$("#"+input).autocomplete( "search", "" );
 				}, 'json');
@@ -934,7 +995,7 @@ $(document).ready(function(){
 	  
 	  
 	  function searchCountry(input){
-		  var countryName = $("#"+input).val().trim();
+		  var countryName = getSearchParam(input);
 			 $.get("SearchSelectAction_getCountry?&ts="
 						+ new Date().getTime(), 
 			    {countryName : countryName},
@@ -943,13 +1004,17 @@ $(document).ready(function(){
 					$.each(rdata.data, function(index, value){
 						source[index] = value.countryCode+" "+value.countryName;
 					});	
+					if(source.length == 0){
+						alert("查询结果为空！");
+						return;
+					}
 					cus_autocomplete(source, input, null, null, null);
 					$("#"+input).autocomplete( "search", "" );
 				}, 'json');
 	  }
 	  
 	  function searchDetectionItem(input){
-		  var detectionItem = $("#"+input).val().trim();
+		  var detectionItem =getSearchParam(input);
 			 $.get("SearchSelectAction_getItem?&ts="
 						+ new Date().getTime(), 
 			    {itemName : detectionItem},
@@ -958,6 +1023,10 @@ $(document).ready(function(){
 					$.each(rdata.data, function(index, value){
 						source[index] = value.itemCode+" "+value.itemName;
 					});	
+					if(source.length == 0){
+						alert("查询结果为空！");
+						return;
+					}
 					cus_autocomplete(source, input, null, null, null);
 					$("#"+input).autocomplete( "search", "" );
 				}, 'json');
@@ -1015,10 +1084,11 @@ $(document).ready(function(){
 		  if(curLimitTableRow == null){
 			  alert("请先选择一条要删除的记录");
 			  return;
+		  }else{
+			  if(confirm("确认删除该条记录？")){
+				  limitTable.row(curLimitTableRow).remove().draw();
+			  }
 		  }
-		  limiTable.row(curLimitTableRow).remove().draw();
-		  $("#closeLimitTable").click();
-    	  $("#ctrlItemAdd").show(); 
 	  }
 	  
 	  

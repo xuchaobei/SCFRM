@@ -5,9 +5,9 @@ import net.sf.json.JSONObject;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.opensymphony.xwork2.Action;
-
 import cn.gov.scciq.bussiness.riskCtrl.ConventionCtrlAction;
+
+import com.opensymphony.xwork2.Action;
 
 /**
  * 应急布控
@@ -15,7 +15,8 @@ import cn.gov.scciq.bussiness.riskCtrl.ConventionCtrlAction;
  *
  */
 public class CIQCtrlAction {
-private static Log log=LogFactory.getLog(ConventionCtrlAction.class);
+    
+    private static Log log=LogFactory.getLog(ConventionCtrlAction.class);
     
     private int draw;
     
@@ -30,6 +31,10 @@ private static Log log=LogFactory.getLog(ConventionCtrlAction.class);
     private String data;
     
     private String ciqControlID;
+
+    private String ciqControlConditionID;
+    
+    private String ciqControlItemID;
     
     private JSONObject result;
     
@@ -61,6 +66,77 @@ private static Log log=LogFactory.getLog(ConventionCtrlAction.class);
         return Action.SUCCESS;
     }
 
+    /**
+     * 应急布控详情
+     * @return
+     */
+    public String getCIQCtrlDetail(){
+        result = CIQCtrlService.getCIQCtrlDetailByID(ciqControlID);
+        return Action.SUCCESS;
+    }
+    
+    /**
+     * 布控项目详情
+     * @return
+     */
+    public String getCIQCtrlItemDetail(){
+        result = CIQCtrlService.getCIQCtrlItemDetailByID(ciqControlItemID);
+        return Action.SUCCESS;
+    }
+    
+    /**
+     * 保存应急布控
+     * @return
+     */
+    public String saveCIQControl(){
+        result = CIQCtrlService.saveCIQControl(data);
+        return Action.SUCCESS;   
+    }
+
+    /**
+     * 设置应急布控条件生效或无效
+     * @return
+     */
+    public String updateCIQControlValid(){
+        result = CIQCtrlService.updateCIQControlValid(ciqControlID);
+        return Action.SUCCESS;
+    }
+    
+
+    /**
+     * 测试应急布控条件是否设置正确
+     * @return
+     */
+    public String checkCIQControlCondition(){
+        result = CIQCtrlService.checkCIQControlCondition(ciqControlID);
+        return Action.SUCCESS;
+    }
+    
+    public String saveCIQControlCondition(){
+        result = CIQCtrlService.saveCIQControlCondition(data);
+        return Action.SUCCESS;   
+    }
+    
+    public String saveCIQControlItem(){
+        result = CIQCtrlService.saveCIQControlItem(data);
+        return Action.SUCCESS;   
+    }
+    
+    public String deleteCIQControl(){
+        result = CIQCtrlService.deleteCIQControl(ciqControlID);
+        return Action.SUCCESS;
+    }
+    
+    public String deleteCIQControlCondition(){
+        result = CIQCtrlService.deleteCIQControlCondition(ciqControlConditionID);
+        return Action.SUCCESS;
+    }
+    
+    public String deleteCIQControlItem(){
+        result = CIQCtrlService.deleteCIQControlItem(ciqControlItemID);
+        return Action.SUCCESS;
+    }
+    
     public int getDraw() {
         return draw;
     }
@@ -124,6 +200,23 @@ private static Log log=LogFactory.getLog(ConventionCtrlAction.class);
     public void setResult(JSONObject result) {
         this.result = result;
     }
+
+    public String getCiqControlConditionID() {
+        return ciqControlConditionID;
+    }
+
+    public void setCiqControlConditionID(String ciqControlConditionID) {
+        this.ciqControlConditionID = ciqControlConditionID;
+    }
+
+    public String getCiqControlItemID() {
+        return ciqControlItemID;
+    }
+
+    public void setCiqControlItemID(String ciqControlItemID) {
+        this.ciqControlItemID = ciqControlItemID;
+    }
+    
     
     
 }

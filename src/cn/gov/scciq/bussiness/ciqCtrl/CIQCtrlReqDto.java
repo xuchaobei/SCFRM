@@ -23,6 +23,39 @@ public class CIQCtrlReqDto {
 
     private String ciqControlID;
     
+    
+    //save params
+    private String deadline;
+    
+    private String remarks;
+    
+    private String controlOperatorCode;
+    
+    
+    public String getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(String deadline) {
+        this.deadline = deadline;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
+    }
+
+    public String getControlOperatorCode() {
+        return controlOperatorCode;
+    }
+
+    public void setControlOperatorCode(String controlOperatorCode) {
+        this.controlOperatorCode = controlOperatorCode;
+    }
+
     public String getCiqControlID() {
         return ciqControlID;
     }

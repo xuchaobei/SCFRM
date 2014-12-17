@@ -2,6 +2,8 @@ package cn.gov.scciq.bussiness.riskCtrl;
 
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -9,7 +11,9 @@ import net.sf.json.JSONObject;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import cn.gov.scciq.bussiness.auth.AuthorityDao;
 import cn.gov.scciq.util.ConstantStr;
+import cn.gov.scciq.util.ContextUtil;
 import cn.gov.scciq.util.DefaultResultUtil;
 
 public class ConventionCtrlService {
@@ -31,11 +35,16 @@ public class ConventionCtrlService {
     }
     
     public JSONObject saveConvCtrl(String data){
+        String permission = AuthorityDao.getOperateLimit(ConstantStr.RISK_CONTROL);
+        if(!permission.equals("1")){
+            JSONObject result = DefaultResultUtil.getModificationResult(ConstantStr.PERMISSION_DENIAL_MSG);
+            return result;
+        }
         ConventionCtrlRuleReqDto convCtrl = (ConventionCtrlRuleReqDto)JSONObject.toBean(JSONObject.fromObject(data),ConventionCtrlRuleReqDto.class);
         String retStr = ConventionCtrlDao.saveConvCtrl(convCtrl.getConvCtrlID(), convCtrl.getProductClassCode(), convCtrl.getProductSubclassCode(),
                 convCtrl.getProductCode(), convCtrl.getMaterialClassCode(), convCtrl.getMaterialSubclassCode(), convCtrl.getMaterialCode(), 
                 convCtrl.getMaterialSourceCode(), convCtrl.getProcessingMethodCode(), convCtrl.getPackageTypeCode(), convCtrl.getIntendedUseCode(), convCtrl.getCountryCode(), 
-                convCtrl.getDifferenceCode(), convCtrl.getControlOrgCode(), convCtrl.getControlDeptCode(), convCtrl.getControlOperatorCode());
+                convCtrl.getDifferenceCode(), ContextUtil.getOrgCode(), ContextUtil.getDeptCode(), ContextUtil.getOperatorCode());
         if("".equals(retStr)){
             retStr = "true";
         }
@@ -55,6 +64,11 @@ public class ConventionCtrlService {
      */
     public JSONObject delConvCtrl(String convCtrlId) {
         // TODO Auto-generated method stub
+        String permission = AuthorityDao.getOperateLimit(ConstantStr.RISK_CONTROL);
+        if(!permission.equals("1")){
+            JSONObject result = DefaultResultUtil.getModificationResult(ConstantStr.PERMISSION_DENIAL_MSG);
+            return result;
+        }
         boolean retCode = ConventionCtrlDao.delConvCtrlById(convCtrlId);
         JSONObject jo = DefaultResultUtil.getModificationResult(retCode+"");
         return jo;
@@ -69,6 +83,11 @@ public class ConventionCtrlService {
 
     public JSONObject saveConvCtrlItem(String data) {
         // TODO Auto-generated method stub
+        String permission = AuthorityDao.getOperateLimit(ConstantStr.RISK_CONTROL);
+        if(!permission.equals("1")){
+            JSONObject result = DefaultResultUtil.getModificationResult(ConstantStr.PERMISSION_DENIAL_MSG);
+            return result;
+        }
         String retStr = "";
         ConventionCtrlItemReqDto convCtrlItem = (ConventionCtrlItemReqDto)JSONObject.toBean(JSONObject.fromObject(data),ConventionCtrlItemReqDto.class);
         //新增布控项目
@@ -76,8 +95,10 @@ public class ConventionCtrlService {
             String convCtrlItemID = ConventionCtrlDao.saveConvCtrlItem("0", convCtrlItem.getConvCtrlID(), convCtrlItem.getItemCode(), convCtrlItem.getItemName(),
                     convCtrlItem.getDetectionStd(), convCtrlItem.getMonitoringReason(), convCtrlItem.getUnqualifyRatio(), convCtrlItem.getHazardLevel(),
                     convCtrlItem.getCountryReactLevel(), convCtrlItem.getLimitType(), convCtrlItem.getDetectionLimit(), convCtrlItem.getLimitUnit(), 
-                    convCtrlItem.getOrgCode(), convCtrlItem.getDeptCode());
-            if(!convCtrlItemID.equals(ConstantStr.SAVE_ERROR_MSG) && Integer.parseInt(convCtrlItemID) > 0 ){
+                    ContextUtil.getOrgCode(), ContextUtil.getDeptCode());
+            Pattern pattern = Pattern.compile("\\d+$");
+            Matcher matcher = pattern.matcher(convCtrlItemID);
+            if(matcher.matches()){
                 JSONArray itemLimitList = convCtrlItem.getItemLimitList();
                 for(int i = 0; i < itemLimitList.size(); i++){
                     JSONObject jo = itemLimitList.getJSONObject(i);
@@ -85,7 +106,7 @@ public class ConventionCtrlService {
                     ConventionCtrlDao.saveConvCtrlItmeLimit(convCtrlItemID, itemLimit.getCountryCode(), itemLimit.getCountryName(),itemLimit.getDetectionLimit(),itemLimit.getLimitUnit());
                 }
             }else{
-               retStr = ConstantStr.SAVE_ERROR_MSG;
+               retStr = convCtrlItemID;
             }
         }
         //修改布控项目
@@ -93,7 +114,7 @@ public class ConventionCtrlService {
             retStr = ConventionCtrlDao.saveConvCtrlItem(convCtrlItem.getConvCtrlItemID(), convCtrlItem.getConvCtrlID(), convCtrlItem.getItemCode(), convCtrlItem.getItemName(),
                     convCtrlItem.getDetectionStd(), convCtrlItem.getMonitoringReason(), convCtrlItem.getUnqualifyRatio(), convCtrlItem.getHazardLevel(),
                     convCtrlItem.getCountryReactLevel(), convCtrlItem.getLimitType(), convCtrlItem.getDetectionLimit(), convCtrlItem.getLimitUnit(), 
-                    convCtrlItem.getOrgCode(), convCtrlItem.getDeptCode());
+                    ContextUtil.getOrgCode(), ContextUtil.getDeptCode());
             if(retStr.equals("")){
                 JSONArray itemLimitList = convCtrlItem.getItemLimitList();
                 for(int i = 0; i < itemLimitList.size(); i++){
@@ -131,6 +152,11 @@ public class ConventionCtrlService {
      */
     public JSONObject delConvCtrlItem(String convCtrlItemID) {
         // TODO Auto-generated method stub
+        String permission = AuthorityDao.getOperateLimit(ConstantStr.RISK_CONTROL);
+        if(!permission.equals("1")){
+            JSONObject result = DefaultResultUtil.getModificationResult(ConstantStr.PERMISSION_DENIAL_MSG);
+            return result;
+        }
         boolean retCode = ConventionCtrlDao.delConvCtrlItem(convCtrlItemID);
         JSONObject jo = DefaultResultUtil.getModificationResult(retCode+"");
         return jo;

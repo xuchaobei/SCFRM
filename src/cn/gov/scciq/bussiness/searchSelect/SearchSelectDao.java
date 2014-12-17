@@ -15,6 +15,7 @@ import cn.gov.scciq.dbpool.DBPool;
 import cn.gov.scciq.dto.CountryDto;
 import cn.gov.scciq.dto.IntendedUseDto;
 import cn.gov.scciq.dto.ItemDto;
+import cn.gov.scciq.dto.KeywordsDto;
 import cn.gov.scciq.dto.MaterialSourceDto;
 import cn.gov.scciq.dto.PackageTypeDto;
 import cn.gov.scciq.dto.ProcessingMethodDto;
@@ -338,4 +339,53 @@ public class SearchSelectDao {
         }
         return list;
     }
+    
+    
+    /**
+     * 根据应急布控ID以及所选的字段名称，查询得到对应的字段值
+     * @return
+     */
+    public static List<KeywordsDto> getCIQControlKeyValue(String ciqControlID, String definedField, String keywords){
+        List<KeywordsDto> list  = new ArrayList<KeywordsDto>();
+        Connection conn = null;
+        CallableStatement proc = null;
+        ResultSet rs = null;
+        String call = "{call Pro_GetCIQControlKeyValue(?,?,?)}";
+        try {
+            conn = DBPool.ds.getConnection();
+            proc = conn.prepareCall(call);
+            proc.setString(1, ciqControlID);
+            proc.setString(2, definedField);
+            proc.setString(3, keywords);
+            proc.execute();
+            rs = proc.getResultSet();
+            KeywordsDto dto = null;
+            while(rs.next()){
+                dto = RsToDtoUtil.tranRsToDto(rs, KeywordsDto.class);
+                list.add(dto);
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            log.error("", e);
+        } catch (Exception e) {
+            log.error("", e);
+        } finally{
+            try {
+                if(rs != null){
+                    rs.close();
+                }
+                if(proc != null){
+                    proc.close();
+                }
+                if(conn != null){
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                log.error("", e);
+            }
+        }
+        return list;
+    }
+    
 }

@@ -7,7 +7,7 @@ import net.sf.json.JSONObject;
 public class DefaultResultUtil {
 
     /**
-     * 获取传递到前台的默认结果格式
+     * 获取传递到前台的默认结果格式(list格式)
      * @param obj
      * @return
      */

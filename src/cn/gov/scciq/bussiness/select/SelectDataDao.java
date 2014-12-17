@@ -420,8 +420,8 @@ public class SelectDataDao {
      * 限量类型
      * @return
      */
-    public static List<LimitTypeDto> getLimitType(){
-        List<LimitTypeDto> list  = new ArrayList<LimitTypeDto>();
+    public static List<String> getLimitType(){
+        List<String> list  = new ArrayList<String>();
         Connection conn = null;
         CallableStatement proc = null;
         ResultSet rs = null;
@@ -431,10 +431,178 @@ public class SelectDataDao {
             proc = conn.prepareCall(call);
             proc.execute();
             rs = proc.getResultSet();
-            LimitTypeDto dto = null;
             while(rs.next()){
-                dto = RsToDtoUtil.tranRsToDto(rs, LimitTypeDto.class);
-                list.add(dto);
+                list.add(rs.getString("LimitType"));
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            log.error("", e);
+        } catch (Exception e) {
+            log.error("", e);
+        } finally{
+            try {
+                if(rs != null){
+                    rs.close();
+                }
+                if(proc != null){
+                    proc.close();
+                }
+                if(conn != null){
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                log.error("", e);
+            }
+        }
+        return list;
+    }
+    
+    /**
+     * 布控依据
+     * @return
+     */
+    public static List<String> getControlReason(){
+        List<String> list  = new ArrayList<String>();
+        Connection conn = null;
+        CallableStatement proc = null;
+        ResultSet rs = null;
+        String call = "{call Pro_GetCIQControlReason()}";
+        try {
+            conn = DBPool.ds.getConnection();
+            proc = conn.prepareCall(call);
+            proc.execute();
+            rs = proc.getResultSet();
+            while(rs.next()){
+                list.add(rs.getString("ControlReason"));
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            log.error("", e);
+        } catch (Exception e) {
+            log.error("", e);
+        } finally{
+            try {
+                if(rs != null){
+                    rs.close();
+                }
+                if(proc != null){
+                    proc.close();
+                }
+                if(conn != null){
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                log.error("", e);
+            }
+        }
+        return list;
+    }
+    
+    /**
+     * 取得逻辑关系定义
+     * @param logicFlg : 1--左关系符  2--右关系符
+     * @return
+     */
+    public static List<String> getLogicalDefine(String logicFlg){
+        List<String> list  = new ArrayList<String>();
+        Connection conn = null;
+        CallableStatement proc = null;
+        ResultSet rs = null;
+        String call = "{call Pro_GetLogicalDefine(?)}";
+        try {
+            conn = DBPool.ds.getConnection();
+            proc = conn.prepareCall(call);
+            proc.setString(1, logicFlg);
+            proc.execute();
+            rs = proc.getResultSet();
+            while(rs.next()){
+                list.add(rs.getString("LogicalName"));
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            log.error("", e);
+        } catch (Exception e) {
+            log.error("", e);
+        } finally{
+            try {
+                if(rs != null){
+                    rs.close();
+                }
+                if(proc != null){
+                    proc.close();
+                }
+                if(conn != null){
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                log.error("", e);
+            }
+        }
+        return list;
+    }
+    
+    /**
+     * 取得应急布控字段定义
+     * @return
+     */
+    public static List<String> getCIQControlFieldDefine(){
+        List<String> list  = new ArrayList<String>();
+        Connection conn = null;
+        CallableStatement proc = null;
+        ResultSet rs = null;
+        String call = "{call Pro_GetCIQControlFieldDefine()}";
+        try {
+            conn = DBPool.ds.getConnection();
+            proc = conn.prepareCall(call);
+            proc.execute();
+            rs = proc.getResultSet();
+            while(rs.next()){
+                list.add(rs.getString("DefinedField"));
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            log.error("", e);
+        } catch (Exception e) {
+            log.error("", e);
+        } finally{
+            try {
+                if(rs != null){
+                    rs.close();
+                }
+                if(proc != null){
+                    proc.close();
+                }
+                if(conn != null){
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                log.error("", e);
+            }
+        }
+        return list;
+    }
+    
+    /**
+     * 取得逻辑计算定义
+     * @return
+     */
+    public static List<String> getLogicalOperator(){
+        List<String> list  = new ArrayList<String>();
+        Connection conn = null;
+        CallableStatement proc = null;
+        ResultSet rs = null;
+        String call = "{call Pro_GetLogicalOperator()}";
+        try {
+            conn = DBPool.ds.getConnection();
+            proc = conn.prepareCall(call);
+            proc.execute();
+            rs = proc.getResultSet();
+            while(rs.next()){
+                list.add(rs.getString("OperatorName"));
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -461,4 +629,45 @@ public class SelectDataDao {
     }
     
     
+    /**
+     * 取得逻辑计算定义
+     * @return
+     */
+    public static List<String> getCIQControlSamplingMode(){
+        List<String> list  = new ArrayList<String>();
+        Connection conn = null;
+        CallableStatement proc = null;
+        ResultSet rs = null;
+        String call = "{call Pro_GetCIQControlSamplingMode()}";
+        try {
+            conn = DBPool.ds.getConnection();
+            proc = conn.prepareCall(call);
+            proc.execute();
+            rs = proc.getResultSet();
+            while(rs.next()){
+                list.add(rs.getString("SamplingMode"));
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            log.error("", e);
+        } catch (Exception e) {
+            log.error("", e);
+        } finally{
+            try {
+                if(rs != null){
+                    rs.close();
+                }
+                if(proc != null){
+                    proc.close();
+                }
+                if(conn != null){
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                log.error("", e);
+            }
+        }
+        return list;
+    }
 }

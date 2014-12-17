@@ -6,6 +6,7 @@ import net.sf.json.JSONObject;
 import cn.gov.scciq.dto.CountryDto;
 import cn.gov.scciq.dto.IntendedUseDto;
 import cn.gov.scciq.dto.ItemDto;
+import cn.gov.scciq.dto.KeywordsDto;
 import cn.gov.scciq.dto.MaterialSourceDto;
 import cn.gov.scciq.dto.PackageTypeDto;
 import cn.gov.scciq.dto.ProcessingMethodDto;
@@ -79,4 +80,13 @@ public class SearchSelectService {
         return rs;
     }
     
+    /**
+     * 根据应急布控ID以及所选的字段名称，查询得到对应的字段值
+     * @return
+     */
+    public static JSONObject getCIQControlKeyValue(String ciqControlID, String definedField, String keywords){
+        List<KeywordsDto> list  = SearchSelectDao.getCIQControlKeyValue(ciqControlID, definedField, keywords);
+        JSONObject rs = DefaultResultUtil.getDefaultResult(list);
+        return rs;
+    }
 }

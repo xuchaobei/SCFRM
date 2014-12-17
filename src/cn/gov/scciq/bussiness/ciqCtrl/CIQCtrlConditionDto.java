@@ -6,16 +6,18 @@ package cn.gov.scciq.bussiness.ciqCtrl;
  * @author chao.xu
  * 
  */
-public class CIQCtrlConditionResDto {
+public class CIQCtrlConditionDto {
 
     private String ciqControlConditionID;
+    
+    private String ciqControlID;
 
     private String orderNo;
 
     private String leftLogic;
 
     private String definedField;
-
+    //计算符
     private String calculationDesc;
 
     private String keywords;
@@ -23,6 +25,16 @@ public class CIQCtrlConditionResDto {
     private String rightLogic;
 
     private String keywordsDesc;
+
+    
+    
+    public String getCiqControlID() {
+        return ciqControlID;
+    }
+
+    public void setCiqControlID(String ciqControlID) {
+        this.ciqControlID = ciqControlID;
+    }
 
     public String getCiqControlConditionID() {
         return ciqControlConditionID;

@@ -6,7 +6,6 @@ import net.sf.json.JSONObject;
 import cn.gov.scciq.dto.EvlLevelDto;
 import cn.gov.scciq.dto.InspDeptDto;
 import cn.gov.scciq.dto.InspOrgDto;
-import cn.gov.scciq.dto.LimitTypeDto;
 import cn.gov.scciq.dto.MaterialClassDto;
 import cn.gov.scciq.dto.MaterialSubclassDto;
 import cn.gov.scciq.dto.MaterialSubsubclassDto;
@@ -110,10 +109,59 @@ public class SelectDataService {
      * @return
      */
     public static JSONObject getLimitType(){
-        List<LimitTypeDto> limitTypeList = SelectDataDao.getLimitType();
+        List<String> limitTypeList = SelectDataDao.getLimitType();
         JSONObject rs = DefaultResultUtil.getDefaultResult(limitTypeList);
         return rs;
     }
     
+    /**
+     * 布控依据
+     * @return
+     */
+    public static JSONObject getControlReason(){
+        List<String> controlReasonList = SelectDataDao.getControlReason();
+        JSONObject rs = DefaultResultUtil.getDefaultResult(controlReasonList);
+        return rs;
+    }
+    
+    /**
+     * 取得逻辑关系定义
+     * @return
+     */
+    public static JSONObject getLogicalDefine(String logicFlg){
+        List<String> controlReasonList = SelectDataDao.getLogicalDefine(logicFlg);
+        JSONObject rs = DefaultResultUtil.getDefaultResult(controlReasonList);
+        return rs;
+    }
+    
+    /**
+     * 取得应急布控字段定义
+     * @return
+     */
+    public static JSONObject getCIQControlFieldDefine(){
+        List<String> list = SelectDataDao.getCIQControlFieldDefine();
+        JSONObject rs = DefaultResultUtil.getDefaultResult(list);
+        return rs;
+    }
+    
+    /**
+     * 取得逻辑计算定义
+     * @return
+     */
+    public static JSONObject getLogicalOperator(){
+        List<String> list = SelectDataDao.getLogicalOperator();
+        JSONObject rs = DefaultResultUtil.getDefaultResult(list);
+        return rs;
+    }
+    
+    /**
+     * 取得应急布控抽检模式定义
+     * @return
+     */
+    public static JSONObject getCIQControlSamplingMode(){
+        List<String> list = SelectDataDao.getCIQControlSamplingMode();
+        JSONObject rs = DefaultResultUtil.getDefaultResult(list);
+        return rs;
+    }
     
 }

@@ -135,9 +135,9 @@ public class ConventionCtrlDao {
             proc.setString(11, intentedUseCode);
             proc.setString(12, countryCode);
             proc.setString(13, differenceCode);
-            proc.setString(14, "310000");
-            proc.setString(15, "2710");
-            proc.setString(16, "2711");
+            proc.setString(14, controlOrgCode);
+            proc.setString(15, controlDeptCode);
+            proc.setString(16, controlOperatorCode);
             proc.registerOutParameter(17, Types.VARCHAR);
             proc.registerOutParameter(18, Types.INTEGER);
             proc.execute();
@@ -356,7 +356,7 @@ public class ConventionCtrlDao {
     }
     
     /**
-     * 保存限量表(存储过程修改过，之前调用的是Pro_SaveCtrlItmeLimit)
+     * 保存限量表
      * @return
      */
     public static String saveConvCtrlItmeLimit(String convCtrlItemID, String countryCode, String countryName, String detectionLimit,
@@ -425,13 +425,16 @@ public class ConventionCtrlDao {
             proc.setString(10, limitType);
             proc.setString(11, detectionLimit);
             proc.setString(12, limitUnit);
-            proc.setString(13, "310000");
-            proc.setString(14, "2710");
+            proc.setString(13, orgCode);
+            proc.setString(14, deptCode);
             proc.registerOutParameter(15, Types.VARCHAR);
             proc.registerOutParameter(16, Types.INTEGER);
             proc.execute();
             if(convCtrlItemID.equals("0")){
                 retStr = proc.getString(16);
+                if(retStr.equals("0")){
+                    retStr = proc.getString(15);
+                }
             }else{
                 retStr = proc.getString(15);
             }

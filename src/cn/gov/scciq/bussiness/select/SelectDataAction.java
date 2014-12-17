@@ -142,7 +142,54 @@ public class SelectDataAction {
         return Action.SUCCESS;
     }
     
+    /**
+     * 布控依据
+     * @return
+     */
+    public String getControlReason(){
+        result = SelectDataService.getControlReason();
+        return Action.SUCCESS;
+    }
+    
+    private String logicFlg;
 
+    /**
+     * 取得逻辑关系定义
+     * @return
+     */
+    public String getLogicalDefine(){
+        result = SelectDataService.getLogicalDefine(logicFlg);
+        return Action.SUCCESS;
+    }
+    
+    
+    /**
+     * 取得应急布控字段定义
+     * @return
+     */
+    public String getCIQControlFieldDefine(){
+        result = SelectDataService.getCIQControlFieldDefine();
+        return Action.SUCCESS;
+    }
+    
+    /**
+     * 取得逻辑计算定义
+     * @return
+     */
+    public String getLogicalOperator(){
+        result = SelectDataService.getLogicalOperator();
+        return Action.SUCCESS;
+    }
+    
+    /**
+     * 取得应急布控抽检模式定义
+     * @return
+     */
+    public String getCIQControlSamplingMode(){
+        result = SelectDataService.getCIQControlSamplingMode();
+        return Action.SUCCESS;
+    }
+    
     public String getProductClassCode() {
         return productClassCode;
     }
@@ -197,6 +244,14 @@ public class SelectDataAction {
 
     public void setLevelType(String levelType) {
         this.levelType = levelType;
+    }
+
+    public String getLogicFlg() {
+        return logicFlg;
+    }
+
+    public void setLogicFlg(String logicFlg) {
+        this.logicFlg = logicFlg;
     }
 
     

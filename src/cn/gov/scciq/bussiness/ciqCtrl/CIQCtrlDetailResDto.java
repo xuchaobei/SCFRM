@@ -1,13 +1,12 @@
 package cn.gov.scciq.bussiness.ciqCtrl;
 
 /**
- * 应急布控列表
+ * 应急布控记录详情
  * 
  * @author chao.xu
  * 
  */
-public class CIQCtrlResDto {
-    private String ciqControlID;
+public class CIQCtrlDetailResDto {
 
     private String controlName;
 
@@ -17,21 +16,13 @@ public class CIQCtrlResDto {
 
     private String deadline;
 
-    private String ifExec; // （1：生效；非1：无效）
+    private String orgName;
 
-    private String ifCheck; // （1：通过；非1：不通过）
-
-    private String controlInputDatetime;
-
-    private String controlDeptName;
+    private String deptName;
     
-    public String getCiqControlID() {
-        return ciqControlID;
-    }
-
-    public void setCiqControlID(String ciqControlID) {
-        this.ciqControlID = ciqControlID;
-    }
+    private String operatorName;
+    
+    private String controlInputDatetime;
 
     public String getControlName() {
         return controlName;
@@ -65,20 +56,28 @@ public class CIQCtrlResDto {
         this.deadline = deadline;
     }
 
-    public String getIfExec() {
-        return ifExec;
+    public String getOrgName() {
+        return orgName;
     }
 
-    public void setIfExec(String ifExec) {
-        this.ifExec = ifExec;
+    public void setOrgName(String orgName) {
+        this.orgName = orgName;
     }
 
-    public String getIfCheck() {
-        return ifCheck;
+    public String getDeptName() {
+        return deptName;
     }
 
-    public void setIfCheck(String ifCheck) {
-        this.ifCheck = ifCheck;
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
+    }
+
+    public String getOperatorName() {
+        return operatorName;
+    }
+
+    public void setOperatorName(String operatorName) {
+        this.operatorName = operatorName;
     }
 
     public String getControlInputDatetime() {
@@ -89,12 +88,6 @@ public class CIQCtrlResDto {
         this.controlInputDatetime = controlInputDatetime;
     }
 
-    public String getControlDeptName() {
-        return controlDeptName;
-    }
 
-    public void setControlDeptName(String controlDeptName) {
-        this.controlDeptName = controlDeptName;
-    }
 
 }
