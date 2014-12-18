@@ -39,7 +39,7 @@ $(document).ready(function(){
 						requestParams,		
 			     function(rdata) {
 					if(rdata.data == "true"){
-						document.location.href="NewFile.jsp";
+						document.location.href="index.jsp";
 					}else{
 						alert(rdata.data);
 					}
