@@ -74,6 +74,7 @@
 							<ul>
 								<li><a href="#">常规布控</a></li>
 								<li><a href="#">应急布控</a></li>
+								<li><a href="#">辅料布控</a></li>
 							</ul></li>
 						<li class="submenu" id="enterprise-nav"><a href="#"> <i
 								class="glyphicon glyphicon-warning-sign"></i> 企业监管 <span

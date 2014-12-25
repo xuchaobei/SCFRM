@@ -1,4 +1,4 @@
-package cn.gov.scciq.bussiness.riskCtrl;
+package cn.gov.scciq.bussiness.convCtrl;
 
 /**
  * 布控项目table返回数据
@@ -6,9 +6,11 @@ package cn.gov.scciq.bussiness.riskCtrl;
  * @author chao.xu
  * 
  */
-public class ConventionCtrlItemResDto {
+public class ConventionCtrlItemDetailResDto {
 
     private String convCtrlItemID;
+    
+    private String convCtrlID;
 
     private String itemCode;
 
@@ -29,8 +31,9 @@ public class ConventionCtrlItemResDto {
     /** 输入国反应程度 */
     private String countryReactLevel;
 
-    /** 限量要求 */
-    private String limitReq;
+    private String limitType;
+    private String detectionLimit;
+    private String limitUnit;
 
 
     public String getConvCtrlItemID() {
@@ -97,14 +100,38 @@ public class ConventionCtrlItemResDto {
         this.countryReactLevel = countryReactLevel;
     }
 
-    public String getLimitReq() {
-        return limitReq;
+    public String getConvCtrlID() {
+        return convCtrlID;
     }
 
-    public void setLimitReq(String limitReq) {
-        this.limitReq = limitReq;
+    public void setConvCtrlID(String convCtrlID) {
+        this.convCtrlID = convCtrlID;
     }
-    
+
+    public String getLimitType() {
+        return limitType;
+    }
+
+    public void setLimitType(String limitType) {
+        this.limitType = limitType;
+    }
+
+    public String getDetectionLimit() {
+        return detectionLimit;
+    }
+
+    public void setDetectionLimit(String detectionLimit) {
+        this.detectionLimit = detectionLimit;
+    }
+
+    public String getLimitUnit() {
+        return limitUnit;
+    }
+
+    public void setLimitUnit(String limitUnit) {
+        this.limitUnit = limitUnit;
+    }
+
     
 
 }

@@ -1,4 +1,4 @@
-package cn.gov.scciq.bussiness.riskCtrl;
+package cn.gov.scciq.bussiness.convCtrl;
 
 /**
  * 布控规则详情

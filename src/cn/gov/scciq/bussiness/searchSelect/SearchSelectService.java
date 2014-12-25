@@ -89,4 +89,11 @@ public class SearchSelectService {
         JSONObject rs = DefaultResultUtil.getDefaultResult(list);
         return rs;
     }
+
+    public static JSONObject getAccessory(String accessoryName, int startIndex, int pageSize, String orderWord, String orderDirection) {
+        // TODO Auto-generated method stub
+        List<String> list = SearchSelectDao.getAccessory(accessoryName,  startIndex,  pageSize,  orderWord,  orderDirection);
+        JSONObject rs = DefaultResultUtil.getDefaultResult(list);
+        return rs;
+    }
 }

@@ -1,6 +1,11 @@
 package cn.gov.scciq.bussiness.example;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 import net.sf.json.JSONObject;
 
@@ -80,9 +85,44 @@ public class HelloJsonAction{
         return Action.SUCCESS;   
     }
     
-    public static void main(String[] args) {
-        new HelloJsonAction().submit();
+    private static String[] arr = {"0.20","","","0.40"};
+    private static List<String> list = Arrays.asList(arr);
+    
+    public static void sortDatas() {
+        Collections.sort(list, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                // TODO Auto-generated method stub
+                if("".equals(o1)){
+                    return 1;
+                }
+                if("".equals(o2)){
+                    return -1;
+                }
+                int result = 0;
+                try {
+                    result = Double.valueOf((String) o2.replace(",", "")).compareTo(Double.valueOf((String) o1.replace(",", "")));
+                } catch (NumberFormatException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                return result;
+            }
+        });
+        
+        for(String s : list){
+            System.out.println(s+" ");
+        }
     }
+
+    
+    
+    public static void main(String[] args) {
+        sortDatas();
+    }
+    
+    
+    
 }
 
 

@@ -5,7 +5,7 @@ import net.sf.json.JSONObject;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import cn.gov.scciq.bussiness.riskCtrl.ConventionCtrlAction;
+import cn.gov.scciq.bussiness.convCtrl.ConventionCtrlAction;
 
 import com.opensymphony.xwork2.Action;
 

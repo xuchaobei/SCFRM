@@ -11,6 +11,8 @@ import com.opensymphony.xwork2.Action;
  */
 public class SearchSelectAction {
     
+    private String data;
+    
     private JSONObject result;
     
     /** 加工方式名称 */
@@ -126,6 +128,19 @@ public class SearchSelectAction {
         return Action.SUCCESS;
     }
     
+    /**
+     * 查询辅料
+     * @return
+     */
+    public String getAccessory(){
+        int startIndex = 0;
+        int pageSize = 0;
+        String orderWord = "AccessoryName";
+        String orderDirection = "ASC";
+        result = SearchSelectService.getAccessory(data, startIndex, pageSize, orderWord, orderDirection);
+        return Action.SUCCESS;
+    }
+    
     public JSONObject getResult() {
         return result;
     }
@@ -204,6 +219,14 @@ public class SearchSelectAction {
 
     public void setKeywords(String keywords) {
         this.keywords = keywords;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
     }
     
     

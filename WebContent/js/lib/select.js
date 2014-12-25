@@ -1,5 +1,19 @@
 //--------------------下拉列表数据获取------------------------------//
 /**
+ * 只显示name，不需要显示code的select
+ * @param url
+ * @param inputID
+ * @param btnID
+ */
+function initStringSelect(url, inputID, btnID){
+	  $.get(url, 
+	    function(rdata) {
+			cus_autocomplete(rdata.data, inputID, btnID, null, null);		
+		}, 'json');
+}
+
+
+/**
  * 检验机构
  * @param inputID
  * @param btnID
@@ -40,17 +54,121 @@ function initInspDeptSelect(orgCode, inputID, btnID){
 		}, 'json');
 }
 
+/**
+ * 产品大类
+ * @param classInputID
+ * @param classBtnID
+ * @param subclassInputID
+ * @param subclassBtnID
+ */
+function initProductClassSelect(classInputID, classBtnID, subclassInputID, subclassBtnID){
+	  $.get("SelectDataAction_getProductClass?&ts="
+				+ new Date().getTime(), 
+	    function(rdata) {
+			var source = new Array();
+			$.each(rdata.data, function(index, value){
+				source[index] = value.classCode+" "+value.className;
+			});	
+			cus_autocomplete(source, classInputID, classBtnID, null, 
+                             function(event, ui){
+				var productClassCode = ui.item.value.split(" ")[0];
+				$("#"+subclassInputID).val("");
+			    return initProductSubclassSelect(productClassCode, subclassInputID, subclassBtnID);
+			});
+		}, 'json');
+}
+
 
 /**
- * 只显示name，不需要显示code的select
- * @param url
+ * 产品小类
+ * @param productClassCode
  * @param inputID
  * @param btnID
  */
-function initStringSelect(url, inputID, btnID){
-	  $.get(url, 
+function initProductSubclassSelect(productClassCode, inputID, btnID){
+	  $.get("SelectDataAction_getProductSubclass?&ts="
+				+ new Date().getTime(), 
+		{productClassCode : productClassCode},
 	    function(rdata) {
-			cus_autocomplete(rdata.data, inputID, btnID, null, null);		
+			var source = new Array();
+			$.each(rdata.data, function(index, value){
+				source[index] = value.subclassCode+" "+value.subclassName;
+			});	
+			cus_autocomplete(source, inputID, btnID, null, null);
+		}, 'json');
+	  
+}
+
+/**
+ * 原料大类
+ * @param classInputID
+ * @param classBtnID
+ * @param subclassInputID
+ * @param subclassBtnID
+ * @param inputID
+ * @param btnID
+ */
+function initMaterialClassSelect(classInputID, classBtnID, subclassInputID, subclassBtnID, inputID, btnID){
+	  $.get("SelectDataAction_getMaterialClass?&ts="
+				+ new Date().getTime(), 
+	    function(rdata) {
+			var source = new Array();
+			$.each(rdata.data, function(index, value){
+				source[index] = value.classCode+" "+value.className;
+			});	
+			cus_autocomplete(source, classInputID, classBtnID, null, function(event, ui){
+				  var materialClassCode = ui.item.value.split(" ")[0];
+				  $("#"+subclassInputID).val("");
+				  $("#"+inputID).val("");
+				  initMaterialSubclassSelect(materialClassCode, subclassInputID, subclassBtnID, inputID, btnID);
+			});
+		}, 'json');
+}
+
+
+/**
+ * 原料小类
+ * @param materialClassCode
+ * @param subclassInputID
+ * @param subclassBtnID
+ * @param inputID
+ * @param btnID
+ */
+function initMaterialSubclassSelect(materialClassCode, subclassInputID, subclassBtnID, inputID, btnID){
+	  $.get("SelectDataAction_getMaterialSubclass?&ts="
+				+ new Date().getTime(), 
+		{materialClassCode : materialClassCode},
+	    function(rdata) {
+			var source = new Array();
+			$.each(rdata.data, function(index, value){
+				source[index] = value.subclassCode+" "+value.subclassName;
+			});	
+			cus_autocomplete(source, subclassInputID, subclassBtnID, null, function(event, ui){
+				 var materialSubclassCode = ui.item.value.split(" ")[0];
+				 $("#"+inputID).val("");
+				 initMaterialSubsubclassSelect(materialClassCode, materialSubclassCode, inputID, btnID);
+			});
+		}, 'json');
+	  
+}
+
+/**
+ * 原料细类
+ * @param materialClassCode
+ * @param materialSubclassCode
+ * @param inputID
+ * @param btnID
+ */
+function initMaterialSubsubclassSelect(materialClassCode, materialSubclassCode, inputID, btnID){
+	  $.get("SelectDataAction_getMaterialSubsubclass?&ts="
+				+ new Date().getTime(), 
+		{materialClassCode : materialClassCode, materialSubclassCode : materialSubclassCode, showFlag : 0},
+	    function(rdata) {
+			var source = new Array();
+			$.each(rdata.data, function(index, value){
+				source[index] = value.materialCode+" "+value.materialName;
+			});	
+			cus_autocomplete(source, inputID, btnID, null, null);
 		}, 'json');
 }
 

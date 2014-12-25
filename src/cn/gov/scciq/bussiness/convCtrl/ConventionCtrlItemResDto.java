@@ -1,17 +1,14 @@
-package cn.gov.scciq.bussiness.riskCtrl;
-
-import net.sf.json.JSONArray;
+package cn.gov.scciq.bussiness.convCtrl;
 
 /**
- * 布控项目请求数据
+ * 布控项目table返回数据
  * 
  * @author chao.xu
  * 
  */
-public class ConventionCtrlItemReqDto {
-    
+public class ConventionCtrlItemResDto {
+
     private String convCtrlItemID;
-    private String convCtrlID;
 
     private String itemCode;
 
@@ -33,13 +30,16 @@ public class ConventionCtrlItemReqDto {
     private String countryReactLevel;
 
     /** 限量要求 */
-    private String limitType;
-    private String detectionLimit;
-    private String limitUnit;
-    private String orgCode;
-    private String deptCode;
+    private String limitReq;
 
-    private JSONArray itemLimitList;
+
+    public String getConvCtrlItemID() {
+        return convCtrlItemID;
+    }
+
+    public void setConvCtrlItemID(String convCtrlItemID) {
+        this.convCtrlItemID = convCtrlItemID;
+    }
 
     public String getItemCode() {
         return itemCode;
@@ -97,70 +97,14 @@ public class ConventionCtrlItemReqDto {
         this.countryReactLevel = countryReactLevel;
     }
 
-    public String getConvCtrlItemID() {
-        return convCtrlItemID;
+    public String getLimitReq() {
+        return limitReq;
     }
 
-    public void setConvCtrlItemID(String convCtrlItemID) {
-        this.convCtrlItemID = convCtrlItemID;
+    public void setLimitReq(String limitReq) {
+        this.limitReq = limitReq;
     }
-
-    public String getConvCtrlID() {
-        return convCtrlID;
-    }
-
-    public void setConvCtrlID(String convCtrlID) {
-        this.convCtrlID = convCtrlID;
-    }
-
-    public String getLimitType() {
-        return limitType;
-    }
-
-    public void setLimitType(String limitType) {
-        this.limitType = limitType;
-    }
-
-    public String getDetectionLimit() {
-        return detectionLimit;
-    }
-
-    public void setDetectionLimit(String detectionLimit) {
-        this.detectionLimit = detectionLimit;
-    }
-
-    public String getLimitUnit() {
-        return limitUnit;
-    }
-
-    public void setLimitUnit(String limitUnit) {
-        this.limitUnit = limitUnit;
-    }
-
-    public String getOrgCode() {
-        return orgCode;
-    }
-
-    public void setOrgCode(String orgCode) {
-        this.orgCode = orgCode;
-    }
-
-    public String getDeptCode() {
-        return deptCode;
-    }
-
-    public void setDeptCode(String deptCode) {
-        this.deptCode = deptCode;
-    }
-
-    public JSONArray getItemLimitList() {
-        return itemLimitList;
-    }
-
-    public void setItemLimitList(JSONArray itemLimitList) {
-        this.itemLimitList = itemLimitList;
-    }
-
+    
     
 
 }

@@ -50,12 +50,17 @@
                  <param name="root">result</param>
              </result>
         </action>
-        <action name="ConventionCtrlAction_*" class="cn.gov.scciq.bussiness.riskCtrl.ConventionCtrlAction" method="{1}">
+        <action name="ConventionCtrlAction_*" class="cn.gov.scciq.bussiness.convCtrl.ConventionCtrlAction" method="{1}">
              <result type="json">
                  <param name="root">result</param>
              </result>
         </action>
         <action name="CIQCtrlAction_*" class="cn.gov.scciq.bussiness.ciqCtrl.CIQCtrlAction" method="{1}">
+             <result type="json">
+                 <param name="root">result</param>
+             </result>
+        </action>
+         <action name="AccessoryCtrlAction_*" class="cn.gov.scciq.bussiness.accessoryCtrl.AccessoryCtrlAction" method="{1}">
              <result type="json">
                  <param name="root">result</param>
              </result>

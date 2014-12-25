@@ -1,4 +1,4 @@
-package cn.gov.scciq.bussiness.riskCtrl;
+package cn.gov.scciq.bussiness.convCtrl;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;

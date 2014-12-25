@@ -1,23 +1,25 @@
-package cn.gov.scciq.bussiness.riskCtrl;
+package cn.gov.scciq.bussiness.accessoryCtrl;
 
 import java.util.List;
 
+import cn.gov.scciq.bussiness.convCtrl.ConvCtrlItemLimitDto;
+
 /**
- * 布控项目详情及限量表
+ * 辅料布控详情
+ * 
  * @author chao.xu
  *
  */
-public class ConvCtrlItemDetailDto {
-
-    private ConventionCtrlItemDetailResDto itemDetail;
+public class AccessoryCtrlItemDetailDto {
+    private AccessoryCtrlItemDetailResDto itemDetail;
     
     private List<ConvCtrlItemLimitDto> itemLimitList;
 
-    public ConventionCtrlItemDetailResDto getItemDetail() {
+    public AccessoryCtrlItemDetailResDto getItemDetail() {
         return itemDetail;
     }
 
-    public void setItemDetail(ConventionCtrlItemDetailResDto itemDetail) {
+    public void setItemDetail(AccessoryCtrlItemDetailResDto itemDetail) {
         this.itemDetail = itemDetail;
     }
 

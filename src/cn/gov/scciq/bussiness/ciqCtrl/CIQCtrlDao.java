@@ -13,7 +13,7 @@ import java.util.Map;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import cn.gov.scciq.bussiness.riskCtrl.ConvCtrlItemLimitDto;
+import cn.gov.scciq.bussiness.convCtrl.ConvCtrlItemLimitDto;
 import cn.gov.scciq.dbpool.DBPool;
 import cn.gov.scciq.util.ConstantStr;
 import cn.gov.scciq.util.RsToDtoUtil;

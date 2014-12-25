@@ -387,5 +387,56 @@ public class SearchSelectDao {
         }
         return list;
     }
+
+
+    /**
+     * 查询辅料
+     * @param accessoryName
+     * @return
+     */
+    public static List<String> getAccessory(String accessoryName, int startIndex, int pageSize, String orderWord, String orderDirection) {
+        // TODO Auto-generated method stub
+        List<String> list  = new ArrayList<String>();
+        Connection conn = null;
+        CallableStatement proc = null;
+        ResultSet rs = null;
+        String call = "{call Pro_GetAccessory(?,?,?,?,?,?)}";
+        try {
+            conn = DBPool.ds.getConnection();
+            proc = conn.prepareCall(call);
+            proc.setString(1, accessoryName);
+            proc.setInt(2, startIndex);
+            proc.setInt(3, pageSize);
+            proc.setString(4, orderWord);
+            proc.setString(5, orderDirection);
+            proc.registerOutParameter(6, Types.INTEGER);
+            proc.execute();
+            rs = proc.getResultSet();
+            while(rs.next()){
+                list.add(rs.getString("AccessoryName"));
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            log.error("", e);
+        } catch (Exception e) {
+            log.error("", e);
+        } finally{
+            try {
+                if(rs != null){
+                    rs.close();
+                }
+                if(proc != null){
+                    proc.close();
+                }
+                if(conn != null){
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                log.error("", e);
+            }
+        }
+        return list;
+    }
     
 }

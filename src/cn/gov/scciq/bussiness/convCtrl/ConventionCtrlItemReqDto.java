@@ -1,15 +1,16 @@
-package cn.gov.scciq.bussiness.riskCtrl;
+package cn.gov.scciq.bussiness.convCtrl;
+
+import net.sf.json.JSONArray;
 
 /**
- * 布控项目table返回数据
+ * 布控项目请求数据
  * 
  * @author chao.xu
  * 
  */
-public class ConventionCtrlItemDetailResDto {
-
-    private String convCtrlItemID;
+public class ConventionCtrlItemReqDto {
     
+    private String convCtrlItemID;
     private String convCtrlID;
 
     private String itemCode;
@@ -31,18 +32,14 @@ public class ConventionCtrlItemDetailResDto {
     /** 输入国反应程度 */
     private String countryReactLevel;
 
+    /** 限量要求 */
     private String limitType;
     private String detectionLimit;
     private String limitUnit;
+    private String orgCode;
+    private String deptCode;
 
-
-    public String getConvCtrlItemID() {
-        return convCtrlItemID;
-    }
-
-    public void setConvCtrlItemID(String convCtrlItemID) {
-        this.convCtrlItemID = convCtrlItemID;
-    }
+    private JSONArray itemLimitList;
 
     public String getItemCode() {
         return itemCode;
@@ -100,6 +97,14 @@ public class ConventionCtrlItemDetailResDto {
         this.countryReactLevel = countryReactLevel;
     }
 
+    public String getConvCtrlItemID() {
+        return convCtrlItemID;
+    }
+
+    public void setConvCtrlItemID(String convCtrlItemID) {
+        this.convCtrlItemID = convCtrlItemID;
+    }
+
     public String getConvCtrlID() {
         return convCtrlID;
     }
@@ -130,6 +135,30 @@ public class ConventionCtrlItemDetailResDto {
 
     public void setLimitUnit(String limitUnit) {
         this.limitUnit = limitUnit;
+    }
+
+    public String getOrgCode() {
+        return orgCode;
+    }
+
+    public void setOrgCode(String orgCode) {
+        this.orgCode = orgCode;
+    }
+
+    public String getDeptCode() {
+        return deptCode;
+    }
+
+    public void setDeptCode(String deptCode) {
+        this.deptCode = deptCode;
+    }
+
+    public JSONArray getItemLimitList() {
+        return itemLimitList;
+    }
+
+    public void setItemLimitList(JSONArray itemLimitList) {
+        this.itemLimitList = itemLimitList;
     }
 
     

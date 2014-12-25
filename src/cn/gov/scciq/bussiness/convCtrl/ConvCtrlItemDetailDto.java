@@ -1,25 +1,23 @@
-package cn.gov.scciq.bussiness.ciqCtrl;
+package cn.gov.scciq.bussiness.convCtrl;
 
 import java.util.List;
-
-import cn.gov.scciq.bussiness.convCtrl.ConvCtrlItemLimitDto;
 
 /**
  * 布控项目详情及限量表
  * @author chao.xu
  *
  */
-public class CIQCtrlItemDetailDto {
+public class ConvCtrlItemDetailDto {
 
-    private CIQCtrlItemDetailResDto itemDetail;
+    private ConventionCtrlItemDetailResDto itemDetail;
     
     private List<ConvCtrlItemLimitDto> itemLimitList;
 
-    public CIQCtrlItemDetailResDto getItemDetail() {
+    public ConventionCtrlItemDetailResDto getItemDetail() {
         return itemDetail;
     }
 
-    public void setItemDetail(CIQCtrlItemDetailResDto itemDetail) {
+    public void setItemDetail(ConventionCtrlItemDetailResDto itemDetail) {
         this.itemDetail = itemDetail;
     }
 
@@ -30,7 +28,6 @@ public class CIQCtrlItemDetailDto {
     public void setItemLimitList(List<ConvCtrlItemLimitDto> itemLimitList) {
         this.itemLimitList = itemLimitList;
     }
-
     
     
 }

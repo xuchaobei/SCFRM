@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import cn.gov.scciq.bussiness.auth.AuthorityDao;
-import cn.gov.scciq.bussiness.riskCtrl.ConvCtrlItemLimitDto;
+import cn.gov.scciq.bussiness.convCtrl.ConvCtrlItemLimitDto;
 import cn.gov.scciq.util.ConstantStr;
 import cn.gov.scciq.util.ContextUtil;
 import cn.gov.scciq.util.DefaultResultUtil;
