@@ -24,4 +24,28 @@
             password="123456"
             type="javax.sql.DataSource"
             url="jdbc:sqlserver://127.0.0.1:1433;database=FRM_Sichuan;" />
+		
+    <!-- 	CEMS sqlserver 数据库配置 -->
+	<Resource
+            name="jdbc/CEMS"
+            driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+            maxActive="10"
+            maxIdle="2"
+            maxWait="10000"
+            username="sa"
+            password="123456"
+            type="javax.sql.DataSource"
+            url="jdbc:sqlserver://127.0.0.1:1433;database=CEMS_SIMU;" />
+	
+<!-- 	CEMS oracle 数据库配置
+	<Resource
+            name="jdbc/CEMS"
+            driverClassName="oracle.jdbc.driver.OracleDriver"
+            maxActive="10"
+            maxIdle="2"
+            maxWait="10000"
+            username="sa"
+            password="123456"
+            type="javax.sql.DataSource"
+            url="jdbc:oracle:thin:@127.0.0.1:1521:CEMS_SIMU" /> -->
 </Context>
