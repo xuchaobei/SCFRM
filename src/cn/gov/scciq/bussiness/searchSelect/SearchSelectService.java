@@ -90,9 +90,24 @@ public class SearchSelectService {
         return rs;
     }
 
+    /**
+     * 查询辅料
+     * @return
+     */
     public static JSONObject getAccessory(String accessoryName, int startIndex, int pageSize, String orderWord, String orderDirection) {
         // TODO Auto-generated method stub
         List<String> list = SearchSelectDao.getAccessory(accessoryName,  startIndex,  pageSize,  orderWord,  orderDirection);
+        JSONObject rs = DefaultResultUtil.getDefaultResult(list);
+        return rs;
+    }
+    
+    /**
+     * 查询添加剂
+     * @return
+     */
+    public static JSONObject getAdditive(String additiveName, int startIndex, int pageSize, String orderWord, String orderDirection) {
+        // TODO Auto-generated method stub
+        List<String> list = SearchSelectDao.getAdditive(additiveName, startIndex, pageSize, orderWord, orderDirection);
         JSONObject rs = DefaultResultUtil.getDefaultResult(list);
         return rs;
     }

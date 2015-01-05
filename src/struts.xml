@@ -65,6 +65,11 @@
                  <param name="root">result</param>
              </result>
         </action>
+        <action name="AdditiveCtrlAction_*" class="cn.gov.scciq.bussiness.additiveCtrl.AdditiveCtrlAction" method="{1}">
+             <result type="json">
+                 <param name="root">result</param>
+             </result>
+        </action>
     </package>
 
 </struts>

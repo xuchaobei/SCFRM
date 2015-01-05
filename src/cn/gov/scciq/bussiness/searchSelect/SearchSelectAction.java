@@ -141,6 +141,19 @@ public class SearchSelectAction {
         return Action.SUCCESS;
     }
     
+    /**
+     * 查询添加剂
+     * @return
+     */
+    public String getAdditive(){
+        int startIndex = 0;
+        int pageSize = 0;
+        String orderWord = "AdditiveName";
+        String orderDirection = "ASC";
+        result = SearchSelectService.getAdditive(data, startIndex, pageSize, orderWord, orderDirection);
+        return Action.SUCCESS;
+    }
+    
     public JSONObject getResult() {
         return result;
     }
