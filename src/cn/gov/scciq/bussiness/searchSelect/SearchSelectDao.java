@@ -13,6 +13,7 @@ import org.apache.commons.logging.LogFactory;
 
 import cn.gov.scciq.dbpool.DBPool;
 import cn.gov.scciq.dto.CountryDto;
+import cn.gov.scciq.dto.EntDto;
 import cn.gov.scciq.dto.IntendedUseDto;
 import cn.gov.scciq.dto.ItemDto;
 import cn.gov.scciq.dto.KeywordsDto;
@@ -489,4 +490,58 @@ public class SearchSelectDao {
         return list;
     }
     
+    /**
+     * 查询企业
+     * @return
+     */
+    public static List<EntDto> getEnt(String entName, String entCode, String mngOrgCode, String inspOrgCode, String roleCode, int startIndex, int pageSize, String orderWord, String orderDirection) {
+        // TODO Auto-generated method stub
+        List<EntDto> list  = new ArrayList<EntDto>();
+        Connection conn = null;
+        CallableStatement proc = null;
+        ResultSet rs = null;
+        String call = "{call Pro_GetEnt(?,?,?,?,?,?,?,?,?,?)}";
+        try {
+            conn = DBPool.ds.getConnection();
+            proc = conn.prepareCall(call);
+            proc.setString(1, entName);
+            proc.setString(2, entCode);
+            proc.setString(3, mngOrgCode);
+            proc.setString(4, inspOrgCode);
+            proc.setString(5, roleCode);
+            proc.setInt(6, startIndex);
+            proc.setInt(7, pageSize);
+            proc.setString(8, orderWord);
+            proc.setString(9, orderDirection);
+            proc.registerOutParameter(10, Types.INTEGER);
+            proc.execute();
+            rs = proc.getResultSet();
+            EntDto dto = null;
+            while(rs.next()){
+                dto = RsToDtoUtil.tranRsToDto(rs, EntDto.class);
+                list.add(dto);
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            log.error("", e);
+        } catch (Exception e) {
+            log.error("", e);
+        } finally{
+            try {
+                if(rs != null){
+                    rs.close();
+                }
+                if(proc != null){
+                    proc.close();
+                }
+                if(conn != null){
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                log.error("", e);
+            }
+        }
+        return list;
+    }
 }

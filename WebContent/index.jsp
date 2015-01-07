@@ -74,8 +74,10 @@
 							<ul>
 								<li><a href="#">常规布控</a></li>
 								<li><a href="#">应急布控</a></li>
+								<li><a href="#">监控表单</a></li>
 								<li><a href="#">辅料布控</a></li>
 								<li><a href="#">添加剂布控</a></li>
+								<li><a href="#">国外通报登记</a></li>
 							</ul></li>
 						<li class="submenu" id="enterprise-nav"><a href="#"> <i
 								class="glyphicon glyphicon-warning-sign"></i> 企业监管 <span
@@ -118,7 +120,6 @@
 	<script src="bootstrap/js/bootstrap.min.js"></script>
 	<script src="vendors/datatables/js/jquery.dataTables.js"></script>
 	<script src="vendors/datatables/dataTables.bootstrap.js"></script>
-
 	<script src="js/lib/custom.js"></script>
 	<script src="js/lib/select.js"></script>
 	<script src="js/index.js"></script>

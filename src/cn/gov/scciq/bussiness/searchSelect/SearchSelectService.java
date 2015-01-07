@@ -4,12 +4,14 @@ import java.util.List;
 
 import net.sf.json.JSONObject;
 import cn.gov.scciq.dto.CountryDto;
+import cn.gov.scciq.dto.EntDto;
 import cn.gov.scciq.dto.IntendedUseDto;
 import cn.gov.scciq.dto.ItemDto;
 import cn.gov.scciq.dto.KeywordsDto;
 import cn.gov.scciq.dto.MaterialSourceDto;
 import cn.gov.scciq.dto.PackageTypeDto;
 import cn.gov.scciq.dto.ProcessingMethodDto;
+import cn.gov.scciq.util.ContextUtil;
 import cn.gov.scciq.util.DefaultResultUtil;
 
 /**
@@ -108,6 +110,25 @@ public class SearchSelectService {
     public static JSONObject getAdditive(String additiveName, int startIndex, int pageSize, String orderWord, String orderDirection) {
         // TODO Auto-generated method stub
         List<String> list = SearchSelectDao.getAdditive(additiveName, startIndex, pageSize, orderWord, orderDirection);
+        JSONObject rs = DefaultResultUtil.getDefaultResult(list);
+        return rs;
+    }
+    
+    /**
+     * 查询企业
+     * @param entName
+     * @return
+     */
+    public static JSONObject getEnt(String entName){
+        int startIndex = 0;
+        int pageSize = 0;
+        String orderWord = "EntCode";
+        String orderDirection = "ASC";
+        String entCode = "";
+        String mngOrgCode = "";
+        String roleCode = "";
+    
+        List<EntDto> list = SearchSelectDao.getEnt(entName, entCode, mngOrgCode, ContextUtil.getOrgCode(), roleCode, startIndex, pageSize, orderWord, orderDirection);
         JSONObject rs = DefaultResultUtil.getDefaultResult(list);
         return rs;
     }

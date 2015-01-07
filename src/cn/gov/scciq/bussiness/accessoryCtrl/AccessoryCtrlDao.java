@@ -13,7 +13,6 @@ import java.util.Map;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import cn.gov.scciq.bussiness.ciqCtrl.CIQCtrlDao;
 import cn.gov.scciq.bussiness.convCtrl.ConvCtrlItemLimitDto;
 import cn.gov.scciq.dbpool.DBPool;
 import cn.gov.scciq.util.ConstantStr;
@@ -21,7 +20,7 @@ import cn.gov.scciq.util.RsToDtoUtil;
 
 public class AccessoryCtrlDao {
     
-    private static Log log=LogFactory.getLog(CIQCtrlDao.class);
+    private static Log log=LogFactory.getLog(AccessoryCtrlDao.class);
     
     /**
      * 得到辅料布控规则

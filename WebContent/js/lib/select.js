@@ -222,5 +222,125 @@ function searchDetectionItem(inputID, btnID){
 				$("#"+inputID).autocomplete( "search", "" );
 			}, 'json');		
 	});
-	 
+}
+
+
+/**
+ * 原料来源查询
+ */
+function searchMaterialSource(inputID, btnID){
+	$("#"+btnID).click(function(){
+		 var sourceName = getSearchParam(inputID);
+		 $.get("SearchSelectAction_getMaterialSource?&ts="
+					+ new Date().getTime(), 
+		    {sourceName : sourceName},
+		    function(rdata) {
+		    	var source = new Array();
+				$.each(rdata.data, function(index, value){
+					source[index] = value.sourceCode+" "+value.sourceName;
+				});	
+				if(source.length == 0){
+					alert("查询结果为空！");
+					return;
+				}
+				cus_autocomplete(source, inputID, null, null, null);
+				$("#"+inputID).autocomplete( "search", "" );
+			}, 'json');		
+	});
+}
+
+/**
+ * 查询加工方式
+ */
+function searchProcessingMethod(inputID, btnID){
+	$("#"+btnID).click(function(){
+		 var methodName =getSearchParam(inputID);
+		 $.get("SearchSelectAction_getProcessingMethod?&ts="
+					+ new Date().getTime(), 
+		    {methodName : methodName},
+		    function(rdata) {
+				var source = new Array();
+				$.each(rdata.data, function(index, value){
+					source[index] = value.methodCode+" "+value.methodName;
+				});	
+				if(source.length == 0){
+					alert("查询结果为空！");
+					return;
+				}
+				cus_autocomplete(source, inputID, null, null, null);
+				$("#"+inputID).autocomplete( "search", "" );
+			}, 'json');
+	});
+}
+
+/**
+ * 查询包装类型
+ */
+function searchPackageType(inputID, btnID){
+	$("#"+btnID).click(function(){
+		 var typeName = getSearchParam(inputID);
+		 $.get("SearchSelectAction_getPackageType?&ts="
+					+ new Date().getTime(), 
+		    {typeName : typeName},
+		    function(rdata) {
+				var source = new Array();
+				$.each(rdata.data, function(index, value){
+					source[index] = value.typeCode+" "+value.typeName;
+				});	
+				if(source.length == 0){
+					alert("查询结果为空！");
+					return;
+				}
+				cus_autocomplete(source, inputID, null, null, null);
+				$("#"+inputID).autocomplete( "search", "" );
+			}, 'json');
+	});
+}
+
+/**
+ * 查询预期用途
+ */
+function searchIntendedUse(inputID, btnID){
+	$("#"+btnID).click(function(){
+		 var useName = getSearchParam(inputID);
+		 $.get("SearchSelectAction_getIntendedUse?&ts="
+					+ new Date().getTime(), 
+		    {useName : useName},
+		    function(rdata) {
+				var source = new Array();
+				$.each(rdata.data, function(index, value){
+					source[index] = value.useCode+" "+value.useName;
+				});	
+				if(source.length == 0){
+					alert("查询结果为空！");
+					return;
+				}
+				cus_autocomplete(source, inputID, null, null, null);
+				$("#"+inputID).autocomplete( "search", "" );
+			}, 'json');
+	});
+}
+
+/**
+ * 查询企业
+ */
+function searchEnt(inputID, btnID){
+	$("#"+btnID).click(function(){
+		 var entName = getSearchParam(inputID);
+		 $.get("SearchSelectAction_getEnt?&ts="
+					+ new Date().getTime(), 
+		    {data : entName},
+		    function(rdata) {
+				var source = new Array();
+				$.each(rdata.data, function(index, value){
+					source[index] = value.entCode+" "+value.entName;
+				});	
+				if(source.length == 0){
+					alert("查询结果为空！");
+					return;
+				}
+				cus_autocomplete(source, inputID, null, null, null);
+				$("#"+inputID).autocomplete( "search", "" );
+			}, 'json');
+	});
 }

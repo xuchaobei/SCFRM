@@ -211,7 +211,7 @@ $(document).ready(function(){
 		    table2.draw();
 	}
 	
-	  //获取应急布控列表的请求参数
+	  //获取辅料布控列表的请求参数
 	  function getTable1RequestParam(){
 		  var additiveName = $("#rAdditiveName").val().trim();
 		  return additiveName;

@@ -154,6 +154,15 @@ public class SearchSelectAction {
         return Action.SUCCESS;
     }
     
+    /**
+     * 查询企业
+     * @return
+     */
+    public String getEnt(){
+        result = SearchSelectService.getEnt(data);
+        return Action.SUCCESS;
+    }
+    
     public JSONObject getResult() {
         return result;
     }
