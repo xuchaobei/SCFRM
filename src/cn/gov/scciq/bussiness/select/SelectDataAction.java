@@ -118,7 +118,7 @@ public class SelectDataAction {
         int pageSize = 0;
         String orderWord = "ClassCode";
         String orderDirection = "ASC";
-        result = SelectDataService.getMaterialSubsubclass(materialClassCode, materialClassCode, showFlag, startIndex, pageSize, orderWord, orderDirection);
+        result = SelectDataService.getMaterialSubsubclass(materialClassCode, materialSubclassCode, showFlag, startIndex, pageSize, orderWord, orderDirection);
         return Action.SUCCESS;
     }
     
