@@ -78,11 +78,16 @@
 								<li><a href="#">辅料布控</a></li>
 								<li><a href="#">添加剂布控</a></li>
 								<li><a href="#">国外通报登记</a></li>
-							</ul></li>
+							</ul>
+						</li>
 						<li class="submenu" id="enterprise-nav"><a href="#"> <i
 								class="glyphicon glyphicon-warning-sign"></i> 企业监管 <span
 								class="caret pull-right"></span>
-						</a></li>
+						</a>
+							<ul>
+								<li><a href="#">基地管理</a></li>
+							</ul>
+						</li>
 						<li class="submenu" id="business-nav"><a href="#"> <i
 								class="glyphicon glyphicon-random"></i> 业务流程 <span
 								class="caret pull-right"></span>

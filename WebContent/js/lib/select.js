@@ -172,6 +172,21 @@ function initMaterialSubsubclassSelect(materialClassCode, materialSubclassCode, 
 		}, 'json');
 }
 
+/**
+ * 等级配置数据
+ */
+function initEvlLevelSelect(levelType, inputID, btnID ){
+	  $.get("SelectDataAction_getEvlLevel?&ts="
+				+ new Date().getTime(), 
+		{levelType : levelType},
+	    function(rdata) {
+			var source = new Array();
+			$.each(rdata.data, function(index, value){
+				source[index] = value.levelDesc;
+			});	
+			cus_autocomplete(source, inputID, btnID, null, null);		
+		}, 'json');
+}
 
 /**
  * 查询国家

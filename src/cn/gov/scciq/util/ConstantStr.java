@@ -23,5 +23,9 @@ public class ConstantStr {
     
     /** 模块名称，作为查询权限时的参数menuName */
     public static final String RISK_CONTROL = "风险布控";
+
+    public static final String ENT_MANAGEMENT = "企业管理";
+    
+    
     
 }

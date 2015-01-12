@@ -75,6 +75,11 @@
                  <param name="root">result</param>
              </result>
         </action>
+        <action name="BaseMngAction_*" class="cn.gov.scciq.bussiness.baseMng.BaseMngAction" method="{1}">
+             <result type="json">
+                 <param name="root">result</param>
+             </result>
+        </action>
     </package>
 
 </struts>
