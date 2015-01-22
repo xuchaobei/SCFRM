@@ -359,3 +359,27 @@ function searchEnt(inputID, btnID){
 			}, 'json');
 	});
 }
+
+/**
+ * 查询基地
+ */
+function searchBase(inputID, btnID){
+	$("#"+btnID).click(function(){
+		 var baseName = getSearchParam(inputID);
+		 $.get("SearchSelectAction_getBase?&ts="
+					+ new Date().getTime(), 
+		    {data : baseName},
+		    function(rdata) {
+				var source = new Array();
+				$.each(rdata.data, function(index, value){
+					source[index] = value.baseCode+" "+value.baseName;
+				});	
+				if(source.length == 0){
+					alert("查询结果为空！");
+					return;
+				}
+				cus_autocomplete(source, inputID, null, null, null);
+				$("#"+inputID).autocomplete( "search", "" );
+			}, 'json');
+	});
+}

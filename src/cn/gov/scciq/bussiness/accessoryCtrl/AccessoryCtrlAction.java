@@ -15,7 +15,7 @@ import com.opensymphony.xwork2.Action;
  */
 public class AccessoryCtrlAction {
     
- private static Log log=LogFactory.getLog(AccessoryCtrlAction.class);
+	private static Log log=LogFactory.getLog(AccessoryCtrlAction.class);
     
     private int draw;
     

@@ -163,6 +163,15 @@ public class SearchSelectAction {
         return Action.SUCCESS;
     }
     
+    /**
+     * 查询基地
+     * @return
+     */
+    public String getBase(){
+        result = SearchSelectService.getBase(data);
+        return Action.SUCCESS;
+    }
+    
     public JSONObject getResult() {
         return result;
     }

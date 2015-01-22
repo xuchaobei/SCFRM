@@ -12,6 +12,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import cn.gov.scciq.dbpool.DBPool;
+import cn.gov.scciq.dto.BaseDto;
 import cn.gov.scciq.dto.CountryDto;
 import cn.gov.scciq.dto.EntDto;
 import cn.gov.scciq.dto.IntendedUseDto;
@@ -544,4 +545,54 @@ public class SearchSelectDao {
         }
         return list;
     }
+
+
+	public static List<BaseDto> getBase(String baseName, String baseCode,
+			int startIndex, int pageSize, String orderWord,
+			String orderDirection) {
+		List<BaseDto> list  = new ArrayList<BaseDto>();
+        Connection conn = null;
+        CallableStatement proc = null;
+        ResultSet rs = null;
+        String call = "{call Pro_GetBaseList(?,?,?,?,?,?,?)}";
+        try {
+            conn = DBPool.ds.getConnection();
+            proc = conn.prepareCall(call);
+            proc.setString(1, baseName);
+            proc.setString(2, baseCode);
+            proc.setInt(3, startIndex);
+            proc.setInt(4, pageSize);
+            proc.setString(5, orderWord);
+            proc.setString(6, orderDirection);
+            proc.registerOutParameter(7, Types.INTEGER);
+            proc.execute();
+            rs = proc.getResultSet();
+            BaseDto dto = null;
+            while(rs.next()){
+                dto = RsToDtoUtil.tranRsToDto(rs, BaseDto.class);
+                list.add(dto);
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            log.error("", e);
+        } catch (Exception e) {
+            log.error("", e);
+        } finally{
+            try {
+                if(rs != null){
+                    rs.close();
+                }
+                if(proc != null){
+                    proc.close();
+                }
+                if(conn != null){
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                log.error("", e);
+            }
+        }
+        return list;
+	}
 }

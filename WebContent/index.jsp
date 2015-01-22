@@ -86,6 +86,7 @@
 						</a>
 							<ul>
 								<li><a href="#">基地管理</a></li>
+								<li><a href="#">基地放行</a></li>
 							</ul>
 						</li>
 						<li class="submenu" id="business-nav"><a href="#"> <i

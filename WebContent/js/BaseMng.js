@@ -132,7 +132,7 @@ $(document).ready(function(){
 		  }
 		  if(confirm("确认要删除该条记录?")){
 			  var baseCode  = table1.row(curTable1Row).data().baseCode ;
-			  $.post("BaseMngAction_delBaseCode?&ts="
+			  $.post("BaseMngAction_delBase?&ts="
 						+ new Date().getTime(), {
 							baseCode : baseCode
 				}, function(rdata) {
@@ -218,7 +218,7 @@ $(document).ready(function(){
 			}, 'json');
 	 }
 	 
-	 function saveTable1Param(foreignReportingID){
+	 function saveTable1Param(baseID){
 		  var data = null;
 		  var baseCode = $("#sBaseCode").val().trim();
 		  if(baseCode == "" || baseCode == null){

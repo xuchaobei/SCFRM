@@ -50,7 +50,7 @@ public class BaseMngDao {
                 dto = RsToDtoUtil.tranRsToDto(rs, BaseMngResDto.class);
                 list.add(dto);
             }
-            recordsTotal = proc.getInt(8);
+            recordsTotal = proc.getInt(7);
             rsMap.put(1, recordsTotal);
             rsMap.put(2, list);
         } catch (SQLException e) {

@@ -80,6 +80,11 @@
                  <param name="root">result</param>
              </result>
         </action>
+        <action name="BaseMaterialAction_*" class="cn.gov.scciq.bussiness.baseMaterial.BaseMaterialAction" method="{1}">
+             <result type="json">
+                 <param name="root">result</param>
+             </result>
+        </action>
     </package>
 
 </struts>
