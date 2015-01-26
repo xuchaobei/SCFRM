@@ -87,6 +87,8 @@
 							<ul>
 								<li><a href="#">基地管理</a></li>
 								<li><a href="#">基地放行</a></li>
+								<li><a href="#">监控计划结果登记</a></li>
+								
 							</ul>
 						</li>
 						<li class="submenu" id="business-nav"><a href="#"> <i

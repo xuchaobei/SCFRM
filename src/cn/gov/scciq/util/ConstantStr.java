@@ -3,14 +3,14 @@ package cn.gov.scciq.util;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.net.URLConnection;
+
+import net.sf.json.JSONObject;
 
 /**
  * 常量池
@@ -76,11 +76,32 @@ public class ConstantStr {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		String content = readFile();
-		writeFile(content);
+		//String content = readFile();
+		//writeFile(content);
+		getJSON();
 	}
 	
 
+	public static void getJSON(){
+		JSONObject jo = new JSONObject();
+		String str = "{name: \"tt\", age:22}";
+		jo.put("name","test");
+		jo.put("age","123");
+		JSONObject jj = JSONObject.fromObject(str);
+		jo.put("relation",jj);
+		
+		String ss = jj.toString();
+		System.out.println(jo);
+		System.out.println(jo.toString());
+		JSONObject jo2 = jo.getJSONObject("relation");
+		String jo3 = jo.getString("relation");
+		
+		
+		System.out.println(jo2);
+		System.out.println(jo3);
+		JSONObject jo4 = JSONObject.fromObject(jo3);
+		System.out.println(jo4);
+	}
 
 
 }

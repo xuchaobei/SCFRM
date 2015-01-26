@@ -21,6 +21,7 @@ import cn.gov.scciq.dto.KeywordsDto;
 import cn.gov.scciq.dto.MaterialSourceDto;
 import cn.gov.scciq.dto.PackageTypeDto;
 import cn.gov.scciq.dto.ProcessingMethodDto;
+import cn.gov.scciq.dto.ProductDto;
 import cn.gov.scciq.util.RsToDtoUtil;
 
 /**
@@ -570,6 +571,49 @@ public class SearchSelectDao {
             BaseDto dto = null;
             while(rs.next()){
                 dto = RsToDtoUtil.tranRsToDto(rs, BaseDto.class);
+                list.add(dto);
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            log.error("", e);
+        } catch (Exception e) {
+            log.error("", e);
+        } finally{
+            try {
+                if(rs != null){
+                    rs.close();
+                }
+                if(proc != null){
+                    proc.close();
+                }
+                if(conn != null){
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                log.error("", e);
+            }
+        }
+        return list;
+	}
+
+
+	public static List<ProductDto> getProductByQuery(String productName) {
+		// TODO Auto-generated method stub
+		List<ProductDto> list  = new ArrayList<ProductDto>();
+        Connection conn = null;
+        CallableStatement proc = null;
+        ResultSet rs = null;
+        String call = "{call Pro_GetProductByQuery(?)}";
+        try {
+            conn = DBPool.ds.getConnection();
+            proc = conn.prepareCall(call);
+            proc.setString(1, productName);
+            proc.execute();
+            rs = proc.getResultSet();
+            ProductDto dto = null;
+            while(rs.next()){
+                dto = RsToDtoUtil.tranRsToDto(rs, ProductDto.class);
                 list.add(dto);
             }
         } catch (SQLException e) {

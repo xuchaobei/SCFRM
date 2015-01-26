@@ -12,6 +12,7 @@ import cn.gov.scciq.dto.KeywordsDto;
 import cn.gov.scciq.dto.MaterialSourceDto;
 import cn.gov.scciq.dto.PackageTypeDto;
 import cn.gov.scciq.dto.ProcessingMethodDto;
+import cn.gov.scciq.dto.ProductDto;
 import cn.gov.scciq.util.ContextUtil;
 import cn.gov.scciq.util.DefaultResultUtil;
 
@@ -183,6 +184,13 @@ public class SearchSelectService {
 		String orderDirection = "ASC";
 
 		List<BaseDto> list = SearchSelectDao.getBase(data, baseCode, startIndex, pageSize, orderWord, orderDirection);
+		JSONObject rs = DefaultResultUtil.getDefaultResult(list);
+		return rs;
+	}
+
+	public static JSONObject getProductByQuery(String data) {
+		// TODO Auto-generated method stub
+		List<ProductDto> list = SearchSelectDao.getProductByQuery(data);
 		JSONObject rs = DefaultResultUtil.getDefaultResult(list);
 		return rs;
 	}

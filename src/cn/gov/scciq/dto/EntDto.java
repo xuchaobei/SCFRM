@@ -25,7 +25,7 @@ public class EntDto {
     private String mngOrgCode;
     private String regScore;
     private String sourceMngScore;
-    private String creditScore;
+    private String creditLevel;
     private String processMonitorScore;
     private String orgName;
     public String getEntID() {
@@ -136,13 +136,14 @@ public class EntDto {
     public void setSourceMngScore(String sourceMngScore) {
         this.sourceMngScore = sourceMngScore;
     }
-    public String getCreditScore() {
-        return creditScore;
-    }
-    public void setCreditScore(String creditScore) {
-        this.creditScore = creditScore;
-    }
-    public String getProcessMonitorScore() {
+
+    public String getCreditLevel() {
+		return creditLevel;
+	}
+	public void setCreditLevel(String creditLevel) {
+		this.creditLevel = creditLevel;
+	}
+	public String getProcessMonitorScore() {
         return processMonitorScore;
     }
     public void setProcessMonitorScore(String processMonitorScore) {

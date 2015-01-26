@@ -85,6 +85,11 @@
                  <param name="root">result</param>
              </result>
         </action>
+         <action name="CtrlPlanAction_*" class="cn.gov.scciq.bussiness.ctrlPlan.CtrlPlanAction" method="{1}">
+             <result type="json">
+                 <param name="root">result</param>
+             </result>
+        </action>
     </package>
 
 </struts>

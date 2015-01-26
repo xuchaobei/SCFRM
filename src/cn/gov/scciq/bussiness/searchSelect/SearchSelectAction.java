@@ -172,6 +172,15 @@ public class SearchSelectAction {
         return Action.SUCCESS;
     }
     
+    /**
+     * 根据产品名称模糊查询产品数据，得到产品编号和产品名称数据
+     * @return
+     */
+    public String getProductByQuery(){
+    	result = SearchSelectService.getProductByQuery(data);
+        return Action.SUCCESS;
+    }
+    
     public JSONObject getResult() {
         return result;
     }
