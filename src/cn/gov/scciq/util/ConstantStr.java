@@ -39,69 +39,6 @@ public class ConstantStr {
 
 	public static final String ENT_MANAGEMENT = "企业管理";
 
-	public static String readFile() throws Exception {
-		
-		String path = "D://wind2.js";
-		File file = new File(path);
-		FileOutputStream out = new FileOutputStream(file, false);
-		
-		String fileUrl = "http://mobile-cn.envisioncn.com:12888/web_widget/windpower/windpowerLanguage.js";
-		URL uri = new URL(fileUrl);
-		URLConnection ucon = uri.openConnection();
-		ucon.connect();
-		InputStream is = ucon.getInputStream();
-		BufferedReader br = new BufferedReader(new InputStreamReader(is));
-		StringBuilder builder = new StringBuilder();
-		String inputLine = "";
-		while ((inputLine = br.readLine()) != null) {
-			inputLine += "\n";
-			builder.append(inputLine);
-			out.write(inputLine.getBytes("gbk"));
-		}
-		is.close();
-		out.close();
-		System.out.println(builder);
-		return builder.toString();
-
-	}
-
-	public static void writeFile(String content) throws Exception {
-		String path = "D://wind.js";
-		File file = new File(path);
-		FileOutputStream out = new FileOutputStream(file, false);
-		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out,
-				"utf-8"));
-		writer.write(content);
-		writer.close();
-	}
-	
-	public static void main(String[] args) throws Exception {
-		//String content = readFile();
-		//writeFile(content);
-		getJSON();
-	}
-	
-
-	public static void getJSON(){
-		JSONObject jo = new JSONObject();
-		String str = "{name: \"tt\", age:22}";
-		jo.put("name","test");
-		jo.put("age","123");
-		JSONObject jj = JSONObject.fromObject(str);
-		jo.put("relation",jj);
-		
-		String ss = jj.toString();
-		System.out.println(jo);
-		System.out.println(jo.toString());
-		JSONObject jo2 = jo.getJSONObject("relation");
-		String jo3 = jo.getString("relation");
-		
-		
-		System.out.println(jo2);
-		System.out.println(jo3);
-		JSONObject jo4 = JSONObject.fromObject(jo3);
-		System.out.println(jo4);
-	}
 
 
 }

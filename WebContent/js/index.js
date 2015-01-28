@@ -20,7 +20,7 @@ $(document).ready(function(){
 			$(this).click(function(){
 				$("li.current").removeClass("current");
 				$(this).addClass("current");
-				$("#right-content").empty().load("./html/AccessoryCtrl.html?ts="+new Date().getTime());
+				$("#right-content").empty().load("./html/ProductControlItem.html?ts="+new Date().getTime());
 			});
 			break;
 		case 3 :
