@@ -85,6 +85,7 @@
 								class="caret pull-right"></span>
 						</a>
 							<ul>
+								<li><a href="#">企业产品管理</a></li>
 								<li><a href="#">基地管理</a></li>
 								<li><a href="#">基地放行</a></li>
 								<li><a href="#">监控计划结果登记</a></li>
@@ -94,7 +95,11 @@
 						<li class="submenu" id="business-nav"><a href="#"> <i
 								class="glyphicon glyphicon-random"></i> 业务流程 <span
 								class="caret pull-right"></span>
-						</a></li>
+						</a>
+							<ul>
+								<li><a href="#">单证流程查询</a></li>
+							</ul>
+						</li>
 						<li class="submenu" id="statistics-nav"><a href="#"> <i
 								class="glyphicon glyphicon-stats"></i> 查询统计 <span
 								class="caret pull-right"></span>

@@ -1,0 +1,240 @@
+<div class="content-box-large">
+	<div class="panel-heading">
+		<div class="panel-title">企业产品管理</div>
+		<div class="panel-options">
+			<button id="search1" class="btn btn-primary btn-sm">
+				<i class="glyphicon glyphicon-search"></i> 查询
+			</button>
+			<button id="edit1" class="btn btn-primary btn-sm">
+				<i class="glyphicon glyphicon-tasks"></i> 详细数据
+			</button>
+			<button id="list1Export" class="btn btn-primary btn-sm">
+				<i class="glyphicon glyphicon-arrow-right"></i> 监控放行清单导出
+			</button>
+			<button id="list2Export" class="btn btn-primary btn-sm">
+				<i class="glyphicon glyphicon-arrow-right"></i> 预放行名单导出
+			</button>
+		</div>
+	</div>
+	<div class="panel-body">
+		<table class="table table-striped table-bordered" id="table1">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>企业代码</th>
+					<th>企业名称</th>
+					<th>国家代码</th>
+					<th>国家名称</th>
+					<th>企业产品名称</th>
+					<th>产品自编号</th>
+					<th>产品编号</th>
+					<th>监控放行</th>
+					<th>预放行</th>
+					<th>风险等级</th>
+					<th>抽检比</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+
+<div id="table1Search"
+	class="panel-info col-md-4 col-md-offset-4 alertForm">
+	<div class="content-box-header panel-heading">
+		<div class="panel-title">企业产品查询</div>
+		<div class="panel-options">
+			<a id="searchTable1" href="#" data-rel="collapse"><i
+				class="glyphicon glyphicon-floppy-saved"></i>查询</a> <a
+				id="closeTable1Search" href="#" data-rel="reload"><i
+				class="glyphicon glyphicon-remove-circle"></i>取消</a>
+		</div>
+	</div>
+	<div class="content-box-large box-with-header">
+		<form class="form-horizontal" role="form">
+			<div class="form-group">
+				<label class="col-sm-4 control-label">企业代码</label>
+				<div class="col-sm-8">
+					<input type="text" id="rEntCode" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">企业名称</label>
+				<div class="col-sm-8">
+					<input type="text" id="rEntName" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">企业产品名称</label>
+				<div class="col-sm-8">
+					<input type="text" id="rEntProductName" class="form-control">
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>
+
+
+<div id="table1Save"
+	class="col-md-8 col-md-offset-2 panel-info alertForm" style="top: 2%;">
+	<div class="content-box-header panel-heading">
+		<div class="panel-title">产品数据</div>
+		<div class="panel-options">
+			<a id="saveTable1" href="#" data-rel="collapse"><i
+				class="glyphicon glyphicon-floppy-saved"></i>确认</a> <a
+				id="closeTable1Save" href="#" data-rel="reload"><i
+				class="glyphicon glyphicon-remove-circle"></i>关闭</a>
+		</div>
+	</div>
+
+	<div class="content-box-large box-with-header" style="padding: 10px;">
+		<form class="form-horizontal" role="form">
+			<div class="form-group">
+				<label class="col-sm-1 control-label">ID号</label>
+				<div class="col-sm-3">
+					<input readonly type="text" id="sEntProductInputID"
+						class="form-control" />
+				</div>
+				<label class="col-sm-1 control-label">企业代码</label>
+				<div class="col-sm-3">
+					<input readonly type="text" id="sEntCode" class="form-control" />
+				</div>
+				<label class="col-sm-1 control-label">企业名称</label>
+				<div class="col-sm-3">
+					<input readonly type="text" id="sEntName" class="form-control" />
+				</div>
+			</div>
+			<hr style="margin-top: 8px; margin-bottom: 8px;">
+			<div class="form-group">
+				<label class="col-sm-1 control-label">企业产品自编号</label>
+				<div class="col-sm-3">
+					<input readonly type="text" id="sEntProductCode"
+						class="form-control" />
+				</div>
+				<label class="col-sm-1 control-label">企业产品名称</label>
+				<div class="col-sm-3">
+					<input readonly type="text" id="sEntProductName"
+						class="form-control" />
+				</div>
+				<label class="col-sm-1 control-label">产品编号</label>
+				<div class="col-sm-3">
+					<input readonly type="text" id="sProductCode" class="form-control" />
+				</div>
+			</div>
+			<hr style="margin-top: 8px; margin-bottom: 8px;">
+			<div class="form-group">
+				<label class="col-sm-1 control-label">产品大类</label>
+				<div class="col-sm-3">
+					<input readonly type="text" id="sClassName" class="form-control" />
+				</div>
+				<label class="col-sm-1 control-label">产品小类</label>
+				<div class="col-sm-3">
+					<input readonly type="text" id="sSubclassName" class="form-control" />
+				</div>
+				<label class="col-sm-1 control-label">加工方式</label>
+				<div class="col-sm-3">
+					<input readonly type="text" id="sMethodName" class="form-control" />
+				</div>
+			</div>
+			<hr style="margin-top: 8px; margin-bottom: 8px;">
+			<div class="form-group">
+				<label class="col-sm-1 control-label">包装类型</label>
+				<div class="col-sm-3">
+					<input readonly type="text" id="sTypeName" class="form-control" />
+				</div>
+				<label class="col-sm-1 control-label">预期用途</label>
+				<div class="col-sm-3">
+					<input readonly type="text" id="sUseName" class="form-control" />
+				</div>
+				<label class="col-sm-1 control-label">加工程度</label>
+				<div class="col-sm-3">
+					<input readonly type="text" id="sDegreeName" class="form-control" />
+				</div>
+			</div>
+			<hr style="margin-top: 8px; margin-bottom: 8px;">
+			<div class="form-group">
+				<label class="col-sm-1 control-label">储存条件</label>
+				<div class="col-sm-3">
+					<input readonly type="text" id="sConditionName"
+						class="form-control" />
+				</div>
+				<label class="col-sm-1 control-label">国家代码</label>
+				<div class="col-sm-3">
+					<input readonly type="text" id="sCountryCode" class="form-control" />
+				</div>
+				<label class="col-sm-1 control-label">国家名称</label>
+				<div class="col-sm-3">
+					<input readonly type="text" id="sCountryName" class="form-control" />
+				</div>
+			</div>
+		</form>
+		<div class="content-box-large" style="margin-bottom: 10px;">
+			<div class="panel-title">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#">原料</a></li>
+					<li><a href="#">辅料</a></li>
+					<li><a href="#">添加剂</a></li>
+				</ul>
+			</div>
+
+			<div id="tab0">
+				<div class="panel-body">
+					<table class="table table-striped table-bordered" id="tab1Table">
+						<thead>
+							<tr>
+								<th>原料大类</th>
+								<th>原料小类</th>
+								<th>原料细类</th>
+								<th>原料来源</th>
+								<th>主原料</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+			</div>
+			<div id="tab1">
+				<div class="panel-body">
+					<table class="table table-striped table-bordered" id="tab2Table">
+						<thead>
+							<tr>
+								<th>辅料名称</th>
+								<th>用途</th>
+								<th>使用环节</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+			</div>
+			<div id="tab2">
+				<div class="panel-body">
+					<table class="table table-striped table-bordered" id="tab3Table">
+						<thead>
+							<tr>
+								<th>添加剂</th>
+								<th>用途</th>
+								<th>使用环节</th>
+								<th>使用量</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="content-box-large" style="padding: 10px;">
+			<div class="form-group">
+				<div class="col-sm-11 col-sm-offset-1">
+					<label class="checkbox-inline"
+						style="font-size: 1.2em; font-weight: bold;"> <input
+						type="checkbox" id="sRapidRelease" />监控放行
+					</label> <label class="checkbox-inline"
+						style="font-size: 1.2em; font-weight: bold;"> <input
+						type="checkbox" id="sGreenChanel" />预放行
+					</label>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="js/EntProduct.js"></script>
+<script src="vendors/form-helpers/js/bootstrap-formhelpers.js"></script>

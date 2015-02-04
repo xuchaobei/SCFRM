@@ -95,6 +95,20 @@
                  <param name="root">result</param>
              </result>
         </action>
+         <action name="EntProductAction_*" class="cn.gov.scciq.bussiness.entProduct.EntProductAction" method="{1}">
+             <result type="json">
+                 <param name="root">result</param>
+             </result>
+        </action>
+
+		<action name="ExportExcelAction" class="cn.gov.scciq.bussiness.download.ExportExcelAction">
+			<result name="success" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${filename}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
     </package>
 
 </struts>

@@ -142,7 +142,7 @@ function clearAlertDiv(divID){
 		$(this).val("");
 	});
 	$("#"+divID + " input[type='checkbox']").each(function(){
-		$(this).attr("checked", false);
+		$(this).prop("checked", false);
 	});
 }
 
