@@ -100,6 +100,12 @@
                  <param name="root">result</param>
              </result>
         </action>
+        
+        <action name="DeclProcessAction_*" class="cn.gov.scciq.bussiness.declProcess.DeclProcessAction" method="{1}">
+             <result type="json">
+                 <param name="root">result</param>
+             </result>
+        </action>
 
 		<action name="ExportExcelAction" class="cn.gov.scciq.bussiness.download.ExportExcelAction">
 			<result name="success" type="stream">
