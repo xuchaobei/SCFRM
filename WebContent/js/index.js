@@ -100,5 +100,25 @@ $(document).ready(function(){
 		}
 	});
 	
+	$("#statistics-nav ul li").each(function(i){
+		switch(i){
+		case 0 :
+			$(this).click(function(){
+				$("li.current").removeClass("current");
+				$(this).addClass("current");
+				$("#right-content").empty().load("./html/DeclStatistics.html?ts="+new Date().getTime());
+			});
+			break;
+		case 1 :
+			$(this).click(function(){
+				$("li.current").removeClass("current");
+				$(this).addClass("current");
+				$("#right-content").empty().load("./html/DeclQuery.html?ts="+new Date().getTime());
+			});
+			break;
+		
+		}
+	});
+	
 	setMinContentDivHeight();
 });

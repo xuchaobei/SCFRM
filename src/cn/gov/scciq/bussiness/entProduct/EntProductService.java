@@ -101,7 +101,7 @@ public class EntProductService {
 		String orderWord = "EntCode";
 		String orderDirection = "DESC";
 		List<EntProductResDto> resList = new ArrayList<EntProductResDto>();
-		List<EntProductExcelDto> excelList = new ArrayList<EntProductExcelDto	>();
+		List<EntProductExcelDto> excelList = new ArrayList<EntProductExcelDto>();
 		if("RapidRelease".equals(filename)){
 			rapidRelease = "1";
 			Map<Integer, Object> rsMap = EntProductDao.getEntProductByQuery("", "", "", rapidRelease, greenChanel, 0, 0, orderWord, orderDirection);

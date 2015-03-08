@@ -38,6 +38,8 @@ public class ConstantStr {
 	public static final String RISK_CONTROL = "风险布控";
 
 	public static final String ENT_MANAGEMENT = "企业管理";
+	
+	public static final String DECL_STATISTICS = "报检批统计";
 
 
 

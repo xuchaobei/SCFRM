@@ -104,7 +104,22 @@
 						<li class="submenu" id="statistics-nav"><a href="#"> <i
 								class="glyphicon glyphicon-stats"></i> 查询统计 <span
 								class="caret pull-right"></span>
-						</a></li>
+						</a>
+							<ul>
+								<li><a href="#">报检批统计</a></li>
+								<li><a href="#">货物批统计</a></li>
+								<li><a href="#">产品分析</a></li>
+								<li><a href="#">项目分析</a></li>
+								<li><a href="#">抽批分析</a></li>
+								<li><a href="#">原料基地分析</a></li>
+								<li><a href="#">放行模式统计</a></li>
+								<li><a href="#">报检批分析</a></li>
+								<li><a href="#">辅料查询</a></li>
+								<li><a href="#">添加剂使用查询</a></li>
+								<li><a href="#">检测结果查询</a></li>
+								<li><a href="#">统计计算</a></li>
+							</ul>
+						</li>
 						<li class="submenu" id="management-nav"><a href="#"> <i
 								class="glyphicon glyphicon-wrench"></i> 系统管理 <span
 								class="caret pull-right"></span>

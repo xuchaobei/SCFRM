@@ -29,6 +29,7 @@ function initInspOrgSelect(orgInputID, orgBtnID, deptInputID, deptBtnID){
 			cus_autocomplete(source, orgInputID, orgBtnID, null, 
 				function(event, ui){
 				    var orgCode = ui.item.value.split(" ")[0];
+				    $("#"+deptInputID).val("");
 				    return initInspDeptSelect(orgCode, deptInputID, deptBtnID);
 			});		
 		}, 'json');
