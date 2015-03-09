@@ -1,15 +1,14 @@
-package cn.gov.scciq.bussiness.goodsStatistics;
+package cn.gov.scciq.bussiness.productStatistics;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.apache.commons.logging.Log;
@@ -19,21 +18,19 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
-import cn.gov.scciq.util.RsToDtoUtil;
-
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
- * 导出报检批数据
+ * 产品分析导出数据
  * 
  * @author chao.xu
  *
  */
-public class GoodsStatisticsExportAction extends ActionSupport {
+public class ProductStatisticsExportAction extends ActionSupport {
 
 	private static Log log = LogFactory
-			.getLog(GoodsStatisticsExportAction.class);
+			.getLog(ProductStatisticsExportAction.class);
 	/**
 	 * 
 	 */
@@ -45,14 +42,11 @@ public class GoodsStatisticsExportAction extends ActionSupport {
 	private String filename;
 	private InputStream inputStream;
 
-
-	private List<String> sumFields = new ArrayList<String>();
-
 	public String execute() throws Exception {
 
-		String excelName = "货物批统计";
-		Map<Integer, Object> map = GoodsStatisticsService.getMapStaticResultForGoods(data, draw, start, length);
- 		HSSFWorkbook workbook = generateExcel(excelName, getTitles(), map);
+		String excelName = "产品分析";
+		JSONObject rsData= ProductStatisticsService.getStaticResultForProduct(data, draw, start, length);
+ 		HSSFWorkbook workbook = generateExcel(excelName, getTitles(), rsData);
 		filename = "document.xls";
 		ByteArrayOutputStream output = new ByteArrayOutputStream();
 		workbook.write(output);
@@ -65,41 +59,14 @@ public class GoodsStatisticsExportAction extends ActionSupport {
 
 
 	private List<String> getTitles() {
-		GoodsStatisticsReqDto dto = (GoodsStatisticsReqDto) JSONObject.toBean(
-				JSONObject.fromObject(data), GoodsStatisticsReqDto.class);
 		List<String> titles = new ArrayList<String>();
-		if (dto.getGroup_Org()) {
-			titles.add("检验机构");
-			sumFields.add("orgName");
-		}
-		if (dto.getGroup_Dept()) {
-			titles.add("检验部门");
-			sumFields.add("deptName");
-		}
-		if (dto.getGroup_Ent()) {
-			titles.add("企业");
-			sumFields.add("entName");
-		}
-		if (dto.getGroup_Country()) {
-			titles.add("出口国家");
-			sumFields.add("countryName");
-		}
-		if (dto.getGroup_ProductClass()) {
-			titles.add("产品大类");
-			sumFields.add("className");
-		}
-		if (dto.getGroup_ProductSubclass()) {
-			titles.add("产品小类");
-			sumFields.add("subclassName");
-		}
-		String otherTitiles[] = { "出口批次", "金额（美元）", "重量（千克）", "不合格批次", "不合格金额",
-				"不合格重量", "批次不合格率", "抽中批次", "抽中率", };
-		titles.addAll(Arrays.asList(otherTitiles));
+		String titiles[] = { "产品编号", "产品名称", "出口国家", "项目名称","总批次","项目抽中批次", "项目抽中率","项目不合格批次","项目不合格率" };
+		titles.addAll(Arrays.asList(titiles));
 		return titles;
 	}
 
 	public <T> HSSFWorkbook generateExcel(String excelName,
-			List<String> titles, Map<Integer, Object> dataMap) {
+			List<String> titles, JSONObject data) {
 		HSSFWorkbook workbook = new HSSFWorkbook();
 		// 创建工作表实例
 		HSSFSheet sheet = workbook.createSheet(excelName);
@@ -107,72 +74,31 @@ public class GoodsStatisticsExportAction extends ActionSupport {
 		for (int i = 0; i < titles.size(); i++) {
 			createCell(rowTitle, i, HSSFCell.CELL_TYPE_STRING, titles.get(i));
 		}
-		List<GoodsStatisticsDto> list = (List<GoodsStatisticsDto>) dataMap.get(2);
-		GoodsStatisticsSingleDto singleDto = (GoodsStatisticsSingleDto) dataMap
-				.get(3);
-		int sumFieldsSize = sumFields.size();
+		JSONArray ja = data.getJSONArray("data");
 		try {
 			int j = 0;
-			for (; j < list.size(); j++) {
-				GoodsStatisticsDto t = list.get(j);
+			Field fields[] = ProductStatisticsDto.class.getDeclaredFields();
+			for (; j < ja.size(); j++) {
 				HSSFRow row = sheet.createRow(j+1);
-				Field fields[] = t.getClass().getDeclaredFields();
-				int k = 0;
-				for (; k < sumFieldsSize; k++) {
-					String getMethodName = "get"
-							+ RsToDtoUtil.initialsToUppercase(sumFields.get(k));
-					Method method = t.getClass().getMethod(getMethodName);
-					String value = (String) method.invoke(t);
-					createCell(row, k, HSSFCell.CELL_TYPE_STRING, value);
-				}
-				for (int n=6; n< fields.length; n++,k++) {
-					Field f = fields[n];
+				for (int k = 0; k< fields.length; k++) {
+					Field f = fields[k];
 					Class<?> type = f.getType();
 					String fName = f.getName();
-					String getMethodName = "get"
-							+ RsToDtoUtil.initialsToUppercase(fName);
-					Method method = t.getClass().getMethod(getMethodName);
 					String typeName = type.getSimpleName();
 					if ("String".equalsIgnoreCase(typeName)) {
-						String value = (String) method.invoke(t);
+						String value = ja.getJSONObject(j).getString(fName);
 						createCell(row, k, HSSFCell.CELL_TYPE_STRING, value);
 					} else if ("Integer".equalsIgnoreCase(typeName)
 							|| "int".equalsIgnoreCase(typeName)) {
-						int value = (int) method.invoke(t);
+						int value = ja.getJSONObject(j).getInt(fName);
 						createCell(row, k, HSSFCell.CELL_TYPE_NUMERIC, value);
 					} else {
-						throw new Exception(t.getClass()
-								+ " 只支持int和String类型的变量");
+						throw new Exception(" 只支持int和String类型的变量");
 					}
 				}
 
 			}
 
-			HSSFRow row = sheet.createRow(j + 2);
-			createCell(row, 0, HSSFCell.CELL_TYPE_STRING, "汇总");
-			Field fields[] = singleDto.getClass().getDeclaredFields();
-			for (int m = 0; m < fields.length; m++) {
-				Field f = fields[m];
-				Class<?> type = f.getType();
-				String fName = f.getName();
-				String getMethodName = "get"
-						+ RsToDtoUtil.initialsToUppercase(fName);
-				Method method = singleDto.getClass().getMethod(getMethodName);
-				String typeName = type.getSimpleName();
-				if ("String".equalsIgnoreCase(typeName)) {
-					String value = (String) method.invoke(singleDto);
-					createCell(row, m + sumFieldsSize,
-							HSSFCell.CELL_TYPE_STRING, value);
-				} else if ("Integer".equalsIgnoreCase(typeName)
-						|| "int".equalsIgnoreCase(typeName)) {
-					int value = (int) method.invoke(singleDto);
-					createCell(row, m + sumFieldsSize,
-							HSSFCell.CELL_TYPE_NUMERIC, value);
-				} else {
-					throw new Exception(singleDto.getClass()
-							+ " 只支持int和String类型的变量");
-				}
-			}
 		} catch (InstantiationException e) {
 			// TODO Auto-generated catch block
 			log.error("", e);

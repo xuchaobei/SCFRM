@@ -116,7 +116,13 @@ $(document).ready(function(){
 				$("#right-content").empty().load("./html/GoodsStatistics.html?ts="+new Date().getTime());
 			});
 			break;
-		
+		case 2 :
+			$(this).click(function(){
+				$("li.current").removeClass("current");
+				$(this).addClass("current");
+				$("#right-content").empty().load("./html/ProductStatistics.html?ts="+new Date().getTime());
+			});
+			break;
 		}
 	});
 	

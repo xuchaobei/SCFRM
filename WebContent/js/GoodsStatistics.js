@@ -93,6 +93,9 @@ $(document).ready(function(){
 			    	  if(data.data){
 			    		  alert(data.data);
 			    	  }else{
+			    		  if(reqData==null){
+			    			  getTable1RequestParam();
+			    		  }
 			    		  if(!checkJsonParam(reqData)){
 			    			  return;
 			    		  }

@@ -49,7 +49,7 @@ public class GoodsStatisticsService {
 	}
 	
 	public static JSONObject checkPermission(){
-		 String permission = AuthorityDao.getOperateLimit(ConstantStr.Goods_STATISTICS);
+		 String permission = AuthorityDao.getOperateLimit(ConstantStr.GOODS_STATISTICS);
 		 JSONObject result = new JSONObject();
 		 if(permission.equals("0")){
              result = DefaultResultUtil.getModificationResult(ConstantStr.PERMISSION_DENIAL_MSG);
