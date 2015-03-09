@@ -1,16 +1,5 @@
 package cn.gov.scciq.util;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.URL;
-import java.net.URLConnection;
-
-import net.sf.json.JSONObject;
 
 /**
  * 常量池
@@ -40,6 +29,7 @@ public class ConstantStr {
 	public static final String ENT_MANAGEMENT = "企业管理";
 	
 	public static final String DECL_STATISTICS = "报检批统计";
+	public static final String Goods_STATISTICS = "货物批统计";
 
 
 

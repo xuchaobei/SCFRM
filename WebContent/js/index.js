@@ -113,7 +113,7 @@ $(document).ready(function(){
 			$(this).click(function(){
 				$("li.current").removeClass("current");
 				$(this).addClass("current");
-				$("#right-content").empty().load("./html/DeclQuery.html?ts="+new Date().getTime());
+				$("#right-content").empty().load("./html/GoodsStatistics.html?ts="+new Date().getTime());
 			});
 			break;
 		
