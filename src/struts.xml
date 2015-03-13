@@ -187,6 +187,22 @@
 				<param name="bufferSize">1024</param>
 			</result>
 		</action>
+		
+       <action name="BaseStatisticsAction_*" class="cn.gov.scciq.bussiness.baseStatistics.BaseStatisticsAction" method="{1}">
+             <result type="json">
+                 <param name="root">result</param>
+             </result>
+        </action>
+
+        <action name="BaseStatisticsExportAction" class="cn.gov.scciq.bussiness.baseStatistics.BaseStatisticsExportAction">
+			<result name="success" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${filename}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+        
         
 		<action name="ExportExcelAction" class="cn.gov.scciq.bussiness.download.ExportExcelAction">
 			<result name="success" type="stream">
