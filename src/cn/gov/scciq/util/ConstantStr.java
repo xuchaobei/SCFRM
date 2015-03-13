@@ -32,6 +32,7 @@ public class ConstantStr {
 	public static final String GOODS_STATISTICS = "货物批统计";
 	public static final String PRODUCT_STATISTICS = "产品分析";
 	public static final String ITEM_STATISTICS = "项目分析";
+	public static final String SAMPLING_STATISTICS = "抽批分析";
 	
 
 
