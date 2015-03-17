@@ -34,6 +34,7 @@ public class ConstantStr {
 	public static final String ITEM_STATISTICS = "项目分析";
 	public static final String SAMPLING_STATISTICS = "抽批分析";
 	public static final String BASE_STATISTICS = "原料基地分析";
+	public static final String RELEASE_MODE_STATISTICS = "放行统计";
 	
 
 
