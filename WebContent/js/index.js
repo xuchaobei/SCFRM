@@ -151,6 +151,13 @@ $(document).ready(function(){
 				$("#right-content").empty().load("./html/ReleaseModeStatistics.html?ts="+new Date().getTime());
 			});
 			break;
+	    case 8 :
+			$(this).click(function(){
+				$("li.current").removeClass("current");
+				$(this).addClass("current");
+				$("#right-content").empty().load("./html/AccessorySearch.html?ts="+new Date().getTime());
+			});
+			break;
 		}
 	});
 	

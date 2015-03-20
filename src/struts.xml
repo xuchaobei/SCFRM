@@ -218,6 +218,20 @@
 			</result>
 		</action>
         
+        <action name="AccessorySearchAction_*" class="cn.gov.scciq.bussiness.accessorySearch.AccessorySearchAction" method="{1}">
+             <result type="json">
+                 <param name="root">result</param>
+             </result>
+        </action>
+
+        <action name="AccessorySearchExportAction" class="cn.gov.scciq.bussiness.accessorySearch.AccessorySearchExportAction">
+			<result name="success" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${filename}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
         
 		<action name="ExportExcelAction" class="cn.gov.scciq.bussiness.download.ExportExcelAction">
 			<result name="success" type="stream">
