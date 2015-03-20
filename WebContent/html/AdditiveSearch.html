@@ -1,0 +1,63 @@
+<div class="content-box-large">
+	<div class="panel-heading">
+		<div class="panel-title">查询条件</div>
+		<div class="panel-options">
+			<button id="search" class="btn btn-primary btn-sm">
+				<i class="glyphicon glyphicon-search"></i> 查询
+			</button>
+			<button id="export" class="btn btn-primary btn-sm">
+				<i class="glyphicon glyphicon-arrow-right"></i> 导出
+			</button>
+		</div>
+	</div>
+	<div class="panel-body">
+		<form class="form-horizontal" role="form">
+			<div class="form-group">
+				<label class="col-sm-1 control-label">添加剂名称</label>
+				<div class="col-sm-3">
+					<input type="text" id="additive" class="form-control">
+				</div>
+				<label class="col-sm-1 control-label">产品名称</label>
+				<div class="col-sm-3">
+					<input type="text" id="product" class="form-control">
+				</div>
+			</div>
+			<hr>
+			<div class="form-group">
+				<label class="col-sm-1 control-label">企业名称</label>
+				<div class="col-sm-3">
+					<input type="text" id="ent" class="form-control">
+				</div>
+				<label class="col-sm-1 control-label">出口国家</label>
+				<div class="col-sm-3">
+					<input type="text" id="country" class="form-control">
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+<div class="content-box-large">
+	<div class="panel-heading">
+		<div class="panel-title">统计数据</div>
+	</div>
+	<div class="panel-body">
+		<table class="table table-striped table-bordered" id="table1">
+			<thead>
+				<tr>
+					<th>添加剂名称</th>
+					<th>企业名称</th>
+					<th>产品编号</th>
+					<th>企业产品名称</th>
+					<th>用途</th>
+					<th>使用量</th>
+					<th>出口国家</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+
+
+<script src="js/AdditiveSearch.js"></script>
+<script src="vendors/form-helpers/js/bootstrap-formhelpers.js"></script>

@@ -36,6 +36,7 @@ public class ConstantStr {
 	public static final String BASE_STATISTICS = "原料基地分析";
 	public static final String RELEASE_MODE_STATISTICS = "放行统计";
 	public static final String ACCESSORY_SEARCH = "辅料使用查询";
+	public static final String ADDITIVE_SEARCH = "添加剂使用查询";
 	
 
 
