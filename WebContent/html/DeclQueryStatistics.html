@@ -1,0 +1,146 @@
+<div class="content-box-large">
+	<div class="panel-heading">
+		<div class="panel-title">查询条件</div>
+		<div class="panel-options">
+			<button id="add" class="btn btn-primary btn-sm">
+				<i class="glyphicon glyphicon-search"></i> 新增查询条件
+			</button>
+			<button id="edit" class="btn btn-primary btn-sm">
+				<i class="glyphicon glyphicon-search"></i> 修改查询条件
+			</button>
+			<button id="delete" class="btn btn-primary btn-sm">
+				<i class="glyphicon glyphicon-search"></i> 删除查询条件
+			</button>
+			<button id="generate" class="btn btn-primary btn-sm">
+				<i class="glyphicon glyphicon-search"></i> 生成SQL语句
+			</button>
+			<button id="search" class="btn btn-primary btn-sm">
+				<i class="glyphicon glyphicon-search"></i> 查询
+			</button>
+			<button id="export" class="btn btn-primary btn-sm">
+				<i class="glyphicon glyphicon-search"></i> 导出
+			</button>
+		</div>
+	</div>
+	<div class="panel-body">
+		<table class="table table-striped table-bordered" id="table1">
+			<thead>
+				<tr>
+					<th>查询条件ID</th>
+					<th>排序序号</th>
+					<th>左关系符</th>
+					<th>字段名</th>
+					<th>操作符</th>
+					<th>值</th>
+					<th>右关系符</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+
+<div class="content-box-large">
+	<div class="panel-heading">
+		<div class="panel-title">查询条件SQL语句</div>
+	</div>
+	<div class="panel-body">
+		<textarea class="table table-striped table-bordered" id="sqlContent">
+			
+		</textarea>
+	</div>
+</div>
+
+<div class="content-box-large">
+	<div class="panel-heading">
+		<div class="panel-title">查询结果</div>
+	</div>
+	<div class="panel-body">
+		<table class="table table-striped table-bordered" id="table2">
+			<thead>
+				<tr>
+					<th>报检号</th>
+					<th>报检时间</th>
+					<th>出口国家</th>
+					<th>企业名称</th>
+					<th>产品数据</th>
+					<th>合格评定时间</th>
+					<th>金额（美元）</th>
+					<th>重量（千克）</th>
+					<th>抽中</th>
+					<th>合格性</th>
+					<th>不合格原因</th>
+					<th>放行模式</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+
+<div id="table1Save"
+	class="panel-info col-md-8 col-md-offset-2 alertForm">
+	<div class="content-box-header panel-heading">
+		<div class="panel-title">查询条件</div>
+		<div class="panel-options">
+			<a id="saveTable1" href="#" data-rel="collapse"><i
+				class="glyphicon glyphicon-floppy-saved"></i>保存</a> <a
+				id="closeTable1Save" href="#" data-rel="reload"><i
+				class="glyphicon glyphicon-remove-circle"></i>取消</a>
+		</div>
+	</div>
+
+	<div class="content-box-large box-with-header">
+		<form class="form-horizontal" role="form">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">排序序号</label>
+				<div class="col-sm-2">
+					<div class="input-group">
+						<input type="text" id="sSortNo" class="form-control" />
+					</div>
+				</div>
+				<label class="col-sm-2 control-label">左关系符</label>
+				<div class="col-sm-2">
+					<div class="input-group">
+						<input type="text" id="sLeftLogic" class="form-control" /> <span
+							id="sLeftLogic-select" class="input-group-addon"><i
+							class="glyphicon glyphicon-chevron-down"></i></span>
+					</div>
+				</div>
+				<label class="col-sm-2 control-label">字段名</label>
+				<div class="col-sm-2">
+					<div class="input-group">
+						<input type="text" id="sDefinedField" class="form-control" /> <span
+							id="sDefinedField-select" class="input-group-addon"><i
+							class="glyphicon glyphicon-chevron-down"></i></span>
+					</div>
+				</div>
+			</div>
+			<hr>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">操作符</label>
+				<div class="col-sm-2">
+					<div class="input-group">
+						<input type="text" id="sOperateSign" class="form-control" /> <span
+							id="sOperateSign-select" class="input-group-addon"><i
+							class="glyphicon glyphicon-chevron-down"></i></span>
+					</div>
+				</div>
+				<label class="col-sm-2 control-label">取值</label>
+				<div class="col-sm-2">
+					<div class="input-group">
+						<input type="text" id="sOperateValue" class="form-control">
+					</div>
+				</div>
+				<label class="col-sm-2 control-label">右关系符</label>
+				<div class="col-sm-2">
+					<div class="input-group">
+						<input type="text" id="sRightLogic" class="form-control" /> <span
+							id="sRightLogic-select" class="input-group-addon"><i
+							class="glyphicon glyphicon-chevron-down"></i></span>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+<script src="js/DeclQueryStatistics.js"></script>
