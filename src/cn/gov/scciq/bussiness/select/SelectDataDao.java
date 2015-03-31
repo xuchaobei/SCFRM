@@ -15,7 +15,6 @@ import cn.gov.scciq.dbpool.DBPool;
 import cn.gov.scciq.dto.EvlLevelDto;
 import cn.gov.scciq.dto.InspDeptDto;
 import cn.gov.scciq.dto.InspOrgDto;
-import cn.gov.scciq.dto.LimitTypeDto;
 import cn.gov.scciq.dto.MaterialClassDto;
 import cn.gov.scciq.dto.MaterialSubclassDto;
 import cn.gov.scciq.dto.MaterialSubsubclassDto;
@@ -670,4 +669,132 @@ public class SelectDataDao {
         }
         return list;
     }
+    
+    /**
+     * 进口批查询中，获取关系符
+     * @return
+     */
+    public static List<String> getDeclQueryLogic(int logicSignal){
+        List<String> list  = new ArrayList<String>();
+        Connection conn = null;
+        CallableStatement proc = null;
+        ResultSet rs = null;
+        String call = "{call Pro_GetDeclQueryLogic(?)}";
+        try {
+            conn = DBPool.ds.getConnection();
+            proc = conn.prepareCall(call);
+            proc.setInt(1, logicSignal);
+            proc.execute();
+            rs = proc.getResultSet();
+            while(rs.next()){
+                list.add(rs.getString("LogicName"));
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            log.error("", e);
+        } catch (Exception e) {
+            log.error("", e);
+        } finally{
+            try {
+                if(rs != null){
+                    rs.close();
+                }
+                if(proc != null){
+                    proc.close();
+                }
+                if(conn != null){
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                log.error("", e);
+            }
+        }
+        return list;
+    }
+    
+    /**
+     * 进口批查询中获取所定义的查询字段名
+     * @return
+     */
+    public static List<String> getDeclQueryDefinedField(){
+        List<String> list  = new ArrayList<String>();
+        Connection conn = null;
+        CallableStatement proc = null;
+        ResultSet rs = null;
+        String call = "{call Pro_GetDeclQueryDefinedField()}";
+        try {
+            conn = DBPool.ds.getConnection();
+            proc = conn.prepareCall(call);
+            proc.execute();
+            rs = proc.getResultSet();
+            while(rs.next()){
+                list.add(rs.getString("DefinedField"));
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            log.error("", e);
+        } catch (Exception e) {
+            log.error("", e);
+        } finally{
+            try {
+                if(rs != null){
+                    rs.close();
+                }
+                if(proc != null){
+                    proc.close();
+                }
+                if(conn != null){
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                log.error("", e);
+            }
+        }
+        return list;
+    }
+
+	/**
+	 * 进口批查询中获取操作符
+	 * 
+	 * @return
+	 */
+	public static List<String> getDeclQueryOperateSignal() {
+		List<String> list = new ArrayList<String>();
+		Connection conn = null;
+		CallableStatement proc = null;
+		ResultSet rs = null;
+		String call = "{call Pro_GetDeclQueryOperateSignal()}";
+		try {
+			conn = DBPool.ds.getConnection();
+			proc = conn.prepareCall(call);
+			proc.execute();
+			rs = proc.getResultSet();
+			while (rs.next()) {
+				list.add(rs.getString("OperateName"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		} catch (Exception e) {
+			log.error("", e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (proc != null) {
+					proc.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				log.error("", e);
+			}
+		}
+		return list;
+	}
 }

@@ -163,5 +163,28 @@ public class SelectDataService {
         JSONObject rs = DefaultResultUtil.getDefaultResult(list);
         return rs;
     }
+
+	/**
+	 * 进口批查询中，获取关系符
+	 * @return
+	 * 
+	 */
+	public static JSONObject getDeclQueryLogic(int logicSignal) {
+		List<String> list = SelectDataDao.getDeclQueryLogic(logicSignal);
+	    JSONObject rs = DefaultResultUtil.getDefaultResult(list);
+		return rs;
+	}
+
+	public static JSONObject getDeclQueryDefinedField() {
+		List<String> list = SelectDataDao.getDeclQueryDefinedField();
+	    JSONObject rs = DefaultResultUtil.getDefaultResult(list);
+		return rs;
+	}
+
+	public static JSONObject getDeclQueryOperateSignal() {
+		List<String> list = SelectDataDao.getDeclQueryOperateSignal();
+	    JSONObject rs = DefaultResultUtil.getDefaultResult(list);
+		return rs;
+	}
     
 }

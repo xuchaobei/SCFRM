@@ -10,9 +10,10 @@ import com.opensymphony.xwork2.Action;
  *
  */
 public class SelectDataAction {
-    
-    private JSONObject result;
 
+	private String data;
+	
+    private JSONObject result;
     
     public JSONObject getResult() {
         return result;
@@ -190,6 +191,25 @@ public class SelectDataAction {
         return Action.SUCCESS;
     }
     
+    /**
+     * 进口批查询中，获取关系符
+     * @return
+     */
+    public String getDeclQueryLogic(){
+    	result = SelectDataService.getDeclQueryLogic(Integer.parseInt(data));
+    	return Action.SUCCESS;
+    }
+    
+    public String getDeclQueryDefinedField(){
+    	result = SelectDataService.getDeclQueryDefinedField();
+    	return Action.SUCCESS;
+    }
+    
+    public String getDeclQueryOperateSignal(){
+    	result = SelectDataService.getDeclQueryOperateSignal();
+    	return Action.SUCCESS;
+    }
+    
     public String getProductClassCode() {
         return productClassCode;
     }
@@ -253,6 +273,14 @@ public class SelectDataAction {
     public void setLogicFlg(String logicFlg) {
         this.logicFlg = logicFlg;
     }
+
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
+	}
 
     
     

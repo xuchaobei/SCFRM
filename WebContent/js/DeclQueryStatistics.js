@@ -9,11 +9,11 @@ $(document).ready(function(){
 	var table1Columns = [
 	                     {"data":"declQueryConditionID"},
 	                     {"data":"sortNo"},
-	                     {"data":"logicName"},
+	                     {"data":"leftLogic"},
 	                     {"data":"definedField"},
 	                     {"data":"operateName"},
 	                     {"data":"operateValue"},
-	                     {"data":"logicName"},
+	                     {"data":"rightLogic"},
 	                     ];
 	
 	var table2Columns = [
