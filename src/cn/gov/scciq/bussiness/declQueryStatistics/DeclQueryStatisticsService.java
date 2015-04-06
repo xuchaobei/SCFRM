@@ -5,6 +5,7 @@ import java.util.Map;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import cn.gov.scciq.bussiness.auth.AuthorityDao;
 import cn.gov.scciq.util.ConstantStr;
 import cn.gov.scciq.util.ContextUtil;
 import cn.gov.scciq.util.DefaultResultUtil;
@@ -30,10 +31,10 @@ public class DeclQueryStatisticsService {
 					ContextUtil.getOrgCode(), ContextUtil.getDeptCode(),
 					ContextUtil.getOperatorCode(),
 					Integer.parseInt(dto.getSortNo()), dto.getLeftLogic(),
-					dto.getDefinedField(), dto.getOperateName(),
+					dto.getDefinedField(), dto.getOperateSign(),
 					dto.getOperateValue(), dto.getRightLogic());
 		}
-
+		
 		JSONObject jo = DefaultResultUtil.getModificationResult(retStr);
 		return jo;
 	}
@@ -66,14 +67,36 @@ public class DeclQueryStatisticsService {
 	public static JSONObject getDeclQueryResult(int draw, int start, int length) {
 		String orderWord = "DeclNo";
 		String orderDirection = "ASC";
+		JSONArray ja = new JSONArray();
+		JSONObject result = null;
 		Map<Integer, Object> rsMap = DeclQueryStatisticsDao.getDeclQueryResult(
 				ContextUtil.getOrgCode(), ContextUtil.getDeptCode(),
 				ContextUtil.getOperatorCode(), start, length, orderWord,
 				orderDirection);
 		int recordsTotal = (Integer) rsMap.get(1);
-		JSONArray ja = JSONArray.fromObject(rsMap.get(2));
-		JSONObject result = DefaultResultUtil.getDefaultTableResult(draw,
-				recordsTotal, recordsTotal, ja);
+		Object obj = rsMap.get(2);
+		String error = null;
+		if(obj instanceof JSONObject ){
+			JSONObject jo = (JSONObject)obj;
+			if(jo.containsKey("error")){
+				error = jo.getString("error");
+			}
+			result = DefaultResultUtil.getDefaultTableResult(draw,
+					recordsTotal, recordsTotal, ja, error);
+		}else{
+			ja = JSONArray.fromObject(rsMap.get(2));
+			result = DefaultResultUtil.getDefaultTableResult(draw,
+					recordsTotal, recordsTotal, ja);
+		}
 		return result;
+	}
+	
+	public static JSONObject checkPermission(){
+		 String permission = AuthorityDao.getOperateLimit(ConstantStr.DECL_SEARCH);
+		 JSONObject result = new JSONObject();
+		 if(permission.equals("0")){
+            result = DefaultResultUtil.getModificationResult(ConstantStr.PERMISSION_DENIAL_MSG);
+        }
+		 return result;
 	}
 }

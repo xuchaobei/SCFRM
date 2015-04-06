@@ -113,7 +113,7 @@
 								<li><a href="#">抽批分析</a></li>
 								<li><a href="#">原料基地分析</a></li>
 								<li><a href="#">放行模式统计</a></li>
-								<li><a href="#">报检批分析</a></li>
+								<li><a href="#">报检批查询</a></li>
 								<li><a href="#">辅料查询</a></li>
 								<li><a href="#">添加剂使用查询</a></li>
 								<li><a href="#">检测结果查询</a></li>

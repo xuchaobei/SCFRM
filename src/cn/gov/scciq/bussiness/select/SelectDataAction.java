@@ -200,11 +200,19 @@ public class SelectDataAction {
     	return Action.SUCCESS;
     }
     
+    /**
+     * 得到系统所定义可查询的字段名
+     * @return
+     */
     public String getDeclQueryDefinedField(){
     	result = SelectDataService.getDeclQueryDefinedField();
     	return Action.SUCCESS;
     }
     
+    /**
+     * 得到系统所定义的操作符
+     * @return
+     */
     public String getDeclQueryOperateSignal(){
     	result = SelectDataService.getDeclQueryOperateSignal();
     	return Action.SUCCESS;

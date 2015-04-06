@@ -106,7 +106,7 @@ public class DeclQueryStatisticsDao {
 			proc.setString(9, operateValue);
 			proc.setString(10, rightLogic);
 			proc.execute();
-			retStr = "1";
+			retStr = "true";
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			log.error("", e);
@@ -299,12 +299,6 @@ public class DeclQueryStatisticsDao {
 			proc.registerOutParameter(8, Types.INTEGER);
 			proc.registerOutParameter(9, Types.VARCHAR);
 			proc.execute();
-			rs = proc.getResultSet();
-			DeclQueryResultDto dto = null;
-			while (rs.next()) {
-				dto = RsToDtoUtil.tranRsToDto(rs, DeclQueryResultDto.class);
-				list.add(dto);
-			}
 			recordsTotal = proc.getInt(8);
 			String errorMsg = proc.getString(9);
 			rsMap.put(1, recordsTotal);
@@ -313,6 +307,12 @@ public class DeclQueryStatisticsDao {
 				jo.put("error", errorMsg);
 				rsMap.put(2, jo);
 			} else {
+				rs = proc.getResultSet();
+				DeclQueryResultDto dto = null;
+				while (rs.next()) {
+					dto = RsToDtoUtil.tranRsToDto(rs, DeclQueryResultDto.class);
+					list.add(dto);
+				}
 				rsMap.put(2, list);
 			}
 		} catch (SQLException e) {

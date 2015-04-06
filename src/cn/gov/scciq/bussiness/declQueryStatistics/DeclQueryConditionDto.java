@@ -6,7 +6,7 @@ public class DeclQueryConditionDto {
 	private String sortNo;
 	private String leftLogic;
 	private String definedField;
-	private String operateName;
+	private String operateSign;
 	private String operateValue;
 	private String rightLogic;
 	public String getDeclQueryConditionID() {
@@ -33,11 +33,11 @@ public class DeclQueryConditionDto {
 	public void setDefinedField(String definedField) {
 		this.definedField = definedField;
 	}
-	public String getOperateName() {
-		return operateName;
+	public String getOperateSign() {
+		return operateSign;
 	}
-	public void setOperateName(String operateName) {
-		this.operateName = operateName;
+	public void setOperateSign(String operateSign) {
+		this.operateSign = operateSign;
 	}
 	public String getOperateValue() {
 		return operateValue;

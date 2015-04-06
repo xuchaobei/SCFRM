@@ -3,22 +3,22 @@
 		<div class="panel-title">查询条件</div>
 		<div class="panel-options">
 			<button id="add" class="btn btn-primary btn-sm">
-				<i class="glyphicon glyphicon-search"></i> 新增查询条件
+				<i class="glyphicon glyphicon-plus"></i> 新增查询条件
 			</button>
 			<button id="edit" class="btn btn-primary btn-sm">
-				<i class="glyphicon glyphicon-search"></i> 修改查询条件
+				<i class="glyphicon glyphicon-edit"></i> 修改查询条件
 			</button>
 			<button id="delete" class="btn btn-primary btn-sm">
-				<i class="glyphicon glyphicon-search"></i> 删除查询条件
+				<i class="glyphicon glyphicon-remove"></i> 删除查询条件
 			</button>
 			<button id="generate" class="btn btn-primary btn-sm">
-				<i class="glyphicon glyphicon-search"></i> 生成SQL语句
+				<i class="glyphicon glyphicon-wrench"></i> 生成SQL语句
 			</button>
 			<button id="search" class="btn btn-primary btn-sm">
 				<i class="glyphicon glyphicon-search"></i> 查询
 			</button>
 			<button id="export" class="btn btn-primary btn-sm">
-				<i class="glyphicon glyphicon-search"></i> 导出
+				<i class="glyphicon glyphicon-arrow-right"></i> 导出
 			</button>
 		</div>
 	</div>
@@ -44,7 +44,7 @@
 		<div class="panel-title">查询条件SQL语句</div>
 	</div>
 	<div class="panel-body">
-		<textarea class="table table-striped table-bordered" id="sqlContent">
+		<textarea rows="6" class="table table-striped table-bordered" id="sqlContent">
 			
 		</textarea>
 	</div>
@@ -91,22 +91,22 @@
 	<div class="content-box-large box-with-header">
 		<form class="form-horizontal" role="form">
 			<div class="form-group">
-				<label class="col-sm-2 control-label">排序序号</label>
-				<div class="col-sm-2">
+				<label class="col-sm-1 control-label">排序序号</label>
+				<div class="col-sm-3">
 					<div class="input-group">
 						<input type="text" id="sSortNo" class="form-control" />
 					</div>
 				</div>
-				<label class="col-sm-2 control-label">左关系符</label>
-				<div class="col-sm-2">
+				<label class="col-sm-1 control-label">左关系符</label>
+				<div class="col-sm-3">
 					<div class="input-group">
 						<input type="text" id="sLeftLogic" class="form-control" /> <span
 							id="sLeftLogic-select" class="input-group-addon"><i
 							class="glyphicon glyphicon-chevron-down"></i></span>
 					</div>
 				</div>
-				<label class="col-sm-2 control-label">字段名</label>
-				<div class="col-sm-2">
+				<label class="col-sm-1 control-label">字段名</label>
+				<div class="col-sm-3">
 					<div class="input-group">
 						<input type="text" id="sDefinedField" class="form-control" /> <span
 							id="sDefinedField-select" class="input-group-addon"><i
@@ -116,22 +116,22 @@
 			</div>
 			<hr>
 			<div class="form-group">
-				<label class="col-sm-2 control-label">操作符</label>
-				<div class="col-sm-2">
+				<label class="col-sm-1 control-label">操作符</label>
+				<div class="col-sm-3">
 					<div class="input-group">
 						<input type="text" id="sOperateSign" class="form-control" /> <span
 							id="sOperateSign-select" class="input-group-addon"><i
 							class="glyphicon glyphicon-chevron-down"></i></span>
 					</div>
 				</div>
-				<label class="col-sm-2 control-label">取值</label>
-				<div class="col-sm-2">
+				<label class="col-sm-1 control-label">取值</label>
+				<div class="col-sm-3">
 					<div class="input-group">
 						<input type="text" id="sOperateValue" class="form-control">
 					</div>
 				</div>
-				<label class="col-sm-2 control-label">右关系符</label>
-				<div class="col-sm-2">
+				<label class="col-sm-1 control-label">右关系符</label>
+				<div class="col-sm-3">
 					<div class="input-group">
 						<input type="text" id="sRightLogic" class="form-control" /> <span
 							id="sRightLogic-select" class="input-group-addon"><i

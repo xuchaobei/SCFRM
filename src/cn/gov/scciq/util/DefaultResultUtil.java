@@ -38,12 +38,17 @@ public class DefaultResultUtil {
      * @return
      */
     public static JSONObject getDefaultTableResult(int draw, int recordsTotal, int recordsFilter, Object data){
+        return getDefaultTableResult(draw, recordsTotal, recordsFilter, data, "");
+    }
+    
+    public static JSONObject getDefaultTableResult(int draw, int recordsTotal, int recordsFilter, Object data, String error){
         JSONArray ja = JSONArray.fromObject(data);
         TableResultDto result = new TableResultDto();
         result.setDraw(draw);
         result.setRecordsTotal(recordsTotal);
         result.setRecordsFiltered(recordsTotal);
         result.setData(ja);
+        result.setError(error);
         return JSONObject.fromObject(result);
     }
     

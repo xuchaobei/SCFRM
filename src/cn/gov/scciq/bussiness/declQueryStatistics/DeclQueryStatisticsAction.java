@@ -84,6 +84,16 @@ public class DeclQueryStatisticsAction {
 		return Action.SUCCESS;
 	}
 	
+	public String checkPermission(){
+		try {
+			result = DeclQueryStatisticsService.checkPermission();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		}
+		return Action.SUCCESS;
+	}
+	
 	public int getDraw() {
 		return draw;
 	}
