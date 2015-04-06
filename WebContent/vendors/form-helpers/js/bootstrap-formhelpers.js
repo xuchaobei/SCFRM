@@ -468,30 +468,55 @@ var BFHCurrenciesList = {
  * limitations under the License.
  * ========================================================== */
  
+//var BFHMonthsList = [
+//  'January',
+//  'February',
+//  'March',
+//  'April',
+//  'May',
+//  'June',
+//  'July',
+//  'August',
+//  'September',
+//  'October',
+//  'November',
+//  'December'
+//];
+
 var BFHMonthsList = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December'
-];
- 
+                     '一月',
+                     '二月',
+                     '三月',
+                     '四月',
+                     '五月',
+                     '六月',
+                     '七月',
+                     '八月',
+                     '九月',
+                     '十月',
+                     '十一月',
+                     '十二月'
+                   ];
+
+//var BFHDaysList = [
+//  'SUN',
+//  'MON',
+//  'TUE',
+//  'WED',
+//  'THU',
+//  'FRI',
+//  'SAT'
+//];
+
 var BFHDaysList = [
-  'SUN',
-  'MON',
-  'TUE',
-  'WED',
-  'THU',
-  'FRI',
-  'SAT'
-];
+                   '星期日',
+                   '星期一',
+                   '星期二',
+                   '星期三',
+                   '星期四',
+                   '星期五',
+                   '星期六'
+                 ];
  
 var BFHDayOfWeekStart = 0;
 

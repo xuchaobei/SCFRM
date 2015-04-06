@@ -96,7 +96,7 @@ public class DeclQueryStatisticsService {
 		 JSONObject result = new JSONObject();
 		 if(permission.equals("0")){
             result = DefaultResultUtil.getModificationResult(ConstantStr.PERMISSION_DENIAL_MSG);
-        }
+         }
 		 return result;
 	}
 }

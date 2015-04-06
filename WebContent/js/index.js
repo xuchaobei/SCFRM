@@ -172,6 +172,20 @@ $(document).ready(function(){
 				$("#right-content").empty().load("./html/AdditiveSearch.html?ts="+new Date().getTime());
 			});
 			break;
+	    case 10 :
+			$(this).click(function(){
+				$("li.current").removeClass("current");
+				$(this).addClass("current");
+				$("#right-content").empty().load("./html/AdditiveSearch.html?ts="+new Date().getTime());
+			});
+			break;
+	    case 11 :
+			$(this).click(function(){
+				$("li.current").removeClass("current");
+				$(this).addClass("current");
+				$("#right-content").empty().load("./html/CalculateStaticData.html?ts="+new Date().getTime());
+			});
+			break;
 		}
 	});
 	

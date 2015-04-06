@@ -271,6 +271,12 @@
 				<param name="bufferSize">1024</param>
 			</result>
 		</action>
+		
+		 <action name="CalculateStaticDataAction_*" class="cn.gov.scciq.bussiness.calculateStaticData.CalculateStaticDataAction" method="{1}">
+             <result type="json">
+                 <param name="root">result</param>
+             </result>
+        </action>
     </package>
 
 </struts>
