@@ -50,7 +50,7 @@ public class ReleaseModeStatisticsExportAction extends ActionSupport {
 	public String execute() throws Exception {
 
 		String excelName = "放行模式统计";
-		JSONObject rsData = ReleaseModeStatisticsService.getStaticResultForReleaseMode(data, draw, start, length);
+		JSONObject rsData = ReleaseModeStatisticsService.getStaticResultForReleaseMode(data, draw, 0, 0);
  		HSSFWorkbook workbook = generateExcel(excelName, getTitles(), rsData);
 		filename = "document.xls";
 		ByteArrayOutputStream output = new ByteArrayOutputStream();

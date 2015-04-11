@@ -51,7 +51,7 @@ public class GoodsStatisticsExportAction extends ActionSupport {
 	public String execute() throws Exception {
 
 		String excelName = "货物批统计";
-		Map<Integer, Object> map = GoodsStatisticsService.getMapStaticResultForGoods(data, draw, start, length);
+		Map<Integer, Object> map = GoodsStatisticsService.getMapStaticResultForGoods(data, draw, 0, 0);
  		HSSFWorkbook workbook = generateExcel(excelName, getTitles(), map);
 		filename = "document.xls";
 		ByteArrayOutputStream output = new ByteArrayOutputStream();

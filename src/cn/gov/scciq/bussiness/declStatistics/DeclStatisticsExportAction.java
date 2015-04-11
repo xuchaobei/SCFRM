@@ -51,7 +51,7 @@ public class DeclStatisticsExportAction extends ActionSupport {
 	public String execute() throws Exception {
 
 		String excelName = "报检批统计";
-		Map<Integer, Object> map = DeclStatisticsService.getMapStaticResultForDec(data, draw, start, length);
+		Map<Integer, Object> map = DeclStatisticsService.getMapStaticResultForDec(data, draw, 0, 0);
  		HSSFWorkbook workbook = generateExcel(excelName, getTitles(), map);
 		filename = "document.xls";
 		ByteArrayOutputStream output = new ByteArrayOutputStream();

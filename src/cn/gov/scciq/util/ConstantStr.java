@@ -38,6 +38,7 @@ public class ConstantStr {
 	public static final String ACCESSORY_SEARCH = "辅料使用查询";
 	public static final String ADDITIVE_SEARCH = "添加剂使用查询";
 	public static final String DECL_SEARCH = "报检批查询";
+	public static final String TEST_RESULT_SEARCH = "检测结果查询";
 	public static final String CALCULATE_DATA = "统计计算";
 	
 

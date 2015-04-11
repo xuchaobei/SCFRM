@@ -1,4 +1,4 @@
-package cn.gov.scciq.bussiness.additiveSearch;
+package cn.gov.scciq.bussiness.testResultSearch;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -22,15 +22,15 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
- * 辅料使用查询数据
+ * 检测结果统计导出数据
  * 
  * @author chao.xu
  *
  */
-public class AdditiveSearchExportAction extends ActionSupport {
+public class TestResultSearchExportAction extends ActionSupport {
 
 	private static Log log = LogFactory
-			.getLog(AdditiveSearchExportAction.class);
+			.getLog(TestResultSearchExportAction.class);
 	/**
 	 * 
 	 */
@@ -44,8 +44,8 @@ public class AdditiveSearchExportAction extends ActionSupport {
 
 	public String execute() throws Exception {
 
-		String excelName = "添加剂使用查询";
-		JSONObject rsData= AdditiveSearchService.getAdditiveUseByEntProduct(data, draw, 0, 0);
+		String excelName = "检测结果";
+		JSONObject rsData= TestResultSearchService.getTestResultByQuery(data, draw, 0, 0);
  		HSSFWorkbook workbook = generateExcel(excelName, getTitles(), rsData);
 		filename = "document.xls";
 		ByteArrayOutputStream output = new ByteArrayOutputStream();
@@ -57,10 +57,9 @@ public class AdditiveSearchExportAction extends ActionSupport {
 		return Action.SUCCESS;
 	}
 
-
 	private List<String> getTitles() {
 		List<String> titles = new ArrayList<String>();
-		String titiles[] = { "添加剂名称","企业名称","产品编号","企业产品名称", "用途","使用量", "出口国家"};
+		String titiles[] = { "报检号", "报检日期", "出口国家","企业名称","产品编号","产品名称","检测项目","检测结果","限量要求", "合格性"};
 		titles.addAll(Arrays.asList(titiles));
 		return titles;
 	}
@@ -77,7 +76,7 @@ public class AdditiveSearchExportAction extends ActionSupport {
 		JSONArray ja = data.getJSONArray("data");
 		try {
 			int j = 0;
-			Field fields[] = AdditiveSearchDto.class.getDeclaredFields();
+			Field fields[] = TestResultSearchResDto.class.getDeclaredFields();
 			for (; j < ja.size(); j++) {
 				HSSFRow row = sheet.createRow(j+1);
 				for (int k = 0; k< fields.length; k++) {

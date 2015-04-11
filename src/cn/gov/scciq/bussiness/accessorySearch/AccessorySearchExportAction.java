@@ -45,7 +45,7 @@ public class AccessorySearchExportAction extends ActionSupport {
 	public String execute() throws Exception {
 
 		String excelName = "辅料使用查询";
-		JSONObject rsData= AccessorySearchService.getAccessoryUseByEntProduct(data, draw, start, length);
+		JSONObject rsData= AccessorySearchService.getAccessoryUseByEntProduct(data, draw, 0, 0);
  		HSSFWorkbook workbook = generateExcel(excelName, getTitles(), rsData);
 		filename = "document.xls";
 		ByteArrayOutputStream output = new ByteArrayOutputStream();

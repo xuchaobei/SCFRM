@@ -45,7 +45,7 @@ public class ProductStatisticsExportAction extends ActionSupport {
 	public String execute() throws Exception {
 
 		String excelName = "产品分析";
-		JSONObject rsData= ProductStatisticsService.getStaticResultForProduct(data, draw, start, length);
+		JSONObject rsData= ProductStatisticsService.getStaticResultForProduct(data, draw, 0, 0);
  		HSSFWorkbook workbook = generateExcel(excelName, getTitles(), rsData);
 		filename = "document.xls";
 		ByteArrayOutputStream output = new ByteArrayOutputStream();

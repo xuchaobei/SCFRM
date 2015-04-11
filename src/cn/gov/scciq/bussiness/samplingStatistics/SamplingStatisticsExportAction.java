@@ -45,7 +45,7 @@ public class SamplingStatisticsExportAction extends ActionSupport {
 	public String execute() throws Exception {
 
 		String excelName = "抽批分析";
-		JSONObject rsData= SamplingStatisticsService.getStaticResultForSampling(data, draw, start, length);
+		JSONObject rsData= SamplingStatisticsService.getStaticResultForSampling(data, draw, 0, 0);
  		HSSFWorkbook workbook = generateExcel(excelName, getTitles(), rsData);
 		filename = "document.xls";
 		ByteArrayOutputStream output = new ByteArrayOutputStream();

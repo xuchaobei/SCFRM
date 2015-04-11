@@ -38,7 +38,7 @@ private static Log log = LogFactory
 	public String execute() throws Exception {
 
 		String excelName = "报检批查询";
-		JSONObject jo = DeclQueryStatisticsService.getDeclQueryResult(draw, start, length);
+		JSONObject jo = DeclQueryStatisticsService.getDeclQueryResult(draw, 0, 0);
  		HSSFWorkbook workbook = generateExcel(excelName, getTitles(), jo);
 		filename = "document.xls";
 		ByteArrayOutputStream output = new ByteArrayOutputStream();
