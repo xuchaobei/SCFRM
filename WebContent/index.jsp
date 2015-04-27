@@ -123,7 +123,11 @@
 						<li class="submenu" id="management-nav"><a href="#"> <i
 								class="glyphicon glyphicon-wrench"></i> 系统管理 <span
 								class="caret pull-right"></span>
-						</a></li>
+						</a>
+							<ul>
+								<li><a href="#">机构及部门管理</a></li>
+							</ul>
+						</li>
 					</ul>
 				</div>
 			</div>

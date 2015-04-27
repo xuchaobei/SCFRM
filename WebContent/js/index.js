@@ -189,5 +189,18 @@ $(document).ready(function(){
 		}
 	});
 	
+	$("#management-nav ul li").each(function(i){
+		switch(i){
+		case 0 :
+			$(this).click(function(){
+				$("li.current").removeClass("current");
+				$(this).addClass("current");
+				$("#right-content").empty().load("./html/OrgAndDeptMng.html?ts="+new Date().getTime());
+			});
+			break;
+		
+		}
+	});
+	
 	setMinContentDivHeight();
 });

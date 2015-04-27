@@ -40,6 +40,8 @@ public class ConstantStr {
 	public static final String DECL_SEARCH = "报检批查询";
 	public static final String TEST_RESULT_SEARCH = "检测结果查询";
 	public static final String CALCULATE_DATA = "统计计算";
+
+	public static final String ORG_DEPT_MNG = "机构部门设置";
 	
 
 

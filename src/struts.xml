@@ -292,6 +292,12 @@
                  <param name="root">result</param>
              </result>
         </action>
+        
+		<action name="OrgAndDeptMngAction_*" class="cn.gov.scciq.bussiness.orgAndDeptMng.OrgAndDeptMngAction" method="{1}">
+             <result type="json">
+                 <param name="root">result</param>
+             </result>
+        </action>
     </package>
 
 </struts>
