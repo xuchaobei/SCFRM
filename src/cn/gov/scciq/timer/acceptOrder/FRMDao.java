@@ -83,7 +83,7 @@ public class FRMDao {
             proc.setString(47, declDto.getMark_No());
             proc.setString(48, declDto.getValue_Checkup_Flag());
             proc.setString(49, declDto.getInsp_Mode_Code());
-            proc.setString(50, declDto.getInput_Org_Code());
+            proc.setString(50, declDto.getInsp_Org_Code());
             proc.setString(51, declDto.getInsp_Dept_1());
             proc.setString(52, declDto.getInsp_Dept_2());
             proc.setString(53, declDto.getInsp_Dept_3());
@@ -139,9 +139,9 @@ public class FRMDao {
             retCode = proc.getInt(101);
         } catch (SQLException e) {
             // TODO Auto-generated catch block
-            log.error("", e);
+            log.error("num9", e);
         } catch (Exception e) {
-            log.error("", e);
+            log.error("num10", e);
         } finally{
             try {
                 if(proc != null){
@@ -152,7 +152,7 @@ public class FRMDao {
                 }
             } catch (SQLException e) {
                 // TODO Auto-generated catch block
-                log.error("", e);
+                log.error("num11", e);
             }
         }
         return retCode;
@@ -166,7 +166,7 @@ public class FRMDao {
         int retCode = -1;
         Connection conn = null;
         CallableStatement proc = null;
-        String call = "{call Pro_SaveCIQGoodsInfo(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String call = "{call Pro_SaveCIQGoodsInfo(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}";
         try {
             conn = DBPool.ds.getConnection();
             proc = conn.prepareCall(call);
@@ -211,9 +211,9 @@ public class FRMDao {
             retCode = proc.getInt(37);
         } catch (SQLException e) {
             // TODO Auto-generated catch block
-            log.error("", e);
+            log.error("N30", e);
         } catch (Exception e){
-            log.error("", e);
+            log.error("N31", e);
         } finally{
             try {
                 if(proc != null){
@@ -224,7 +224,7 @@ public class FRMDao {
                 }
             } catch (SQLException e) {
                 // TODO Auto-generated catch block
-                log.error("", e);
+                log.error("N32", e);
             }
         }
         return retCode;
@@ -247,9 +247,9 @@ public class FRMDao {
             retCode = proc.getInt(2);
         } catch (SQLException e) {
             // TODO Auto-generated catch block
-            log.error("", e);
+            log.error("N33", e);
         } catch (Exception e){
-            log.error("", e);
+            log.error("N34", e);
         } finally{
             try {
                 if(proc != null){
@@ -260,7 +260,7 @@ public class FRMDao {
                 }
             } catch (SQLException e) {
                 // TODO Auto-generated catch block
-                log.error("", e);
+                log.error("N35", e);
             }
         }
         return retCode;
@@ -281,9 +281,9 @@ public class FRMDao {
             proc.execute();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
-            log.error("", e);
+            log.error("N36", e);
         } catch (Exception e){
-            log.error("", e);
+            log.error("N37", e);
         } finally{
             try {
                 if(proc != null){
@@ -294,7 +294,7 @@ public class FRMDao {
                 }
             } catch (SQLException e) {
                 // TODO Auto-generated catch block
-                log.error("", e);
+                log.error("N38", e);
             }
         }
     }
@@ -311,15 +311,17 @@ public class FRMDao {
         try {
             conn = DBPool.ds.getConnection();
             proc = conn.prepareCall(call);
+            System.out.println("entcode"+entCode);
             proc.setString(1, entCode);
             proc.registerOutParameter(2, Types.INTEGER);
             proc.execute();
             retCode = proc.getInt(2);
+            System.out.println("retcode"+retCode);
         } catch (SQLException e) {
             // TODO Auto-generated catch block
-            log.error("", e);
+            log.error("N39", e);
         } catch (Exception e){
-            log.error("", e);
+            log.error("N40", e);
         } finally{
             try {
                 if(proc != null){
@@ -330,7 +332,7 @@ public class FRMDao {
                 }
             } catch (SQLException e) {
                 // TODO Auto-generated catch block
-                log.error("", e);
+                log.error("N41", e);
             }
         }
         return retCode;
@@ -340,20 +342,21 @@ public class FRMDao {
      * 企业不存在后的处理：报检为异常
      * @param declNo
      */
-    public static void saveDeclInfoAbnormal(String declNo){
+    public static void saveDeclInfoAbnormal(String declNo,int flg){
         Connection conn = null;
         CallableStatement proc = null;
-        String call = "{call Pro_SaveDeclInfoAbnormal(?)}";
+        String call = "{call Pro_SaveDeclInfoAbnormal(?,?)}";
         try {
             conn = DBPool.ds.getConnection();
             proc = conn.prepareCall(call);
             proc.setString(1, declNo);
+            proc.setInt(2, flg);
             proc.execute();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
-            log.error("", e);
+            log.error("N42", e);
         } catch (Exception e){
-            log.error("", e);
+            log.error("N43", e);
         } finally{
             try {
                 if(proc != null){
@@ -364,7 +367,7 @@ public class FRMDao {
                 }
             } catch (SQLException e) {
                 // TODO Auto-generated catch block
-                log.error("", e);
+                log.error("N44", e);
             }
         }
     }
@@ -376,7 +379,7 @@ public class FRMDao {
     public static void saveDeclProductFromEnt(CEMSDeclExchangeDto exchangeDto){
         Connection conn = null;
         CallableStatement proc = null;
-        String call = "{call Pro_SaveDeclInfoAbnormal(?)}";
+        String call = "{call Pro_SaveDeclProductFromEnt(?,?,?,?,?,?,?,?,?)}";
         try {
             conn = DBPool.ds.getConnection();
             proc = conn.prepareCall(call);
@@ -392,9 +395,9 @@ public class FRMDao {
             proc.execute();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
-            log.error("", e);
+            log.error("N45", e);
         } catch (Exception e){
-            log.error("", e);
+            log.error("N46", e);
         } finally{
             try {
                 if(proc != null){
@@ -405,7 +408,7 @@ public class FRMDao {
                 }
             } catch (SQLException e) {
                 // TODO Auto-generated catch block
-                log.error("", e);
+                log.error("N47", e);
             }
         }
     }
@@ -427,9 +430,9 @@ public class FRMDao {
             retCode = proc.getInt(2);
         } catch (SQLException e) {
             // TODO Auto-generated catch block
-            log.error("", e);
+            log.error("N48", e);
         } catch (Exception e){
-            log.error("", e);
+            log.error("N49", e);
         } finally{
             try {
                 if(proc != null){
@@ -440,7 +443,7 @@ public class FRMDao {
                 }
             } catch (SQLException e) {
                 // TODO Auto-generated catch block
-                log.error("", e);
+                log.error("N50", e);
             }
         }
         return retCode;
@@ -469,9 +472,9 @@ public class FRMDao {
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
-            log.error("", e);
+            log.error("N51", e);
         } catch (Exception e){
-            log.error("", e);
+            log.error("N52", e);
         } finally{
             try {
                 if(rs != null){
@@ -485,7 +488,7 @@ public class FRMDao {
                 }
             } catch (SQLException e) {
                 // TODO Auto-generated catch block
-                log.error("", e);
+                log.error("N53", e);
             }
         }
         return declProductFromEnt;
@@ -512,9 +515,9 @@ public class FRMDao {
             retCode = proc.getInt(5);
         } catch (SQLException e) {
             // TODO Auto-generated catch block
-            log.error("", e);
+            log.error("N54", e);
         } catch (Exception e){
-            log.error("", e);
+            log.error("N55", e);
         } finally{
             try {
                 if(rs != null){
@@ -528,7 +531,50 @@ public class FRMDao {
                 }
             } catch (SQLException e) {
                 // TODO Auto-generated catch block
-                log.error("", e);
+                log.error("N56", e);
+            }
+        }
+        return retCode;
+    }
+    
+    
+    /**
+     * 检查企业填写厂检单的出口产品是否完整
+     * @param declNo
+     * @return
+     */
+    public static int checkDeclProductPerfect(String declNo){
+        int retCode = -1;
+        Connection conn = null;
+        CallableStatement proc = null;
+        ResultSet rs = null;
+        String call = "{call Pro_CheckDeclProductPerfect(?,?)}";
+        try {
+            conn = DBPool.ds.getConnection();
+            proc = conn.prepareCall(call);
+            proc.setString(1, declNo);
+            proc.registerOutParameter(2, Types.INTEGER);
+            proc.execute();
+            retCode = proc.getInt(2);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            log.error(e);
+        } catch (Exception e){
+            log.error(e);
+        } finally{
+            try {
+                if(rs != null){
+                    rs.close();
+                }
+                if(proc != null){
+                    proc.close();
+                }
+                if(conn != null){
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                log.error(e);
             }
         }
         return retCode;
@@ -549,9 +595,9 @@ public class FRMDao {
             retCode = proc.getInt(2);
         } catch (SQLException e) {
             // TODO Auto-generated catch block
-            log.error("", e);
+            log.error("N57", e);
         } catch (Exception e){
-            log.error("", e);
+            log.error("N58", e);
         } finally{
             try {
                 if(rs != null){
@@ -565,7 +611,7 @@ public class FRMDao {
                 }
             } catch (SQLException e) {
                 // TODO Auto-generated catch block
-                log.error("", e);
+                log.error("N59", e);
             }
         }
         return retCode;
@@ -590,9 +636,9 @@ public class FRMDao {
             retCode = proc.getInt(2);
         } catch (SQLException e) {
             // TODO Auto-generated catch block
-            log.error("", e);
+            log.error("N60", e);
         } catch (Exception e){
-            log.error("", e);
+            log.error("N61", e);
         } finally{
             try {
                 if(rs != null){
@@ -606,7 +652,7 @@ public class FRMDao {
                 }
             } catch (SQLException e) {
                 // TODO Auto-generated catch block
-                log.error("", e);
+                log.error("N62", e);
             }
         }
         return retCode;
@@ -628,9 +674,9 @@ public class FRMDao {
             proc.execute();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
-            log.error("", e);
+            log.error("N63", e);
         } catch (Exception e){
-            log.error("", e);
+            log.error("N64", e);
         } finally{
             try {
                 if(proc != null){
@@ -641,7 +687,7 @@ public class FRMDao {
                 }
             } catch (SQLException e) {
                 // TODO Auto-generated catch block
-                log.error("", e);
+                log.error("N65", e);
             }
         }
     }
