@@ -218,6 +218,44 @@ public class SelectDataAction {
     	return Action.SUCCESS;
     }
     
+    
+    /**
+     * 获取LMIS报验业务类别
+     * @return
+     */
+    public String getLabApplyKind(){
+    	result = SelectDataService.getLabApplyKind();
+    	return Action.SUCCESS;
+    }
+    
+    /**
+     * 取得LMIS样品状态定义
+     * @return
+     */
+    public String getLabSamplePhysicalState(){
+    	result = SelectDataService.getLabSamplePhysicalState();
+    	return Action.SUCCESS;
+    }
+    
+    /**
+     * 获取LMIS所定义的样品处理方式
+     * @return
+     */
+    public String getLabSampleDisposal(){
+    	result = SelectDataService.getLabSampleDisposal();
+    	return Action.SUCCESS;
+    }
+    
+    /**
+     * 获取LMIS样品保存方式
+     * @return
+     */
+    public String getLabSamplePreservation(){
+    	result = SelectDataService.getLabSamplePreservation();
+    	return Action.SUCCESS;
+    }
+    
+
     public String getProductClassCode() {
         return productClassCode;
     }

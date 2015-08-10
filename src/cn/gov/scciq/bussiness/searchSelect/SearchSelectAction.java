@@ -181,6 +181,33 @@ public class SearchSelectAction {
         return Action.SUCCESS;
     }
     
+    /**
+     * 根据所输入的样品类别模糊查询得到LMIS系统的样品类别定义
+     * @return
+     */
+    public String getLabSampleKind(){
+    	result = SearchSelectService.getLabSampleKind(data);
+        return Action.SUCCESS;
+    }
+    
+    /**
+     * 根据送检部门名称模糊查询得到送检部门
+     * @return
+     */
+    public String getLabApplyDept(){
+    	result = SearchSelectService.getLabApplyDept(data);
+        return Action.SUCCESS;
+    }
+    
+    /**
+     * 根据送检人模糊查询得到送检人
+     * @return
+     */
+    public String getLabAppliant(){
+    	result = SearchSelectService.getLabAppliant(data);
+        return Action.SUCCESS;
+    }
+    
     public JSONObject getResult() {
         return result;
     }

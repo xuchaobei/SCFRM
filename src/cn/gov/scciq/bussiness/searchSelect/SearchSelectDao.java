@@ -639,4 +639,130 @@ public class SearchSelectDao {
         }
         return list;
 	}
+	
+	/**
+	 * 根据所输入的样品类别模糊查询得到LMIS系统的样品类别定义
+	 * @param sampleKind
+	 * @return
+	 */
+	public static List<String> getLabSampleKind(String sampleKind) {
+		// TODO Auto-generated method stub
+		List<String> list  = new ArrayList<String>();
+        Connection conn = null;
+        CallableStatement proc = null;
+        ResultSet rs = null;
+        String call = "{call Pro_GetLabSampleKind(?)}";
+        try {
+            conn = DBPool.ds.getConnection();
+            proc = conn.prepareCall(call);
+            proc.setString(1, sampleKind);
+            proc.execute();
+            rs = proc.getResultSet();
+            list.add(rs.getString("SampleKind"));
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            log.error("", e);
+        } catch (Exception e) {
+            log.error("", e);
+        } finally{
+            try {
+                if(rs != null){
+                    rs.close();
+                }
+                if(proc != null){
+                    proc.close();
+                }
+                if(conn != null){
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                log.error("", e);
+            }
+        }
+        return list;
+	}
+
+
+	/**
+	 * 根据送检部门名称模糊查询得到送检部门
+	 * @return
+	 */
+	public static List<String> getLabApplyDept(String deptSimpleName) {
+		List<String> list  = new ArrayList<String>();
+        Connection conn = null;
+        CallableStatement proc = null;
+        ResultSet rs = null;
+        String call = "{call Pro_GetLabApplyDept(?)}";
+        try {
+            conn = DBPool.ds.getConnection();
+            proc = conn.prepareCall(call);
+            proc.setString(1, deptSimpleName);
+            proc.execute();
+            rs = proc.getResultSet();
+            list.add(rs.getString("DeptSimpleName"));
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            log.error("", e);
+        } catch (Exception e) {
+            log.error("", e);
+        } finally{
+            try {
+                if(rs != null){
+                    rs.close();
+                }
+                if(proc != null){
+                    proc.close();
+                }
+                if(conn != null){
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                log.error("", e);
+            }
+        }
+        return list;
+	} 
+	
+	/**
+	 * 根据送检人模糊查询得到送检人
+	 * @return
+	 */
+	public static List<String> getLabAppliant(String userName) {
+		List<String> list  = new ArrayList<String>();
+        Connection conn = null;
+        CallableStatement proc = null;
+        ResultSet rs = null;
+        String call = "{call Pro_GetLabAppliant(?)}";
+        try {
+            conn = DBPool.ds.getConnection();
+            proc = conn.prepareCall(call);
+            proc.setString(1, userName);
+            proc.execute();
+            rs = proc.getResultSet();
+            list.add(rs.getString("UserName"));
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            log.error("", e);
+        } catch (Exception e) {
+            log.error("", e);
+        } finally{
+            try {
+                if(rs != null){
+                    rs.close();
+                }
+                if(proc != null){
+                    proc.close();
+                }
+                if(conn != null){
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                log.error("", e);
+            }
+        }
+        return list;
+	}      
 }

@@ -186,5 +186,30 @@ public class SelectDataService {
 	    JSONObject rs = DefaultResultUtil.getDefaultResult(list);
 		return rs;
 	}
+	
+	public static JSONObject getLabApplyKind() {
+		List<String> list = SelectDataDao.getLabApplyKind();
+	    JSONObject rs = DefaultResultUtil.getDefaultResult(list);
+		return rs;
+	}
+	
+	public static JSONObject getLabSamplePhysicalState() {
+		List<String> list = SelectDataDao.getLabSamplePhysicalState();
+	    JSONObject rs = DefaultResultUtil.getDefaultResult(list);
+		return rs;
+	}
+	
+	
+	public static JSONObject getLabSampleDisposal() {
+		List<String> list = SelectDataDao.getLabSampleDisposal();
+	    JSONObject rs = DefaultResultUtil.getDefaultResult(list);
+		return rs;
+	}
+	
+	public static JSONObject getLabSamplePreservation() {
+		List<String> list = SelectDataDao.getLabSamplePreservation();
+	    JSONObject rs = DefaultResultUtil.getDefaultResult(list);
+		return rs;
+	}
     
 }

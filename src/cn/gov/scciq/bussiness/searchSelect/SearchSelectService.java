@@ -194,4 +194,23 @@ public class SearchSelectService {
 		JSONObject rs = DefaultResultUtil.getDefaultResult(list);
 		return rs;
 	}
+	
+	public static JSONObject getLabSampleKind(String data){
+		List<String> list = SearchSelectDao.getLabSampleKind(data);
+		JSONObject rs = DefaultResultUtil.getDefaultResult(list);
+		return rs;
+	}
+
+	public static JSONObject getLabApplyDept(String data) {
+		// TODO Auto-generated method stub
+		List<String> list = SearchSelectDao.getLabApplyDept(data);
+		JSONObject rs = DefaultResultUtil.getDefaultResult(list);
+		return rs;
+	}
+
+	public static JSONObject getLabAppliant(String data) {
+		List<String> list = SearchSelectDao.getLabAppliant(data);
+		JSONObject rs = DefaultResultUtil.getDefaultResult(list);
+		return rs;
+	}
 }

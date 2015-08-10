@@ -298,6 +298,12 @@
                  <param name="root">result</param>
              </result>
         </action>
+        
+		<action name="SampleRegisterAction_*" class="cn.gov.scciq.bussiness.sampleRegister.SampleRegisterAction" method="{1}">
+             <result type="json">
+                 <param name="root">result</param>
+             </result>
+        </action>
     </package>
 
 </struts>

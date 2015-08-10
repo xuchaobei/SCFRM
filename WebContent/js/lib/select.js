@@ -189,6 +189,27 @@ function initEvlLevelSelect(levelType, inputID, btnID ){
 		}, 'json');
 }
 
+
+/**
+ * 通用查询记录函数
+ * @param input
+ */
+function searchItem(url, inputID, btnID){
+	  $("#"+btnID).click(function(){
+		     var data = getSearchParam(inputID);
+			 $.get(url, 
+			    {data : data},
+			    function(rdata) {
+					if(!rdata.data || rdata.data.length == 0){
+						alert("查询结果为空！");
+						return;
+					}
+					cus_autocomplete(rdata.data, inputID, null, null, null);
+					$("#"+inputID).autocomplete( "search", "" );
+				}, 'json');
+	  });
+}
+
 /**
  * 查询国家
  * @param input
@@ -374,6 +395,30 @@ function searchBase(inputID, btnID){
 				var source = new Array();
 				$.each(rdata.data, function(index, value){
 					source[index] = value.baseCode+" "+value.baseName;
+				});	
+				if(source.length == 0){
+					alert("查询结果为空！");
+					return;
+				}
+				cus_autocomplete(source, inputID, null, null, null);
+				$("#"+inputID).autocomplete( "search", "" );
+			}, 'json');
+	});
+}
+
+/**
+ * 查询产品
+ */
+function searchProduct(inputID, btnID){
+	$("#"+btnID).click(function(){
+		 var productName = getSearchParam(inputID);
+		 $.get("SearchSelectAction_getProductByQuery?&ts="
+					+ new Date().getTime(), 
+		    {data : productName},
+		    function(rdata) {
+				var source = new Array();
+				$.each(rdata.data, function(index, value){
+					source[index] = value.productCode+" "+value.productName;
 				});	
 				if(source.length == 0){
 					alert("查询结果为空！");

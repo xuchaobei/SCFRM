@@ -42,8 +42,11 @@ public class RsToDtoUtil {
                 }else if("Integer".equalsIgnoreCase(typeName) || "int".equalsIgnoreCase(typeName)){
                     int value = rs.getInt(fName);
                     method.invoke(t, value);
-                }else{
-                    throw new Exception(claz+" 只支持int和String类型的变量");
+                }else if("Boolean".equalsIgnoreCase(typeName) || "boolean".equalsIgnoreCase(typeName)){
+                    int value = rs.getInt(fName);
+                    method.invoke(t, value);
+                } else{
+                    throw new Exception(claz+" 只支持int,String, boolean类型的变量");
                 }
             }
         } catch (InstantiationException e) {

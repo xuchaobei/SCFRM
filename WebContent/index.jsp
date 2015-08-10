@@ -99,6 +99,7 @@
 							<ul>
 								<li><a href="#">单证流程查询</a></li>
 								<li><a href="#">报检单证查询</a></li>
+								<li><a href="#">样品登记</a></li>
 							</ul>
 						</li>
 						<li class="submenu" id="statistics-nav"><a href="#"> <i

@@ -797,4 +797,173 @@ public class SelectDataDao {
 		}
 		return list;
 	}
+	
+	
+	/**
+	 * 获取LMIS报验业务类别
+	 * @return
+	 */
+	public static List<String> getLabApplyKind() {
+		List<String> list = new ArrayList<String>();
+		Connection conn = null;
+		CallableStatement proc = null;
+		ResultSet rs = null;
+		String call = "{call Pro_GetLabApplyKind()}";
+		try {
+			conn = DBPool.ds.getConnection();
+			proc = conn.prepareCall(call);
+			proc.execute();
+			rs = proc.getResultSet();
+			while (rs.next()) {
+				list.add(rs.getString("ApplyKind"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		} catch (Exception e) {
+			log.error("", e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (proc != null) {
+					proc.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				log.error("", e);
+			}
+		}
+		return list;
+	}
+	
+	/**
+	 * 取得LMIS样品状态定义
+	 * @return
+	 */
+	public static List<String> getLabSamplePhysicalState() {
+		List<String> list = new ArrayList<String>();
+		Connection conn = null;
+		CallableStatement proc = null;
+		ResultSet rs = null;
+		String call = "{call Pro_GetLabSamplePhysicalState()}";
+		try {
+			conn = DBPool.ds.getConnection();
+			proc = conn.prepareCall(call);
+			proc.execute();
+			rs = proc.getResultSet();
+			while (rs.next()) {
+				list.add(rs.getString("PhysicalStateName"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		} catch (Exception e) {
+			log.error("", e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (proc != null) {
+					proc.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				log.error("", e);
+			}
+		}
+		return list;
+	}
+	
+	/**
+	 * 获取LMIS所定义的样品处理方式	
+	 * @return
+	 */
+	public static List<String> getLabSampleDisposal() {
+		List<String> list = new ArrayList<String>();
+		Connection conn = null;
+		CallableStatement proc = null;
+		ResultSet rs = null;
+		String call = "{call Pro_GetLabSampleDisposal()}";
+		try {
+			conn = DBPool.ds.getConnection();
+			proc = conn.prepareCall(call);
+			proc.execute();
+			rs = proc.getResultSet();
+			while (rs.next()) {
+				list.add(rs.getString("DisposalName"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		} catch (Exception e) {
+			log.error("", e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (proc != null) {
+					proc.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				log.error("", e);
+			}
+		}
+		return list;
+	}
+	
+	/**
+	 * 获取LMIS样品保存方式
+	 * @return
+	 */
+	public static List<String> getLabSamplePreservation() {
+		List<String> list = new ArrayList<String>();
+		Connection conn = null;
+		CallableStatement proc = null;
+		ResultSet rs = null;
+		String call = "{call Pro_GetLabSamplePreservation()}";
+		try {
+			conn = DBPool.ds.getConnection();
+			proc = conn.prepareCall(call);
+			proc.execute();
+			rs = proc.getResultSet();
+			while (rs.next()) {
+				list.add(rs.getString("PreservationName"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		} catch (Exception e) {
+			log.error("", e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (proc != null) {
+					proc.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				log.error("", e);
+			}
+		}
+		return list;
+	}
 }
