@@ -5,8 +5,6 @@ import net.sf.json.JSONObject;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import cn.gov.scciq.util.DefaultResultUtil;
-
 import com.opensymphony.xwork2.Action;
 
 public class SampleRegisterAction {
@@ -146,6 +144,26 @@ public class SampleRegisterAction {
 	public String getLabApply(){
 		try {
 			result = SampleRegisterService.getLabApply(data);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		}
+		return Action.SUCCESS;
+	}
+	
+	public String getLabSampleInfoBySampleID(){
+		try {
+			result = SampleRegisterService.getLabSampleInfoBySampleID(data);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		}
+		return Action.SUCCESS;
+	}
+	
+	public String getLabItemMatched(){
+		try {
+			result = SampleRegisterService.getLabItemMatched(data);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			log.error("", e);

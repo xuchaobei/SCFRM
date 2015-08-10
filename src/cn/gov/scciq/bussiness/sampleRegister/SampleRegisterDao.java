@@ -19,7 +19,6 @@ import cn.gov.scciq.util.RsToDtoUtil;
 
 public class SampleRegisterDao {
 
-
 	private static final Log log = LogFactory.getLog(SampleRegisterDao.class);
 
 	/**
@@ -28,9 +27,9 @@ public class SampleRegisterDao {
 	 * @return
 	 */
 	public static Map<Integer, Object> getDeclInfoForProcess(String declNo,
-			String inspOrgCode, String inspDeptCode, String inspOperatorCode, String processName,
-			int finishFlg, int startIndex, int pageSize, String orderWord,
-			String orderDirection) {
+			String inspOrgCode, String inspDeptCode, String inspOperatorCode,
+			String processName, int finishFlg, int startIndex, int pageSize,
+			String orderWord, String orderDirection) {
 		Map<Integer, Object> rsMap = new HashMap<Integer, Object>();
 		List<DeclInfoDto> list = new ArrayList<DeclInfoDto>();
 		Connection conn = null;
@@ -109,7 +108,7 @@ public class SampleRegisterDao {
 			proc.setString(2, processName);
 			proc.registerOutParameter(3, Types.VARCHAR);
 			proc.execute();
-			status = proc.getString(3);			
+			status = proc.getString(3);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			log.error("", e);
@@ -136,6 +135,7 @@ public class SampleRegisterDao {
 
 	/**
 	 * 根据报检号给出报检产品数据
+	 * 
 	 * @param declNo
 	 * @return
 	 */
@@ -177,13 +177,15 @@ public class SampleRegisterDao {
 		return list;
 	}
 
-	
 	/**
-	 * 根据报检产品ID号给出检测项目 	 	
+	 * 根据报检产品ID号给出检测项目
+	 * 
 	 * @return
 	 */
-	public static Map<Integer, Object> getDeclProductItem(String declProductDetailID,boolean showSamplingItemFlg,boolean showNotLabFlg,
-			int startIndex, int pageSize, String orderWord,	String orderDirection){
+	public static Map<Integer, Object> getDeclProductItem(
+			String declProductDetailID, boolean showSamplingItemFlg,
+			boolean showNotLabFlg, int startIndex, int pageSize,
+			String orderWord, String orderDirection) {
 		Map<Integer, Object> rsMap = new HashMap<Integer, Object>();
 		List<DeclProductItemDto> list = new ArrayList<DeclProductItemDto>();
 		Connection conn = null;
@@ -238,12 +240,14 @@ public class SampleRegisterDao {
 
 		return rsMap;
 	}
-	
+
 	/**
 	 * 根据出口产品ID得到该产品的样品数据
+	 * 
 	 * @return
 	 */
-	public static List<LabSampleDto> getLabSampleByProduct(String declProductDetailID) {
+	public static List<LabSampleDto> getLabSampleByProduct(
+			String declProductDetailID) {
 		Connection conn = null;
 		CallableStatement proc = null;
 		ResultSet rs = null;
@@ -280,12 +284,14 @@ public class SampleRegisterDao {
 		}
 		return list;
 	}
-	
+
 	/**
 	 * 根据出口产品得到该产品的样品检测项目数据
+	 * 
 	 * @return
 	 */
-	public static List<LabSampleItemDto> getLabSampleItemByProduct(String declProductDetailID) {
+	public static List<LabSampleItemDto> getLabSampleItemByProduct(
+			String declProductDetailID) {
 		Connection conn = null;
 		CallableStatement proc = null;
 		ResultSet rs = null;
@@ -322,12 +328,15 @@ public class SampleRegisterDao {
 		}
 		return list;
 	}
-	
+
 	/**
 	 * 撤销某一指定流程的操作
+	 * 
 	 * @return
 	 */
-	public static String cancelCurrentProcess(String declNo, String processName,String processOrgCode,String processDeptCode,String processOperatorCode){
+	public static String cancelCurrentProcess(String declNo,
+			String processName, String processOrgCode, String processDeptCode,
+			String processOperatorCode) {
 		String rs = ConstantStr.ERROR_MSG;
 		Connection conn = null;
 		CallableStatement proc = null;
@@ -366,11 +375,12 @@ public class SampleRegisterDao {
 
 	/**
 	 * 检查是否允许操作
+	 * 
 	 * @param processName
 	 * @param declNo
 	 * @return
 	 */
-	public static String checkIfProcessOperate(String processName, String declNo){
+	public static String checkIfProcessOperate(String processName, String declNo) {
 		String rs = ConstantStr.ERROR_MSG;
 		Connection conn = null;
 		CallableStatement proc = null;
@@ -403,8 +413,8 @@ public class SampleRegisterDao {
 		}
 		return rs;
 	}
-	
-	public static String checkItemIfSampling(String declProductDetailID){
+
+	public static String checkItemIfSampling(String declProductDetailID) {
 		String rs = ConstantStr.ERROR_MSG;
 		Connection conn = null;
 		CallableStatement proc = null;
@@ -436,9 +446,10 @@ public class SampleRegisterDao {
 		}
 		return rs;
 	}
-	
-	public static LabApplyDto getLabApply(String declNo,String orgCode,String deptCode,String operatorCode,String declProductDetailID){
-		
+
+	public static LabApplyDto getLabApply(String declNo, String orgCode,
+			String deptCode, String operatorCode, String declProductDetailID) {
+
 		Connection conn = null;
 		CallableStatement proc = null;
 		ResultSet rs = null;
@@ -478,4 +489,91 @@ public class SampleRegisterDao {
 		}
 		return dto;
 	}
+
+	public static LabSampleInfoDto getLabSampleInfoBySampleID(String sampleID,
+			String declProductDetailID, String productCode, String orgCode,
+			String deptCode) {
+
+		Connection conn = null;
+		CallableStatement proc = null;
+		ResultSet rs = null;
+		LabSampleInfoDto dto = new LabSampleInfoDto();
+		String call = "{call Pro_GetLabSampleInfoBySampleIDy(?,?,?,?,?)}";
+		try {
+			conn = DBPool.ds.getConnection();
+			proc = conn.prepareCall(call);
+			proc.setString(1, sampleID);
+			proc.setString(2, declProductDetailID);
+			proc.setString(3, productCode);
+			proc.setString(4, orgCode);
+			proc.setString(5, deptCode);
+			proc.execute();
+			rs = proc.getResultSet();
+			while (rs.next()) {
+				dto = RsToDtoUtil.tranRsToDto(rs, LabSampleInfoDto.class);
+				break;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		} catch (Exception e) {
+			log.error("", e);
+		} finally {
+			try {
+				if (proc != null) {
+					proc.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				log.error("", e);
+			}
+		}
+		return dto;
+	}
+
+	public static List<LabItemPlanDto> getLabItemMatched(
+			String declProductDetailID) {
+
+		Connection conn = null;
+		CallableStatement proc = null;
+		ResultSet rs = null;
+		List<LabItemPlanDto> list = new ArrayList<LabItemPlanDto>();
+		LabItemPlanDto dto = null;
+		String call = "{call Pro_GetLabItemMatched(?)}";
+		try {
+			conn = DBPool.ds.getConnection();
+			proc = conn.prepareCall(call);
+			proc.setString(1, declProductDetailID);
+			proc.execute();
+			rs = proc.getResultSet();
+			while (rs.next()) {
+				dto = RsToDtoUtil.tranRsToDto(rs, LabItemPlanDto.class);
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		} catch (Exception e) {
+			log.error("", e);
+		} finally {
+			try {
+				if (proc != null) {
+					proc.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				log.error("", e);
+			}
+		}
+		return list;
+	}
+
+
+	
 }

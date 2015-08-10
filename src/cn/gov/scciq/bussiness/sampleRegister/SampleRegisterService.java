@@ -42,9 +42,14 @@ public class SampleRegisterService {
 
 	public static JSONObject getDeclProductItem(String data) {
 		// TODO Auto-generated method stub
+		JSONObject jo = JSONObject.fromObject(data);
+		String declProductDetailID = jo.getString("declProductDetailID");
+		int showSamplingItemFlg = jo.getInt("showSamplingItemFlg");
+		int showNotLabFlg = jo.getInt("showNotLabFlg");
 		String orderWord = "DeclProductItemID";
 		String orderDirection = "ASC";
-		Map<Integer, Object> rsMap = SampleRegisterDao.getDeclProductItem(data,  true, false, 0, 0, orderWord, orderDirection);
+		
+		Map<Integer, Object> rsMap = SampleRegisterDao.getDeclProductItem(declProductDetailID,  true, false, 0, 0, orderWord, orderDirection);
 		JSONObject result = DefaultResultUtil.getDefaultResult(rsMap.get(2));
 		return result;
 	}
@@ -86,4 +91,22 @@ public class SampleRegisterService {
 				ContextUtil.getDeptCode(), ContextUtil.getOperatorCode(), declProductDetailID);
 		return DefaultResultUtil.getDefaultResult(rs);
 	}
+	
+	public static JSONObject getLabSampleInfoBySampleID(String data){
+		JSONObject jo = JSONObject.fromObject(data);
+		String sampleID = jo.getString("sampleID");
+		String declProductDetailID = jo.getString("declProductDetailID");
+		String productCode = jo.getString("productCode");
+		
+		LabSampleInfoDto rs = SampleRegisterDao.getLabSampleInfoBySampleID(sampleID, declProductDetailID,productCode,
+				ContextUtil.getOrgCode(),ContextUtil.getDeptCode());
+		return DefaultResultUtil.getDefaultResult(rs);
+	}	
+	
+	public static JSONObject getLabItemMatched(String data) {
+		// TODO Auto-generated method stub
+		List<LabItemPlanDto> list = SampleRegisterDao.getLabItemMatched(data);
+		return DefaultResultUtil.getDefaultResult(list);
+	}
+	
 }

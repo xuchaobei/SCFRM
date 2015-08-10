@@ -363,11 +363,24 @@ $(document).ready(function(){
 					+ new Date().getTime(), {
 						data : data
 			}, function(rdata) {
-				if(rdata.data !=""){
+				if(rdata.data.length >  0){
+					setLabApply(rdata.data);
 				}else{
+					alert("获取报验信息数据失败");
 				}
 			}, 'json');
 	}
+	 
+	 function setLabApply(data){
+		 $("#aApplyKind").val(data.applyKind);
+		 $("#aSampleKind").val(data.sampleKind);
+		 $("#aApplyDept").val(data.applyDept);
+		 $("#aAppliant").val(data.appliant);
+		 $("#aSampleState").val(data.sampleState);
+		 $("#aSampleDisposal").val(data.sampleDisposal);
+		 $("#aSamplePreservation").val(data.samplePreservation);
+		 $("#aRemarks").val(data.remarks);
+	 }
 	 
  	 function getSampleInfo(){
  		 
