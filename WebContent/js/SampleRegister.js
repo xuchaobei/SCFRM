@@ -72,8 +72,38 @@ $(document).ready(function(){
 	                     {"data": "itemName"},
 	                     {"data": "lrpItemNo"},
 	                     {"data": "lrpItemName"},
-	                     {"data": "LrpTestStd"},
+	                     {"data": "lrpTestStd"},
 	                     {"data": "labDeptName"},
+	                     ];
+	
+	
+	var table1_1Columns = [
+	                     {"data": "labItemMatchID"},
+	                     {"data": "itemCode"},
+	                     {"data": "itemName"},
+	                     {"data": "lrpItemID"},
+	                     {"data": "lrpItemName"},
+	                     {"data": "lrpTestStd"},
+	                     {"data": "labDeptName"},
+	                     ];
+
+	
+	var table1_2Columns = [
+	                     {"data": "declProductItemID"},
+	                     {"data": "itemCode"},
+	                     {"data": "itemName"},
+	                     {"data": "fromWhere"},
+	                     {"data": "itemType"},
+	                     {"data": "limitReq"},
+	                     {"data": "ifSet",
+	                    	 "render": function ( data, type, full, meta ) {
+	                    	       return data === '1'  ? '是' : '否';
+	                    	    }
+	                     },
+	                     {"data": "itemifMatched",
+	                    	 "render": function ( data, type, full, meta ) {
+	                    	       return data === '1'  ? '是' : '否';
+	                    	    }},
 	                     ];
 	
 	
@@ -130,7 +160,8 @@ $(document).ready(function(){
 		$("#table1Save").hide();
 	});
 	
-	
+	$("#deleteTable1-1").click(deleteLabItemMatched);
+
 	/* ------------- table2响应事件 ------------------ */
 	
 	var table2 = $('#table2').DataTable( {
@@ -144,11 +175,17 @@ $(document).ready(function(){
 			  url : "SampleRegisterAction_getDeclProduct",
 			  type : "GET",
 			  data : function(d){
-				  if(curTable1Row == null){
-					  return {declNo : 0};
-				  }else{
-					  return {declNo : table1.row(curTable1Row).data().declNo};
+				  var declNo = 0;
+				  if(curTable1Row != null){
+					  declNo = table1.row(curTable1Row).data().declNo;
 				  }
+				  var data = {
+						  declNo : declNo,
+						  showSamplingItemFlg : true,
+						  showNotLabFlg : false
+				  }
+				  data = JSON.stringify(data);
+				  return data;
 			  }
 		  },
 	      "columns": table2Columns,
@@ -359,7 +396,7 @@ $(document).ready(function(){
 			declProductDetailID :  table2.row(curTable2Row).data().declProductDetailID		
 		 };
 		 data = JSON.stringify(data);
-		 $.post("SampleRegisterAction_getLabApply?&ts="
+		 $.get("SampleRegisterAction_getLabApply?&ts="
 					+ new Date().getTime(), {
 						data : data
 			}, function(rdata) {
@@ -383,17 +420,154 @@ $(document).ready(function(){
 	 }
 	 
  	 function getSampleInfo(){
- 		 
+ 		 var data = {
+ 				sampleID : 0,
+ 				product : table2.row(curTable2Row).data().productCode,
+ 				declProductDetailID :  table2.row(curTable2Row).data().declProductDetailID		
+ 			 };
+ 			 data = JSON.stringify(data);
+ 			 $.get("SampleRegisterAction_getLabSampleInfoBySampleID?&ts="
+ 						+ new Date().getTime(), {
+ 							data : data
+ 				}, function(rdata) {
+ 					if(rdata.data.length >  0){
+ 						setSampleInfo(rdata.data);
+ 					}else{
+ 						alert("获取样品信息数据失败");
+ 					}
+ 				}, 'json');
+ 	 }
+ 	 
+ 	 function setSampleInfo(){
+ 		 $("#aSampleName").val(sampleName);
+ 		 $("#aCopyCount").val(copyCount);
+ 		 $("#aSampleRemarks").val(sampleRemarks);
+ 		 $("#aSampleCount").val(sampleCount);
+ 		 $("#aCountUnit").val(countUnit);
  	 }
  	 
  	 function getLabItemMatched(){
- 		 
+ 		 	var data = {
+  				sampleID : 0,
+  				product : table2.row(curTable2Row).data().productCode,
+  				declProductDetailID :  table2.row(curTable2Row).data().declProductDetailID		
+  			 };
+  			 data = JSON.stringify(data);
+  			 $.get("SampleRegisterAction_getLabSampleInfoBySampleID?&ts="
+  						+ new Date().getTime(), {
+  							data : data
+  				}, function(rdata) {
+  					setLabItemMatched(rdata);
+  				}, 'json');
  	 }
  	 
- 	 function getDeclProductItem(){
- 		 
- 	 }
+ 	var table1_1 = $('#table1-1').DataTable( {
+		  "info" : false,
+		  "paging" : false,
+		  "lengthChange" : false,
+		  "data": data.data, 		      
+	      "columns": table1_1Columns,
+	      "columnDefs": [
+	                     {
+	                         "targets": [ 0 ],
+	                         "visible": false,
+	                     }
+	                 ]
+		  } );
+	
+ 	$('#table1-1').on( 'draw.dt', drawTable1_1CB);
 	 
+	$('#table1-1 tbody').on("click", "tr", clickTable1_1Row );
+ 	 
+ 	var curTable1_1Row = null;
+ 	
+ 	function drawTable1_1CB() {
+ 		curTable1_1Row = null;
+		 if(table1_1.rows().data().length > 0){
+			  var dtRow = null;
+			  var node = null;
+			  if(curTable1_1Row != null){
+				  dtRow = table1_1.row($(curTable1Row).context._DT_RowIndex);
+				  node = dtRow.node();
+				  if(node != null){
+					  $(node).click();
+					  return;
+				  }
+			  }
+			  dtRow = table1_1.row(0);
+			  node = dtRow.node();
+			  $(node).click();
+		  }else{
+			  curTable1_1Row = null;
+		  }
+	 } 
+	
+	function clickTable1_1Row(){
+		 var row = this;
+		  if ( $(row).hasClass('active') ) {
+			    curTable1_1Row = null;
+	            $(row).removeClass('active');
+	        }
+	        else {
+	        	curTable1_1Row = row;
+	        	table1.$('tr.active').removeClass('active');
+	            $(row).addClass('active');
+	        }
+	}
+ 	
+ 	function setLabItemMatched(data){
+ 		table1_1.clear();
+ 		table1_1.rows.add(data.data).draw();
+ 	}
+ 	
+	
+	function deleteLabItemMatched(){
+		if(curTable1_1Row == null){
+			alert("请选择要删除的拟送检项目!");
+			return;
+		}
+		var data = table1_1.row(curTable1_1Row).data().labItemMatchID;
+		$.post("SampleRegisterAction_delLabItemMatchedForNewSample", {
+			data : data
+		}, function(rdata) {
+			if(rdata.data == "1"){
+				alert("删除成功！");
+				table1_1.row(curTable1_1Row).remove().draw();
+			}else{
+				alert(rdata.data);
+			}
+		}, 'json')
+	}
+	
+ 	
+ 	 function getDeclProductItem(){
+ 		 	var data = {
+ 				declProductDetailID :table2.row(curTable2Row).data().declProductDetailID,
+ 				showSamplingItemFlg : true,
+ 				showNotLabFlg :  false   /////////??????	
+   			 };
+   			 data = JSON.stringify(data);
+			$.get("SampleRegisterAction_getDeclProductItem"
+						+ new Date().getTime(), {
+							data : data
+				}, function(rdata) {
+					setDeclProductItem(rdata);
+				}, 'json');
+ 	 }
+ 	 
+ 	function setDeclProductItem(data){
+ 		if(table1_2 != null){
+ 			table1_2.clear();
+ 		}
+ 		table1_2 = $('#table1-2').DataTable( {
+ 			  "info" : false,
+ 			  "paging" : false,
+ 			  "lengthChange" : false,
+ 			  "data": data.data, 		      
+ 		      "columns": table1_2Columns,
+ 		  } );
+ 		
+ 	}
 	 
 	 function getTable1ItemDetail(){
 		  if(curTable1Row == null){

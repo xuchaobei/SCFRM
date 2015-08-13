@@ -44,12 +44,12 @@ public class SampleRegisterService {
 		// TODO Auto-generated method stub
 		JSONObject jo = JSONObject.fromObject(data);
 		String declProductDetailID = jo.getString("declProductDetailID");
-		int showSamplingItemFlg = jo.getInt("showSamplingItemFlg");
-		int showNotLabFlg = jo.getInt("showNotLabFlg");
+		boolean showSamplingItemFlg = jo.getBoolean("showSamplingItemFlg");
+		boolean showNotLabFlg = jo.getBoolean("showNotLabFlg");
 		String orderWord = "DeclProductItemID";
 		String orderDirection = "ASC";
 		
-		Map<Integer, Object> rsMap = SampleRegisterDao.getDeclProductItem(declProductDetailID,  true, false, 0, 0, orderWord, orderDirection);
+		Map<Integer, Object> rsMap = SampleRegisterDao.getDeclProductItem(declProductDetailID,  showSamplingItemFlg, showNotLabFlg, 0, 0, orderWord, orderDirection);
 		JSONObject result = DefaultResultUtil.getDefaultResult(rsMap.get(2));
 		return result;
 	}
@@ -107,6 +107,11 @@ public class SampleRegisterService {
 		// TODO Auto-generated method stub
 		List<LabItemPlanDto> list = SampleRegisterDao.getLabItemMatched(data);
 		return DefaultResultUtil.getDefaultResult(list);
+	}
+
+	public static JSONObject delLabItemMatchedForNewSample(String data) {
+		String rs = SampleRegisterDao.delLabItemMatchedForNewSample(data);
+		return DefaultResultUtil.getModificationResult(rs);
 	}
 	
 }

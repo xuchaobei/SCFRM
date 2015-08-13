@@ -12,6 +12,16 @@ public class DeclProductItemDto {
 	private String labDataUnit;
 	private String testLabName;
 	private boolean ifSet;
+	
+//	LabItemMatchID
+//	3+3G项目代码：			ItemCode
+//	3+3G项目名称：			ItemName
+//	LMIS项目代码：			LRPItemID
+//	LMIS项目名称：			LRPItemName
+//	LMIS检测标准：			LRPTestStd
+//	检测部门：				LabDeptName
+
+	
 	public String getDeclProductItemID() {
 		return declProductItemID;
 	}

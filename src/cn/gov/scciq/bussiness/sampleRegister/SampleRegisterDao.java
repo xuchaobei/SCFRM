@@ -574,6 +574,41 @@ public class SampleRegisterDao {
 		return list;
 	}
 
-
+	/**
+	 * 删除拟送检项目
+	 * @param labItemMatchID
+	 * @return
+	 */
+	public static String delLabItemMatchedForNewSample(String labItemMatchID){
+		String rs = ConstantStr.ERROR_MSG;
+		Connection conn = null;
+		CallableStatement proc = null;
+		String call = "{call Pro_DelLabItemMatchedForNewSample(?)}";
+		try {
+			conn = DBPool.ds.getConnection();
+			proc = conn.prepareCall(call);
+			proc.setString(1, labItemMatchID);
+			proc.execute();
+			rs = "1";
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		} catch (Exception e) {
+			log.error("", e);
+		} finally {
+			try {
+				if (proc != null) {
+					proc.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				log.error("", e);
+			}
+		}
+		return rs;
+	}
 	
 }

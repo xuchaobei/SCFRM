@@ -170,4 +170,14 @@ public class SampleRegisterAction {
 		}
 		return Action.SUCCESS;
 	}
+	
+	public String delLabItemMatchedForNewSample(){
+		try {
+			result = SampleRegisterService.delLabItemMatchedForNewSample(data);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		}
+		return Action.SUCCESS;
+	}
 }
