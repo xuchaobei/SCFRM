@@ -183,8 +183,8 @@ public class SampleRegisterDao {
 	 * @return
 	 */
 	public static Map<Integer, Object> getDeclProductItem(
-			String declProductDetailID, boolean showSamplingItemFlg,
-			boolean showNotLabFlg, int startIndex, int pageSize,
+			String declProductDetailID, int showSamplingItemFlg,
+			int showNotLabFlg, int startIndex, int pageSize,
 			String orderWord, String orderDirection) {
 		Map<Integer, Object> rsMap = new HashMap<Integer, Object>();
 		List<DeclProductItemDto> list = new ArrayList<DeclProductItemDto>();
@@ -197,8 +197,8 @@ public class SampleRegisterDao {
 			conn = DBPool.ds.getConnection();
 			proc = conn.prepareCall(call);
 			proc.setString(1, declProductDetailID);
-			proc.setBoolean(2, showSamplingItemFlg);
-			proc.setBoolean(3, showNotLabFlg);
+			proc.setInt(2, showSamplingItemFlg);
+			proc.setInt(3, showNotLabFlg);
 			proc.setInt(4, startIndex);
 			proc.setInt(5, pageSize);
 			proc.setString(6, orderWord);
@@ -605,6 +605,592 @@ public class SampleRegisterDao {
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
+				log.error("", e);
+			}
+		}
+		return rs;
+	}
+
+	public static String saveLabApplyInfo(String declNo,String applyKind, String sampleKind, String applyDept, 
+			String appliant, String sampleState, String sampleDisposal, String samplePreservation, String remarks) {
+		// TODO Auto-generated method stub
+		String rs = ConstantStr.SAVE_ERROR_MSG;
+		Connection conn = null;
+		CallableStatement proc = null;
+		String call = "{call Pro_SaveLabApplyInfo(?,?,?,?,?,?,?,?,?,?)}";
+		try {
+			conn = DBPool.ds.getConnection();
+			proc = conn.prepareCall(call);
+			proc.setString(1, declNo);
+			proc.setString(2, applyKind);
+			proc.setString(3, sampleKind);
+			proc.setString(4, applyDept);
+			proc.setString(5, appliant);
+			proc.setString(6, sampleState);
+			proc.setString(7, sampleDisposal);
+			proc.setString(8, samplePreservation);
+			proc.setString(9, remarks);
+			proc.registerOutParameter(10, java.sql.Types.VARCHAR);
+			proc.execute();
+			rs = proc.getString(10);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		} catch (Exception e) {
+			log.error("", e);
+		} finally {
+			try {
+				if (proc != null) {
+					proc.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				log.error("", e);
+			}
+		}
+		return rs;
+	}
+	
+	public static String saveLabItemMatchedManual(String itemCode,
+			String declProductDetailID, String declProductItemID, String orgCode) {
+		// TODO Auto-generated method stub
+		String rs = ConstantStr.SAVE_ERROR_MSG;
+		Connection conn = null;
+		CallableStatement proc = null;
+		String call = "{call Pro_SaveLabItemMatchedManual(?,?,?,?,?)}";
+		try {
+			conn = DBPool.ds.getConnection();
+			proc = conn.prepareCall(call);
+			proc.setString(1, itemCode);
+			proc.setString(2, declProductDetailID);
+			proc.setString(3, declProductItemID);
+			proc.setString(4, orgCode);
+			proc.registerOutParameter(5, java.sql.Types.VARCHAR);
+			proc.execute();
+			rs = proc.getString(5);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		} catch (Exception e) {
+			log.error("", e);
+		} finally {
+			try {
+				if (proc != null) {
+					proc.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				log.error("", e);
+			}
+		}
+		return rs;
+	}
+
+	public static String saveLabSample(String sampleID, String labApplyID,
+			String declProductDetailID, String sampleName, String sampleCount,
+			String countUnit, String sampleRemarks, String copyCount) {
+		// TODO Auto-generated method stub
+		String rs = ConstantStr.SAVE_ERROR_MSG;
+		Connection conn = null;
+		CallableStatement proc = null;
+		String call = "{call Pro_SaveLabSample(?,?,?,?,?,?,?,?,?)}";
+		try {
+			conn = DBPool.ds.getConnection();
+			proc = conn.prepareCall(call);
+			proc.setString(1, sampleID);
+			proc.setString(2, labApplyID);
+			proc.setString(3, declProductDetailID);
+			proc.setString(4, sampleName);
+			proc.setString(5, sampleCount);
+			proc.setString(6, countUnit);
+			proc.setString(7, sampleRemarks);
+			proc.setString(8, copyCount);
+			proc.registerOutParameter(9, java.sql.Types.VARCHAR);
+			proc.execute();
+			rs = proc.getString(9);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		} catch (Exception e) {
+			log.error("", e);
+		} finally {
+			try {
+				if (proc != null) {
+					proc.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				log.error("", e);
+			}
+		}
+		return rs;
+	}
+	
+	
+	
+	
+	public static String saveLabDefaultData(String orgCode, String deptCode,
+			String operatorCode, String declProductDetailID, String applyKind,
+			String sampleKind, String applyDept, String appliant,
+			String sampleState, String sampleDisposal, String samplePreservation) {
+		// TODO Auto-generated method stub
+		String rs = ConstantStr.SAVE_ERROR_MSG;
+		Connection conn = null;
+		CallableStatement proc = null;
+		String call = "{call Pro_SaveLabDefaultData(?,?,?,?,?,?,?,?,?,?,?)}";
+		try {
+			conn = DBPool.ds.getConnection();
+			proc = conn.prepareCall(call);
+			proc.setString(1, orgCode);
+			proc.setString(2, deptCode);
+			proc.setString(3, operatorCode);
+			proc.setString(4, declProductDetailID);
+			proc.setString(5, applyKind);
+			proc.setString(6, sampleKind);
+			proc.setString(7, applyDept);
+			proc.setString(8, appliant);
+			proc.setString(9, sampleState);
+			proc.setString(10, sampleDisposal);
+			proc.setString(11, samplePreservation);
+			proc.execute();
+			rs = "1";
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		} catch (Exception e) {
+			log.error("", e);
+		} finally {
+			try {
+				if (proc != null) {
+					proc.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				log.error("", e);
+			}
+		}
+		return rs;
+	}
+	
+	public static String saveLabSampleItem(String declProductDetailID, String sampleItemID,
+			String sampleID, String itemCode, String lrpItemNo,
+			String lrpItemName, String lrpTestStd, String labFlg) {
+		// TODO Auto-generated method stub
+		String rs = ConstantStr.SAVE_ERROR_MSG;
+		Connection conn = null;
+		CallableStatement proc = null;
+		String call = "{call Pro_SaveLabSampleItem(?,?,?,?,?,?,?,?,?)}";
+		try {
+			conn = DBPool.ds.getConnection();
+			proc = conn.prepareCall(call);
+			proc.setString(1, declProductDetailID);
+			proc.setString(2, sampleItemID);
+			proc.setString(3, sampleID);
+			proc.setString(4, itemCode);
+			proc.setString(5, lrpItemNo);
+			proc.setString(6, lrpItemName);
+			proc.setString(7, lrpTestStd);
+			proc.setString(8, labFlg);
+			proc.registerOutParameter(9, java.sql.Types.VARCHAR);
+			proc.execute();
+			rs = proc.getString(9);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		} catch (Exception e) {
+			log.error("", e);
+		} finally {
+			try {
+				if (proc != null) {
+					proc.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				log.error("", e);
+			}
+		}
+		return rs;
+	}
+
+	public static List<LabItemDto> getLabItemByQuery(String itemName,
+			String labDeptName, int rowIndex, int pageSize, String orderWord,
+			String orderDirec) {
+		Connection conn = null;
+		CallableStatement proc = null;
+		ResultSet rs = null;
+		List<LabItemDto> list = new ArrayList<LabItemDto>();
+		LabItemDto dto = null;
+		String call = "{call Pro_GetLabItemByQuery(?,?,?,?,?,?,?)}";
+		try {
+			conn = DBPool.ds.getConnection();
+			proc = conn.prepareCall(call);
+			proc.setString(1, itemName);
+			proc.setString(2, labDeptName);
+			proc.setInt(3, rowIndex);
+			proc.setInt(4, pageSize);
+			proc.setString(5, orderWord);
+			proc.setString(6, orderDirec );
+			proc.registerOutParameter(7, java.sql.Types.INTEGER);
+			proc.execute();
+			rs = proc.getResultSet();
+			while (rs.next()) {
+				dto = RsToDtoUtil.tranRsToDto(rs, LabItemDto.class);
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		} catch (Exception e) {
+			log.error("", e);
+		} finally {
+			try {
+				if(rs != null){
+					rs.close();
+				}
+				if (proc != null) {
+					proc.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				log.error("", e);
+			}
+		}
+		return list;
+	}
+	
+	public static String saveLabItemMatched(String declProductDetailID, String itemCode,String lrpItemID,
+			String lrpItemName,String lrpItemTestStd,String labDeptName,String declProductItemID){
+		String rs = ConstantStr.SAVE_ERROR_MSG;
+		Connection conn = null;
+		CallableStatement proc = null;
+		String call = "{call Pro_SaveLabSampleItem(?,?,?,?,?,?,?)}";
+		try {
+			conn = DBPool.ds.getConnection();
+			proc = conn.prepareCall(call);
+			proc.setString(1, declProductDetailID);
+			proc.setString(2, itemCode);
+			proc.setString(3, lrpItemID);
+			proc.setString(4, lrpItemName);
+			proc.setString(5, lrpItemTestStd);
+			proc.setString(6, labDeptName);
+			proc.setString(7, declProductItemID);
+			proc.execute();
+			rs = "true";
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		} catch (Exception e) {
+			log.error("", e);
+		} finally {
+			try {
+				if (proc != null) {
+					proc.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				log.error("", e);
+			}
+		}
+		return rs;
+	}
+	
+	public static List<ItemSubDto> getItemSubByDeclItem(String itemCode,String  productCode,String orgCode){
+		Connection conn = null;
+		CallableStatement proc = null;
+		ResultSet rs = null;
+		List<ItemSubDto> list = new ArrayList<ItemSubDto>();
+		ItemSubDto dto = null;
+		String call = "{call Pro_GetItemSubByDeclItem(?,?,?)}";
+		try {
+			conn = DBPool.ds.getConnection();
+			proc = conn.prepareCall(call);
+			proc.setString(1, itemCode);
+			proc.setString(2, productCode);
+			proc.setString(3, orgCode);
+			proc.execute();
+			rs = proc.getResultSet();
+			while (rs.next()) {
+				dto = RsToDtoUtil.tranRsToDto(rs, ItemSubDto.class);
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		} catch (Exception e) {
+			log.error("", e);
+		} finally {
+			try {
+				if(rs != null){
+					rs.close();
+				}
+				if (proc != null) {
+					proc.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				log.error("", e);
+			}
+		}
+		return list;
+	}
+	
+	public static List<ItemSubMatchedDto> getItemSubMatchedForDeclItem(String itemCode, String declProductItemID){
+		Connection conn = null;
+		CallableStatement proc = null;
+		ResultSet rs = null;
+		List<ItemSubMatchedDto> list = new ArrayList<ItemSubMatchedDto>();
+		ItemSubMatchedDto dto = null;
+		String call = "{call Pro_GetItemSubMatchedForDeclItem(?,?)}";
+		try {
+			conn = DBPool.ds.getConnection();
+			proc = conn.prepareCall(call);
+			proc.setString(1, itemCode);
+			proc.setString(2, declProductItemID);
+			proc.execute();
+			rs = proc.getResultSet();
+			while (rs.next()) {
+				dto = RsToDtoUtil.tranRsToDto(rs, ItemSubMatchedDto.class);
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		} catch (Exception e) {
+			log.error("", e);
+		} finally {
+			try {
+				if(rs != null){
+					rs.close();
+				}
+				if (proc != null) {
+					proc.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				log.error("", e);
+			}
+		}
+		return list;
+	}
+	
+	public static String saveLabItemMatchedForSubitem(String itemCode,String productCode,String orgCode,
+			String lrpItemNo,String declProductDetailID,String declProductItemID){
+		String rs = ConstantStr.SAVE_ERROR_MSG;
+		Connection conn = null;
+		CallableStatement proc = null;
+		String call = "{call Pro_SaveLabItemMatchedForSubitem(?,?,?,?,?,?,?)}";
+		try {
+			conn = DBPool.ds.getConnection();
+			proc = conn.prepareCall(call);
+			proc.setString(1, itemCode);
+			proc.setString(2, productCode);
+			proc.setString(3, orgCode);
+			proc.setString(4, lrpItemNo);
+			proc.setString(5, declProductDetailID);
+			proc.setString(6, declProductItemID);
+			proc.registerOutParameter(7, java.sql.Types.VARCHAR);
+			proc.execute();
+			rs = proc.getString(7);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		} catch (Exception e) {
+			log.error("", e);
+		} finally {
+			try {
+				if (proc != null) {
+					proc.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				log.error("", e);
+			}
+		}
+		return rs;
+	}
+	
+	public static String delItemSubMatchedForDeclItem(String labItemMatchID){
+		String rs = ConstantStr.ERROR_MSG;
+		Connection conn = null;
+		CallableStatement proc = null;
+		String call = "{call Pro_DelItemSubMatchedForDeclItem(?)}";
+		try {
+			conn = DBPool.ds.getConnection();
+			proc = conn.prepareCall(call);
+			proc.setString(1, labItemMatchID);
+			proc.execute();
+			rs = "true";
+		} catch (SQLException e) {
+			log.error("", e);
+		} catch (Exception e) {
+			log.error("", e);
+		} finally {
+			try {
+				if (proc != null) {
+					proc.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				log.error("", e);
+			}
+		}
+		return rs;
+	}
+	
+	public static String sampleRegAuto(String declNo, String orgCode, String deptCode, String operatorCode){
+		String rs = ConstantStr.ERROR_MSG;
+		Connection conn = null;
+		CallableStatement proc = null;
+		String call = "{call Pro_SampleRegAuto(?,?,?,?,?)}";
+		try {
+			conn = DBPool.ds.getConnection();
+			proc = conn.prepareCall(call);
+			proc.setString(1, declNo);
+			proc.setString(2, orgCode);
+			proc.setString(3, deptCode);
+			proc.setString(4, operatorCode);
+			proc.registerOutParameter(5, java.sql.Types.VARCHAR);
+			proc.execute();
+			rs = proc.getString(5);
+		} catch (SQLException e) {
+			log.error("", e);
+		} catch (Exception e) {
+			log.error("", e);
+		} finally {
+			try {
+				if (proc != null) {
+					proc.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				log.error("", e);
+			}
+		}
+		return rs;
+	}
+	
+	public static String divideLabSample(String labSampleID, String dividedSampleNum){
+		String rs = ConstantStr.ERROR_MSG;
+		Connection conn = null;
+		CallableStatement proc = null;
+		String call = "{call Pro_DivideLabSample(?,?,?)}";
+		try {
+			conn = DBPool.ds.getConnection();
+			proc = conn.prepareCall(call);
+			proc.setString(1, labSampleID);
+			proc.setString(2, dividedSampleNum);
+			proc.registerOutParameter(3, java.sql.Types.VARCHAR);
+			proc.execute();
+			rs = proc.getString(3);
+		} catch (SQLException e) {
+			log.error("", e);
+		} catch (Exception e) {
+			log.error("", e);
+		} finally {
+			try {
+				if (proc != null) {
+					proc.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				log.error("", e);
+			}
+		}
+		return rs;
+	}
+	
+	public static String delLabSample(String labSampleID){
+		String rs = ConstantStr.ERROR_MSG;
+		Connection conn = null;
+		CallableStatement proc = null;
+		String call = "{call Pro_DelLabSample(?,?)}";
+		try {
+			conn = DBPool.ds.getConnection();
+			proc = conn.prepareCall(call);
+			proc.setString(1, labSampleID);
+			proc.registerOutParameter(2, java.sql.Types.VARCHAR);
+			proc.execute();
+			rs = proc.getString(2);
+		} catch (SQLException e) {
+			log.error("", e);
+		} catch (Exception e) {
+			log.error("", e);
+		} finally {
+			try {
+				if (proc != null) {
+					proc.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				log.error("", e);
+			}
+		}
+		return rs;
+	}
+	
+	public static String delLabSampleItem(String labSampleItemID){
+		String rs = ConstantStr.ERROR_MSG;
+		Connection conn = null;
+		CallableStatement proc = null;
+		String call = "{call Pro_DelLabSampleItem(?,?)}";
+		try {
+			conn = DBPool.ds.getConnection();
+			proc = conn.prepareCall(call);
+			proc.setString(1, labSampleItemID);
+			proc.registerOutParameter(2, java.sql.Types.VARCHAR);
+			proc.execute();
+			rs = proc.getString(2);
+		} catch (SQLException e) {
+			log.error("", e);
+		} catch (Exception e) {
+			log.error("", e);
+		} finally {
+			try {
+				if (proc != null) {
+					proc.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
 				log.error("", e);
 			}
 		}

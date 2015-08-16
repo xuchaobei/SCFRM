@@ -22,7 +22,7 @@
 			</button>
 		</div>
 	</div>
-	
+
 	<div class="panel-body">
 		<table class="table table-striped table-bordered" id="table1">
 			<thead>
@@ -38,7 +38,7 @@
 				</tr>
 			</thead>
 		</table>
-	</div>		
+	</div>
 </div>
 
 <div id="table1Search"
@@ -74,17 +74,17 @@
 	</div>
 </div>
 
-<div id="table1Add" class="col-md-10 col-md-offset-1 panel-info alertForm">
+<div id="table1Add"
+	class="col-md-10 col-md-offset-1 panel-info alertForm">
 	<div class="content-box-header panel-heading">
 		<div class="panel-title ">新增样品</div>
 
 		<div class="panel-options">
 			<a id="addTable1" href="#" data-rel="collapse"><i
-				class="glyphicon glyphicon-plus"></i>新增样品</a> 
-			<a id="saveTable1" href="#" data-rel="collapse"><i
-				class="glyphicon glyphicon-floppy-saved"></i>保存</a> 
-			<a id="closeTable1Add"
-				href="#" data-rel="reload"><i
+				class="glyphicon glyphicon-plus"></i>新增样品</a> <a id="saveTable1"
+				href="#" data-rel="collapse"><i
+				class="glyphicon glyphicon-floppy-saved"></i>保存</a> <a
+				id="closeTable1Add" href="#" data-rel="reload"><i
 				class="glyphicon glyphicon-remove-circle"></i>取消</a>
 		</div>
 	</div>
@@ -106,16 +106,16 @@
 				<label class="col-sm-1 control-label">样品类别</label>
 				<div class="col-sm-3">
 					<div class="input-group">
-						<input type="text" id="aSampleKind" class="form-control" />
-						<span id="aSampleKind-search" class="input-group-addon"><i
+						<input type="text" id="aSampleKind" class="form-control" /> <span
+							id="aSampleKind-search" class="input-group-addon"><i
 							class="glyphicon glyphicon-search"></i></span>
 					</div>
 				</div>
 				<label class="col-sm-1 control-label">送检部门</label>
 				<div class="col-sm-3">
 					<div class="input-group">
-						<input type="text" id="aApplyDept" class="form-control">
-						<span id="aApplyDept-search" class="input-group-addon"><i
+						<input type="text" id="aApplyDept" class="form-control"> <span
+							id="aApplyDept-search" class="input-group-addon"><i
 							class="glyphicon glyphicon-search"></i></span>
 					</div>
 				</div>
@@ -125,8 +125,8 @@
 				<label class="col-sm-1 control-label">送检人</label>
 				<div class="col-sm-3">
 					<div class="input-group">
-						<input type="text" id="aAppliant" class="form-control">
-						<span id="aAppliant-search" class="input-group-addon"><i
+						<input type="text" id="aAppliant" class="form-control"> <span
+							id="aAppliant-search" class="input-group-addon"><i
 							class="glyphicon glyphicon-search"></i></span>
 					</div>
 				</div>
@@ -164,7 +164,7 @@
 			</div>
 		</form>
 	</div>
-	
+
 	<div class="content-box-large box-with-header">
 		<div class="panel-heading">
 			<div class="panel-title">样品信息</div>
@@ -178,10 +178,10 @@
 				<label class="col-sm-1 control-label">样品份数</label>
 				<div class="col-sm-2">
 					<input type="text" id="aCopyCount" class="form-control" />
-				</div>				
+				</div>
 			</div>
 			<hr>
-			<div class="form-group">				
+			<div class="form-group">
 				<label class="col-sm-1 control-label">样品说明</label>
 				<div class="col-sm-5">
 					<input type="text" id="aSampleRemarks" class="form-control" />
@@ -197,7 +197,7 @@
 			</div>
 		</form>
 	</div>
-	
+
 	<div class="content-box-large box-with-header">
 		<div class="panel-heading">
 			<div class="panel-title">样品拟送检项目</div>
@@ -212,7 +212,7 @@
 				<thead>
 					<tr>
 						<th>ID号</th>
-						<th>3+3G项目代码 </th>
+						<th>3+3G项目代码</th>
 						<th>3+3G项目名称</th>
 						<th>LMIS项目代码</th>
 						<th>LMIS项目名称</th>
@@ -223,7 +223,7 @@
 			</table>
 		</div>
 	</div>
-	
+
 	<div class="content-box-large box-with-header">
 		<div class="panel-heading">
 			<div class="panel-title">可选送检项目</div>
@@ -255,6 +255,181 @@
 				</thead>
 			</table>
 		</div>
+	</div>
+</div>
+
+<div id="table1-2Match"
+	class="col-md-10 col-md-offset-1 panel-info alertForm">
+	<div class="content-box-large box-with-header">
+		<div class="panel-heading">
+			<div class="panel-title">新选项目匹配</div>
+			<div class="panel-options">
+				<button id="confirmTable1-2-1" class="btn btn-primary btn-sm">
+					<i class="glyphicon glyphicon-floppy-saved"></i> 匹配确认
+				</button>
+				<button id="closeTable1-2-1" class="btn btn-primary btn-sm">
+					<i class="glyphicon glyphicon-remove-circle"></i> 取消
+				</button>
+			</div>
+		</div>
+		<form class="form-horizontal" role="form">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">LMIS项目名称</label>
+				<div class="col-sm-4">
+					<input type="text" id="sItemName" class="form-control" />
+				</div>
+				<label class="col-sm-2 control-label">LMIS检测实验室</label>
+				<div class="col-sm-4">
+					<input type="text" id="sLabDeptName" class="form-control" />
+				</div>
+			</div>
+		</form>
+		<div class="panel-body">
+			<table class="table table-striped table-bordered" id="table1-2-1">
+				<thead>
+					<tr>
+						<th>LMIS项目代码</th>
+						<th>LMIS项目名称</th>
+						<th>LMIS检测标准</th>
+						<th>检测部门</th>
+						<th>样品类别</th>
+						<th>检测周期</th>
+						<th>检测费用</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div id="table1-2Set"
+	class="col-md-10 col-md-offset-1 panel-info alertForm">
+	<div class="content-box-large box-with-header">
+		<div class="panel-heading">
+			<div class="panel-title">集合项目细化</div>
+			<div class="panel-options">
+				<button id="confirmTable1-2-2" class="btn btn-primary btn-sm">
+					<i class="glyphicon glyphicon-floppy-saved"></i> 匹配确认
+				</button>
+				<button id="deleteTable1-2-2" class="btn btn-primary btn-sm">
+					<i class="glyphicon glyphicon-remove"></i> 删除匹配
+				</button>
+				<button id="closeTable1-2-2" class="btn btn-primary btn-sm">
+					<i class="glyphicon glyphicon-remove-circle"></i> 取消
+				</button>
+			</div>
+		</div>
+		<div>
+			<input id="reMatch" type="checkbox" />重新匹配
+		</div>
+		<div>集合项目中的子项目</div>
+		<div class="panel-body">
+			<table class="table table-striped table-bordered" id="table1-2-2">
+				<thead>
+					<tr>
+						<th>项目代码</th>
+						<th>项目名称</th>
+						<th>匹配</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+
+		<div class="content-box-large">
+			<div class="panel-heading">
+				<div class="panel-title">匹配的检测项目</div>
+			</div>
+			<form class="form-horizontal" role="form">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">LMIS项目名称</label>
+					<div class="col-sm-4">
+						<input type="text" id="sItemName2" class="form-control" />
+					</div>
+					<label class="col-sm-2 control-label">LMIS检测实验室</label>
+					<div class="col-sm-4">
+						<input type="text" id="sLabDeptName2" class="form-control" />
+					</div>
+				</div>
+			</form>
+			<div class="panel-body">
+				<table class="table table-striped table-bordered" id="table1-2-3">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>3+3G项目代码</th>
+							<th>3+3G项目名称</th>
+							<th>LMIS项目代码</th>
+							<th>LMIS项目名称</th>
+							<th>LMIS检测标准</th>
+							<th>检测部门</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
+
+		<div class="content-box-large">
+			<div class="panel-heading">
+				<div class="panel-title">LMIS项目查询</div>
+				<div class="panel-options">
+					<button id="searchTable1-2-4" class="btn btn-primary btn-sm">
+						<i class="glyphicon glyphicon-search"></i> 查询
+					</button>
+				</div>
+			</div>
+			<form class="form-horizontal" role="form">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">LMIS项目名称</label>
+					<div class="col-sm-4">
+						<input type="text" id="sItemName2" class="form-control" />
+					</div>
+					<label class="col-sm-2 control-label">LMIS检测实验室</label>
+					<div class="col-sm-4">
+						<input type="text" id="sLabDeptName2" class="form-control" />
+					</div>
+				</div>
+			</form>
+			<div class="panel-body">
+				<table class="table table-striped table-bordered" id="table1-2-4">
+					<thead>
+						<tr>
+							<th>LMIS项目代码</th>
+							<th>LMIS项目名称</th>
+							<th>LMIS检测标准</th>
+							<th>检测部门</th>
+							<th>样品类别</th>
+							<th>检测周期</th>
+							<th>检测费用</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="table4Divide"
+	class="col-md-6 col-md-offset-3 panel-info alertForm">
+	<div class="content-box-header panel-heading">
+		<div class="panel-title ">分样</div>
+		<div class="panel-options">
+			 <a id="saveTable4Divide"
+				href="#" data-rel="collapse"><i
+				class="glyphicon glyphicon-floppy-saved"></i>确定</a> 
+			<a	id="closeTable4Divide" href="#" data-rel="reload"><i
+				class="glyphicon glyphicon-remove-circle"></i>取消</a>
+		</div>
+	</div>
+
+	<div class="content-box-large">
+		<form class="form-horizontal" role="form">
+			<div class="form-group">
+				<label class="col-sm-3 control-label">分样数量</label>
+				<div class="col-sm-6">
+					<input type="text" id="dividedSampleNum" class="form-control" />
+				</div>
+			</div>
+		</form>
 	</div>
 </div>
 
@@ -306,6 +481,15 @@
 <div class="content-box-large">
 	<div class="panel-heading">
 		<div class="panel-title">样品数据</div>
+		<div class="panel-options">
+			 <a id="divide4"
+				href="#" data-rel="collapse"><i
+				class="glyphicon glyphicon-floppy-saved"></i>分样</a> 
+			<a	id="deleteSample4" href="#" data-rel="reload"><i
+				class="glyphicon glyphicon-remove"></i>删除样品</a>
+			<a	id="deleteItem4" href="#" data-rel="reload"><i
+				class="glyphicon glyphicon-remove"></i>删除项目</a>
+		</div>
 	</div>
 	<div class="panel-body">
 		<table class="table table-striped table-bordered" id="table4">

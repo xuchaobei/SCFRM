@@ -180,4 +180,145 @@ public class SampleRegisterAction {
 		}
 		return Action.SUCCESS;
 	}
+	
+	public String saveLabItemMatchedManual(){
+		try {
+			result = SampleRegisterService.saveLabItemMatchedManual(data);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		}
+		return Action.SUCCESS;
+	}
+	
+	public String saveLabApplyInfo(){
+		try {
+			result = SampleRegisterService.saveLabApplyInfo(data);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		}
+		return Action.SUCCESS;
+	}
+	
+	public String saveLabDefaultData(){
+		try {
+			result = SampleRegisterService.saveLabDefaultData(data);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		}
+		return Action.SUCCESS;
+	}
+	
+	
+	public String saveLabSample(){
+		try {
+			result = SampleRegisterService.saveLabSample(data);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		}
+		return Action.SUCCESS;
+	}
+
+	public String saveLabSampleItem(){
+		try {
+			result = SampleRegisterService.saveLabSampleItem(data);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		}
+		return Action.SUCCESS;
+	}
+	
+	public String getLabItemByQuery(){
+		try {
+			result = SampleRegisterService.getLabItemByQuery(data);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		}
+		return Action.SUCCESS;
+	}
+	
+	public String saveLabItemMatched(){
+		try {
+			result = SampleRegisterService.saveLabItemMatched(data);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		}
+		return Action.SUCCESS;
+	}
+	
+	public String getItemSubByDeclItem(){
+		try {
+			result = SampleRegisterService.getItemSubByDeclItem(data);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		}
+		return Action.SUCCESS;
+	}
+	
+	public String getItemSubMatchedForDeclItem(){
+		try {
+			result = SampleRegisterService.getItemSubMatchedForDeclItem(data);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		}
+		return Action.SUCCESS;
+	}
+	
+	public String saveLabItemMatchedForSubitem(){
+		try {
+			result = SampleRegisterService.saveLabItemMatched(data);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		}
+		return Action.SUCCESS;
+	}
+	
+	public String sampleRegAuto(){
+		try {
+			result = SampleRegisterService.sampleRegAuto(data);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		}
+		return Action.SUCCESS;
+	}
+	
+	public String divideLabSample(){
+		try {
+			result = SampleRegisterService.divideLabSample(data);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		}
+		return Action.SUCCESS;
+	}
+	
+	public String delLabSample(){
+		try {
+			result = SampleRegisterService.delLabSample(data);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		}
+		return Action.SUCCESS;
+	}
+	
+	public String delLabSampleItem(){
+		try {
+			result = SampleRegisterService.delLabSampleItem(data);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error("", e);
+		}
+		return Action.SUCCESS;
+	}
 }
