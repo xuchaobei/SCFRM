@@ -37,6 +37,18 @@
             type="javax.sql.DataSource"
             url="jdbc:sqlserver://127.0.0.1:1433;database=CEMS_SIMU;" />
 	
+	 <!-- 	LMIS  数据库配置 -->
+	<Resource
+            name="jdbc/LMIS"
+            driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+            maxActive="10"
+            maxIdle="2"
+            maxWait="10000"
+            username="sa"
+            password="123456"
+            type="javax.sql.DataSource"
+            url="jdbc:sqlserver://127.0.0.1:1433;database=CEMS_SIMU;" />
+	
 <!-- 	CEMS oracle 数据库配置
 	<Resource
             name="jdbc/CEMS"

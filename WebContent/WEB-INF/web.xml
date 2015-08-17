@@ -24,7 +24,11 @@
 		<servlet-class>cn.gov.scciq.timer.FRMTimerServlet</servlet-class>
 		<!-- 设置定时任务的启动停止 -->
 		<init-param>
-			<param-name>startTask</param-name>
+			<param-name>startCEMSTask</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>startLRPTask</param-name>
 			<param-value>true</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>

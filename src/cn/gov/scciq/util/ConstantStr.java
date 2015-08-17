@@ -8,6 +8,8 @@ package cn.gov.scciq.util;
  *
  */
 public class ConstantStr {
+	
+	public static final String LRP_URL = "";
 
 	public static final String SAVE_ERROR_MSG = "程序异常，保存失败！";
 	public static final String ERROR_MSG = "程序异常!";
