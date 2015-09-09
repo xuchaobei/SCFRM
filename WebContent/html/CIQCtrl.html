@@ -1,0 +1,479 @@
+<head><meta charset="utf-8"></head>
+<div class="content-box-large">
+<div class="panel-heading">
+<div class="panel-title">应急布控</div>
+<div class="panel-options">
+<button id="search1" class="btn btn-primary btn-sm">
+<i class="glyphicon glyphicon-search"></i> 查询
+</button>
+<button id="add1" class="btn btn-primary btn-sm">
+<i class="glyphicon glyphicon-plus"></i> 新增
+</button>
+<button id="edit1" class="btn btn-primary btn-sm">
+<i class="glyphicon glyphicon-edit"></i> 修改
+</button>
+<button id="delete1" class="btn btn-primary btn-sm">
+<i class="glyphicon glyphicon-remove"></i> 删除
+</button>
+<button id="test1" class="btn btn-primary btn-sm">
+<i class="glyphicon glyphicon-dashboard"></i> 测试
+</button>
+<button id="validate1" class="btn btn-primary btn-sm">
+<i class="glyphicon glyphicon-retweet"></i> 生效/无效
+</button>
+</div>
+</div>
+<div class="panel-body">
+<table class="table table-striped table-bordered" id="table1">
+<thead>
+<tr>
+<th>ID</th>
+<th>布控名称</th>
+<th>布控依据</th>
+<th>布控说明</th>
+<th>布控截止日期</th>
+<th>生效</th>
+<th>布控测试</th>
+<th>布控日期</th>
+<th>布控部门</th>
+</tr>
+</thead>
+</table>
+</div>
+</div>
+<div class="content-box-large">
+<div class="panel-title">
+<ul class="nav nav-tabs">
+<li class="active"><a href="#">布控规则</a></li>
+<li><a href="#">布控项目</a></li>
+</ul>
+</div>
+<div id="tab1">
+<div class="panel-heading">
+<div class="panel-options">
+<button id="add2" class="btn btn-primary btn-sm">
+<i class="glyphicon glyphicon-plus"></i> 新增
+</button>
+<button id="edit2" class="btn btn-primary btn-sm">
+<i class="glyphicon glyphicon-edit"></i> 修改
+</button>
+<button id="delete2" class="btn btn-primary btn-sm">
+<i class="glyphicon glyphicon-remove"></i> 删除
+</button>
+</div>
+</div>
+<div class="panel-body">
+<table class="table table-striped table-bordered" id="table2">
+<thead>
+<tr>
+<th>ID</th>
+<th>排序序号</th>
+<th>左关系符</th>
+<th>字段名称</th>
+<th>计算符</th>
+<th>关键词</th>
+<th>右关系符</th>
+<th>关键词描述</th>
+</tr>
+</thead>
+</table>
+</div>
+</div>
+<div id="tab2" class="hide">
+<div class="panel-heading">
+<div class="panel-options">
+<button id="add3" class="btn btn-primary btn-sm">
+<i class="glyphicon glyphicon-plus"></i> 新增
+</button>
+<button id="edit3" class="btn btn-primary btn-sm">
+<i class="glyphicon glyphicon-edit"></i> 修改
+</button>
+<button id="delete3" class="btn btn-primary btn-sm">
+<i class="glyphicon glyphicon-remove"></i> 删除
+</button>
+</div>
+</div>
+<div class="panel-body">
+<table class="table table-striped table-bordered" id="table3">
+<thead>
+<tr>
+<th>ID</th>
+<th>项目代码</th>
+<th>项目名称</th>
+<th>抽查方式</th>
+<th>抽查参数值</th>
+<th>检测标准</th>
+<th>限量要求</th>
+</tr>
+</thead>
+</table>
+</div>
+</div>
+</div>
+<div id="table1Search"
+class="panel-info col-md-6 col-md-offset-3 alertForm">
+<div class="content-box-header panel-heading">
+<div class="panel-title">应急布控查询</div>
+<div class="panel-options">
+<a id="searchTable1" href="#" data-rel="collapse"><i
+class="glyphicon glyphicon-search"></i>查询</a> <a id="closeTable1Search"
+href="#" data-rel="reload"><i
+class="glyphicon glyphicon-remove-circle"></i>取消</a>
+</div>
+</div>
+<div class="content-box-large box-with-header">
+<form class="form-horizontal" role="form">
+<div class="form-group">
+<label class="col-sm-2 control-label">布控名称</label>
+<div class="col-sm-4">
+<div class="input-group col-sm-12">
+<input type="text" id="rControlName" class="form-control" />
+</div>
+</div>
+<label class="col-sm-2 control-label">布控依据</label>
+<div class="col-sm-4">
+<div class="input-group">
+<input type="text" id="rControlReason" class="form-control" />
+<span id="rControlReason-select" class="input-group-addon"><i
+class="glyphicon glyphicon-chevron-down"></i></span>
+</div>
+</div>
+</div>
+
+<div class="form-group">
+<label class="col-sm-2 control-label">布控机构</label>
+<div class="col-sm-4">
+<div class="input-group">
+<input type="text" id="rControlOrg" class="form-control">
+<span id="rControlOrg-select" class="input-group-addon"><i
+class="glyphicon glyphicon-chevron-down"></i></span>
+</div>
+</div>
+<label class="col-sm-2 control-label">布控部门</label>
+<div class="col-sm-4">
+<div class="input-group">
+<input type="text" id="rControlDept" class="form-control">
+<span id="rControlDept-select" class="input-group-addon"><i
+class="glyphicon glyphicon-chevron-down"></i></span>
+</div>
+</div>
+</div>
+
+<div class="form-group">
+<label class="col-md-2 control-label">生效</label>
+<div class="col-md-1 with-checkbox">
+<input id="execTrue" type="checkbox">
+</div>
+<label class="col-md-2 control-label">无效</label>
+<div class="col-md-1 with-checkbox">
+<input id="execFalse" type="checkbox">
+</div>
+<label class="col-md-2 control-label">测试通过</label>
+<div class="col-md-1 with-checkbox">
+<input id="checkTrue" type="checkbox">
+</div>
+<label class="col-md-2 control-label">没有测试通过</label>
+<div class="col-md-1 with-checkbox">
+<input id="checkFalse" type="checkbox">
+</div>
+</div>
+</form>
+</div>
+</div>
+<div id="table1Save"
+class="panel-info col-md-6 col-md-offset-3 alertForm">
+<div class="content-box-header panel-heading">
+<div class="panel-title">应急布控</div>
+<div class="panel-options">
+<a id="saveTable1" href="#" data-rel="collapse"><i
+class="glyphicon glyphicon-floppy-saved"></i>保存</a> <a id="closeTable1Save"
+href="#" data-rel="reload"><i
+class="glyphicon glyphicon-remove-circle"></i>取消</a>
+</div>
+</div>
+<div class="content-box-large box-with-header">
+<form class="form-horizontal" role="form">
+<div class="form-group">
+<label class="col-sm-2 control-label">布控名称*</label>
+<div class="col-sm-4">
+<div class="input-group col-sm-12">
+<input type="text" id="sControlName" class="form-control" />
+</div>
+</div>
+<label class="col-sm-2 control-label">布控依据*</label>
+<div class="col-sm-4">
+<div class="input-group">
+<input type="text" id="sControlReason" class="form-control" disabled="disabled" />
+<span id="sControlReason-select" class="input-group-addon"><i
+class="glyphicon glyphicon-chevron-down"></i></span>
+</div>
+</div>
+</div>
+
+<div class="form-group">
+<label class="col-sm-2 control-label">布控截止日期</label>
+<div class="col-sm-4">
+<div class="input-group">
+<div class="bfh-datepicker" id="sDeadline" data-format="y-m-d" data-date="today"></div>
+<a href="#" id="cleardate" style="margin-left: 72%">清除日期</a>
+</div>
+</div>
+<label class="col-sm-2 control-label">布控说明</label>
+<div class="col-sm-4">
+<div class="input-group col-sm-12">
+<input type="text" id="sRemarks" class="form-control">
+</div>
+</div>
+</div>
+
+<div class="form-group">
+<label class="col-sm-2 control-label">布控机构</label>
+<div class="col-sm-4">
+<div class="input-group col-sm-12">
+<input type="text" readonly id="sControlOrg" class="form-control">
+</div>
+</div>
+<label class="col-sm-2 control-label">布控部门</label>
+<div class="col-sm-4">
+<div class="input-group col-sm-12">
+<input type="text" readonly id="sControlDept" class="form-control">
+</div>
+</div>
+</div>
+
+<div class="form-group">
+<label class="col-sm-2 control-label">布控人</label>
+<div class="col-sm-4">
+<div class="input-group col-sm-12">
+<input type="text" readonly id="sControlOperator" class="form-control">
+</div>
+</div>
+<label class="col-sm-2 control-label">布控日期</label>
+<div class="col-sm-4">
+<div class="input-group col-sm-12">
+<input type="text" readonly id="sControlDatetime" class="form-control">
+</div>
+</div>
+</div>
+</form>
+</div>
+</div>
+<div id="table2Save"
+class="panel-info col-md-6 col-md-offset-3 alertForm">
+<div class="content-box-header panel-heading">
+<div class="panel-title">布控规则</div>
+<div class="panel-options">
+<a id="saveTable2" href="#" data-rel="collapse"><i
+class="glyphicon glyphicon-floppy-saved"></i>确认</a> <a
+id="closeTable2Save" href="#" data-rel="reload"><i
+class="glyphicon glyphicon-remove-circle"></i>取消</a>
+</div>
+</div>
+<div class="content-box-large box-with-header">
+<form class="form-horizontal" role="form">
+<div class="form-group">
+<label class="col-sm-2 control-label">排序序号* </label>
+<div class="col-sm-10">
+<input type="text" class="form-control" id="sOrderNo">
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-2 control-label">左关系符* </label>
+<div class="col-sm-10">
+<div class="input-group">
+<input type="text" id="sLeftLogic" class="form-control" disabled="disabled"> <span
+id="sLeftLogic-select" class="input-group-addon"><i
+class="glyphicon glyphicon-chevron-down"></i></span>
+</div>
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-2 control-label">字段名称* </label>
+<div class="col-sm-10">
+<div class="input-group">
+<input type="text" id="sDefinedField" class="form-control" disabled="disabled"> <span
+id="sDefinedField-select" class="input-group-addon"><i
+class="glyphicon glyphicon-chevron-down"></i></span>
+</div>
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-2 control-label">计算符* </label>
+<div class="col-sm-10">
+<div class="input-group">
+<input type="text" id="sCalculationDesc" class="form-control" disabled="disabled"> <span
+id="sCalculationDesc-select" class="input-group-addon"><i
+class="glyphicon glyphicon-chevron-down"></i></span>
+</div>
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-2 control-label">关键词*</label>
+<div class="col-sm-10">
+<div class="input-group">
+<input type="text" id="sKeywords" class="form-control" placeholder="可输入关键字段模糊查询,但结果必须从下拉列表中选取"> <span
+id="sKeywords-search" class="input-group-addon"><i
+class="glyphicon glyphicon-search"></i></span>
+</div>
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-2 control-label">右关系符* </label>
+<div class="col-sm-10">
+<div class="input-group">
+<input type="text" id="sRightLogic" class="form-control" disabled="disabled"> <span
+id="sRightLogic-select" class="input-group-addon"><i
+class="glyphicon glyphicon-chevron-down"></i></span>
+</div>
+</div>
+</div>
+</form>
+</div>
+</div>
+<div id="table3Save"
+class="panel-info col-md-8 col-md-offset-2 alertForm2">
+<div class="content-box-header panel-heading">
+<div class="panel-title">布控项目</div>
+<div class="panel-options">
+<a id="saveTable3" href="#" data-rel="collapse"><i
+class="glyphicon glyphicon-floppy-saved"></i>保存</a> <a
+id="closeTable3Save" href="#" data-rel="reload"><i
+class="glyphicon glyphicon-remove-circle"></i>取消</a>
+</div>
+</div>
+<div class="content-box-large box-with-header">
+<form class="form-horizontal" role="form">
+<div class="form-group">
+<label class="col-sm-2 control-label">检测项目* </label>
+<div class="col-sm-10">
+<div class="input-group">
+<input type="text" id="sDetectionItem" class="form-control">
+<span id="sDetectionItem-search" class="input-group-addon"><i
+class="glyphicon glyphicon-search"></i></span>
+</div>
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-2 control-label">检测标准 </label>
+<div class="col-sm-10">
+<input type="text" class="form-control" id="sDetectionStd">
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-2 control-label">抽检模式*</label>
+<div class="col-sm-10">
+<div class="input-group">
+<input type="text" class="form-control" id="sSamplingMode" disabled="disabled">
+<span id="sSamplingMode-select" class="input-group-addon"><i
+class="glyphicon glyphicon-chevron-down"></i></span>
+</div>
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-2 control-label">抽检参数值*</label>
+<div class="col-sm-10">
+<input type="text" class="form-control" id="sSamplingParamValue">
+</div>
+</div>
+</form>
+<div class="content-box-large">
+<div class="panel-heading">
+<div class="panel-title">限量要求</div>
+</div>
+<div class="panel-body">
+<form class="form-horizontal" role="form">
+<div class="form-group">
+<label class="col-sm-2 control-label">限量类型*</label>
+<div class="col-sm-10">
+<div class="input-group">
+<input type="text" id="sLimitType" class="form-control" disabled="disabled">
+<span id="sLimitType-select" class="input-group-addon"><i
+class="glyphicon glyphicon-chevron-down"></i></span>
+</div>
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-2 control-label">默认限量值* </label>
+<div class="col-sm-10">
+<input type="text" class="form-control" id="sDetectionLimit">
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-2 control-label">限量单位</label>
+<div class="col-sm-10">
+<input type="text" class="form-control" id="sLimitUnit">
+</div>
+</div>
+</form>
+</div>
+<div class="content-box-large">
+<div class="panel-heading">
+<div class="panel-title">限量表</div>
+<div class="panel-options">
+<button id="addLimitTable" class="btn btn-primary btn-sm">
+<i class="glyphicon glyphicon-plus"></i> 新增
+</button>
+<button id="editLimitTable" class="btn btn-primary btn-sm">
+<i class="glyphicon glyphicon-edit"></i> 修改
+</button>
+<button id="deleteLimitTable" class="btn btn-primary btn-sm">
+<i class="glyphicon glyphicon-remove"></i> 删除
+</button>
+</div>
+</div>
+<div class="panel-body">
+<table class="table table-striped table-bordered" id="sLimitTable">
+<thead>
+<tr>
+<th>国家编号</th>
+<th>国家或地区</th>
+<th>限量值</th>
+<th>限量单位</th>
+</tr>
+</thead>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="limitTableDiv"
+class="panel-info col-md-6 col-md-offset-3 alertForm">
+<div class="content-box-header panel-heading">
+<div class="panel-title">限量表</div>
+<div class="panel-options">
+<a id="confirmLimitTable" href="#" data-rel="collapse"><i
+class="glyphicon glyphicon-floppy-saved"></i>确认</a> <a
+id="closeLimitTable" href="#" data-rel="reload"><i
+class="glyphicon glyphicon-remove-circle"></i>取消</a>
+</div>
+</div>
+<div class="content-box-large box-with-header">
+<form class="form-horizontal" role="form">
+<div class="form-group">
+<label class="col-sm-2 control-label">国家或地区 *</label>
+<div class="col-sm-10">
+<div class="input-group">
+<input type="text" id="ltCountry" class="form-control"> <span
+id="ltCountry-search" class="input-group-addon"><i
+class="glyphicon glyphicon-search"></i></span>
+</div>
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-2 control-label">限量值 *</label>
+<div class="col-sm-10">
+<input type="text" class="form-control" id="ltDetectionLimit">
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-2 control-label">限量单位</label>
+<div class="col-sm-10">
+<input type="text" class="form-control" id="ltLimitUnit">
+</div>
+</div>
+</form>
+</div>
+</div>
+<script src="js/CIQCtrl.js"></script>
+<script src="vendors/form-helpers/js/bootstrap-formhelpers.js"></script>

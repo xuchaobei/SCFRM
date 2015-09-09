@@ -1,0 +1,193 @@
+<head><meta charset="utf-8"></head>
+<div class="content-box-large" >
+	<div class="panel-heading">
+		<div class="panel-title">第三方检测机构</div>
+		<div class="panel-options">
+			<button id="query" class="btn btn-primary btn-sm">
+			<i class="glyphicon glyphicon-plus"></i> 查询
+			</button>
+			<button id="addnew" class="btn btn-primary btn-sm">
+			<i class="glyphicon glyphicon-plus"></i> 新增
+			</button>
+			<button id="edit" class="btn btn-primary btn-sm">
+			<i class="glyphicon glyphicon-edit"></i> 修改
+			</button>
+			<button id="delete" class="btn btn-primary btn-sm">
+			<i class="glyphicon glyphicon-remove"></i> 删除
+			</button>
+		</div>
+	</div>
+	<div class="panel-body">
+		<table class="table table-striped table-bordered" id="labTb">
+		<thead>
+		<tr>
+		<th>ID</th>  
+		<th>检测机构代码</th>    
+		<th>检测机构名称</th>
+		<th>地址</th>
+		<th>联系人及电话</th>
+		<th>登记部门</th>
+		<th>登记时间</th>
+		</tr>
+		</thead>
+		</table>
+	</div>
+</div>
+<!-- productSubClass talbe -->
+<div class="content-box-large" >
+	<div class="panel-heading">
+		<div class="panel-title">认可的检测项目</div>
+		<div class="panel-options">
+		<button id="itemadd" class="btn btn-primary btn-sm">
+		<i class="glyphicon glyphicon-plus"></i> 新增
+		</button>
+		<button id="edititem" class="btn btn-primary btn-sm">
+		<i class="glyphicon glyphicon-edit"></i> 修改
+		</button>
+		<button id="deleteitem" class="btn btn-primary btn-sm">
+		<i class="glyphicon glyphicon-remove"></i> 删除
+		</button>
+		</div>
+	</div>
+	<div class="panel-body">
+	<table class="table table-striped table-bordered" id="labItemTb">
+	<thead>
+	<tr>
+	<th>ID号</th>
+	<th>项目代码</th>
+	<th>项目名称</th>
+	<th>产品大类代码</th>
+	<th>产品大类名称</th>
+	<th>产品小类代码</th>
+	<th>产品小类名称</th>
+	</tr>
+	</thead>
+	</table>
+	</div>
+</div>
+
+
+<!-- addproductClassDialog -->
+<div id="addlabDialog" class="col-sm-7 col-md-offset-3 panel-info alertForm">
+<div class="content-box-header panel-heading"> 
+<div class="panel-title ">检测机构</div>
+<div class="panel-options">
+<a id="savelab" href="#" data-rel="collapse"><i
+class="glyphicon glyphicon-floppy-save"></i>保存</a> <a id="closelabDialogBtn" href="#"
+data-rel="reload"><i class="glyphicon glyphicon-remove-circle"></i>取消</a>
+</div>
+</div>
+<div class="content-box-large box-with-header">
+<form class="form-horizontal" role="form">
+<div class="form-group">
+<label class="col-sm-2 control-label">检测机构代码</label>
+<div class="col-sm-4 ">
+<div class="input-group col-sm-12">
+<input type="text" id="labcode" class="form-control" />
+</div>
+</div>
+<label class="col-sm-2 control-label">检测机构名称*</label>
+<div class="col-sm-4 ">
+<div class="input-group col-sm-12">
+<input type="text" id="labname" class="form-control">
+</div></div>
+</div>
+<div class="form-group">
+<label class="col-sm-2 control-label">检测机构地址</label>
+<div class="col-sm-4">
+<div class="input-group col-sm-12">
+<input type="text" id="labaddress" class="form-control" />
+</div>
+</div>
+<label class="col-sm-2 control-label">联系人及电话</label>           
+<div class="col-sm-4">
+<div class="input-group col-sm-12">
+<input type="text" id="labtel" class="form-control">
+</div></div>
+</div>
+<div class="form-group" id="foredit">
+<label class="col-sm-2 control-label">登记部门</label>
+<div class="col-sm-4">
+<div class="input-group col-sm-12">
+<input type="text" id="operadept" class="form-control" disabled="disabled" style="width:129%"/>
+</div>
+</div>
+<label class="col-sm-2 control-label">登记时间</label>
+<div class="col-sm-4">
+<div class="input-group col-sm-12">
+<input type="text" id="operatime" class="form-control" disabled="disabled">
+</div></div>
+</div>
+
+
+</form></div></div>
+
+<!-- addaccessorySetDialog -->
+<div id="additemDialog" class="col-sm-4 col-md-offset-4 panel-info alertForm">
+<div class="content-box-header panel-heading"> 
+<div class="panel-title ">新增/修改项目</div>
+<div class="panel-options">
+<a id="saveitemBtn" href="#" data-rel="collapse"><i
+class="glyphicon glyphicon-floppy-save"></i>保存</a> <a id="closeitemDialogBtn" href="#"
+data-rel="reload"><i class="glyphicon glyphicon-remove-circle"></i>取消</a>
+</div>
+</div>
+<div class="content-box-large box-with-header">
+<form class="form-horizontal" role="form">
+<div class="form-group">
+
+<label class="col-sm-3 control-label">检测项目*</label>       
+<div class="col-sm-9">
+<div class="input-group">
+<input type="text" id="itemcheck" class="form-control">
+<span id="itemcheck-select" class="input-group-addon"><i
+class="glyphicon glyphicon-search"></i></span>
+</div></div>
+</div>
+<div class="form-group">
+
+<label class="col-sm-3 control-label">产品大类*</label>
+<div class="col-sm-9">
+<div class="input-group">
+<input type="text" id="proclass" class="form-control">
+<span id="proclass-select" class="input-group-addon"><i
+class="glyphicon glyphicon-chevron-down"></i></span>
+</div></div>
+</div>
+
+<div class="form-group">
+
+<label class="col-sm-3 control-label">产品小类*</label>
+<div class="col-sm-9">
+<div class="input-group">
+<input type="text" id="subproclass" class="form-control">
+<span id="subproclass-select" class="input-group-addon"><i
+class="glyphicon glyphicon-chevron-down"></i></span>
+</div></div>
+</div>
+
+</form></div></div>
+
+
+<!-- query -->
+<div id="querylab" class="col-sm-4 col-md-offset-4 panel-info alertForm">
+<div class="content-box-header panel-heading"> 
+<div class="panel-title ">第三方检测机构查询</div>
+<div class="panel-options">
+<a id="querylabBtn" href="#" data-rel="collapse"><i
+class="glyphicon glyphicon-floppy-save"></i>查询</a> <a id="closequerylabDialogBtn" href="#"
+data-rel="reload"><i class="glyphicon glyphicon-remove-circle"></i>取消</a>
+</div>
+</div>
+<div class="content-box-large box-with-header">
+<form class="form-horizontal" role="form">
+<div class="form-group">
+<label class="col-sm-5 control-label">检测机构名称</label>   
+<div class="col-sm-7">
+<div class="input-group">
+<input type="text" id="querylabname" class="form-control" />
+</div>
+</div>
+</div></form></div></div>
+
+<script src="js/thridTestLab.js"></script>

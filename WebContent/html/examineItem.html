@@ -1,0 +1,206 @@
+<head><meta charset="utf-8">
+<style type="text/css">
+.oddrow {
+	background: #ecf2f6;
+	display: table-row
+}
+</style>
+</head>
+<div class="content-box-large" >
+<div class="panel-heading">
+<div class="panel-title">检测项目设置</div>
+<div class="panel-options">
+<button id="queryexamineItem" class="btn btn-primary btn-sm">
+<i class="glyphicon glyphicon-search"></i> 查询
+</button>
+<button id="addexamineItem" class="btn btn-primary btn-sm">
+<i class="glyphicon glyphicon-plus"></i> 新增
+</button>
+<button id="editexamineItem" class="btn btn-primary btn-sm">
+<i class="glyphicon glyphicon-edit"></i> 修改
+</button>
+<button id="deleteexamineItem" class="btn btn-primary btn-sm">
+<i class="glyphicon glyphicon-remove"></i> 删除
+</button>
+<button id="export" class="btn btn-primary btn-sm">
+			<i class="glyphicon glyphicon-arrow-right"></i> 导出
+			</button>
+</div>  
+</div>
+<div class="panel-body">
+<table class="table table-striped table-bordered" id="examineItemTb">
+<thead>
+<tr>
+<th>id</th>
+<th>检测项目代码</th>    
+<th>检测项目名称</th>  
+<th>风险类别</th> 
+<th>风险类别代码</th>    
+<th>项目类别</th>
+<th>实验室送检</th>    
+<th>集合</th>
+</tr>
+</thead>
+</table>
+</div>
+</div>
+
+    
+<!-- addexamineItemDialog -->
+<div id="addexamineItemDialog" class="col-md-10 col-md-offset-2 panel-info alertForm">
+	<div class="content-box-header panel-heading"> 
+		<div class="panel-title ">新增/修改检测项目</div>
+		<div class="panel-options">
+		<a id="saveexamineItemBtn" href="#" data-rel="collapse"><i
+		class="glyphicon glyphicon-floppy-save"></i>保存</a> <a id="closeaddexamineItemDialogBtn" href="#"
+		data-rel="reload"><i class="glyphicon glyphicon-remove-circle"></i>取消</a>
+		</div>
+	</div>
+	<div class="content-box-large box-with-header ">
+		<form class="form-horizontal" role="form">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">检测项目代码*</label>
+				<div class="col-sm-2">
+				<div class="input-group">
+				<input type="text" id="examineItemCode" class="form-control" />
+				</div>
+				</div>
+				
+				<label class="col-sm-2 control-label">检测项目名称*</label>
+				<div class="col-sm-2">
+				<div class="input-group">
+				<input type="text" id="examineItemName" class="form-control">
+				</div>
+				</div>
+				
+				<div class="col-sm-2" style="margin-left: 7%">
+				<div class="input-group ">
+				<label class="col-sm-12 control-label" style="font-size:13px ">
+				<input type="checkbox" name="ifsetsets" id="ifsetsets" >
+				定义为集合</label>
+				</div>
+				</div>
+				
+				
+			</div>
+			
+			<div class="form-group">
+			    <label class="col-sm-2 control-label">风险类别*</label>
+			    <div class="col-sm-2">
+				<div class="input-group">
+				<input type="text" id="sriskclass" class="form-control">
+				<span id="sriskclass-select" class="input-group-addon"><i
+				class="glyphicon glyphicon-chevron-down"></i></span>
+				</div>
+				</div>
+				
+				<label class="col-sm-2 control-label">项目类别*</label>
+			    <div class="col-sm-2">
+				<div class="input-group">
+				<!-- <input type="text" id="sitemclass" class="form-control">
+				<span id="sitemclass-select" class="input-group-addon"><i
+				class="glyphicon glyphicon-chevron-down"></i></span> -->
+				<select class="form-control" id="sitemclass" style="width: 142%">
+			         <option>检验项目</option>
+			         <option>检疫项目</option>
+				</select>
+				</div>
+				</div>
+				<div class="col-sm-2" style="margin-left: 7%">
+				<div class="input-group ">
+				<label class="col-sm-12 control-label" style="font-size:13px ">
+				<input type="checkbox" name="iftolibry" id="iftolibry" >
+				实验室送检</label>
+				</div>
+				</div>
+			
+			</div>
+			
+		     <label style="margin-left: 5%;margin-top: 2%">集合定义</label>
+		     <div class="form-group">
+		     <div class="col-sm-2" style="margin-left: 5%">
+				<div class="input-group">
+				<input type="text" id="queryitemNsettexxt" class="form-control">
+				</div>
+				
+				</div>     
+			 <div class="content-box-header panel-heading" >  
+				<div class="input-group">              
+				<a id="setquerybtneeeaf" href="#" data-rel="collapse">查询</a>
+				<a id="selectall" href="#" data-rel="collapse">全选</a>				
+				<a id="notselectall" href="#" data-rel="collapse">全不选</a>
+				<a id="selectother" href="#" data-rel="collapse">反选</a>
+				</div>
+				</div>     
+		     
+		    
+		     </div>
+			<div id="setstool" style="width: 100%;height: 200px ;border: medium;border-color: black;"> 
+			
+			            <div id="setsleft" style="width: 45%;height: 100%;float: left; border: 1px solid #F00;" >
+			  				<div id="setsleftlist" style="width: 60%;height: 100%">
+			                      <div id="setsleftlisttop" style="width: 100%;height: 100%;overflow: scroll;">
+			                           <table id="setsleftlistall" style="font-size:12px;border: 1" width="100%" border="0" cellspacing="0" cellpadding="0">
+			                            
+			                                  <thead>
+			                                         <tr>
+			                                             <td width="20%"></td>
+			                                             <td width="25%">代码</td>
+			                                             <td width="55%">名称</td>
+			                                         </tr>
+			                                  </thead>
+			                           </table>
+			                      </div>
+			                         
+			                 </div>
+			            </div>       
+			            <div id="setsmiddle" style="width: 10%;height: 50%;float: left;margin-top: 5%">
+			                <div id="setsadd" style="text-align: center;">
+                    			  <input id="addset" class="btn btn-info" type="button" value="添加>>"></input>
+			                 </div>
+			                 <div id="setsdel" style="text-align: center;">
+            				      <input id="delset" class="btn btn-info" type="button" value="<<移除"></input>
+			                 </div>
+			            </div>
+			            <div id="setsright" style="float: left;width: 45%;height: 100%;border: 1px solid #F00;">
+			                 
+			                 <div id="setsrightlist" style="width: 60%;height: 100%;overflow: scroll">    
+			                           <table id="setsrightlistall" style="font-size:12px;" width="100%" border="0" cellspacing="0" cellpadding="0">
+			                                  <thead>
+			                                         <tr>
+			                                             <td width="20%"></td>
+			                                             <td width="25%">代码</td>
+			                                             <td width="55%">名称</td>  
+			                                         </tr>
+			                                  </thead>
+			                           </table>
+			                 </div>
+			            </div>     
+			</div>
+	    </form>
+    </div>
+	
+</div>
+
+
+<!-- query -->
+<div id="queryDialog" class="col-sm-4 col-md-offset-4 panel-info alertForm">
+<div class="content-box-header panel-heading"> 
+<div class="panel-title ">检测项目查询</div>
+<div class="panel-options">
+<a id="queryssorySetBtn" href="#" data-rel="collapse"><i
+class="glyphicon glyphicon-search"></i>查询</a> <a id="querddrySDialogBtn" href="#"
+data-rel="reload"><i class="glyphicon glyphicon-remove-circle"></i>取消</a>
+</div>
+</div>
+<div class="content-box-large box-with-header">
+<form class="form-horizontal" role="form">
+<div class="form-group">
+
+<label class="col-sm-3 control-label">项目名称</label>
+<div class="col-sm-6">
+<div class="input-group">
+<input type="text" id="quereitemName" class="form-control">
+</div></div></div></form></div></div>
+
+<script src="js/examineItem.js"></script>

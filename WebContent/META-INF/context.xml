@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- The contents of this file will be loaded for each web application --><Context>
+
+    <!-- Default set of monitored resources -->
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+	
+    <!-- Uncomment this to disable session persistence across Tomcat restarts -->
+    <!--
+    <Manager pathname="" />
+    -->
+
+    <!-- Uncomment this to enable Comet connection tacking (provides events
+         on session expiration as well as webapp lifecycle) -->
+    <!--
+    <Valve className="org.apache.catalina.valves.CometConnectionManagerValve" />        
+    -->
+<!-- 四川局FRM平台数据库配置 -->
+   <!-- 	<Resource
+            name="jdbc/FRM_SC"
+            driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+            maxActive="20"
+            maxIdle="5"
+            maxWait="10000"
+            username="sa"
+            password="112358"
+            type="javax.sql.DataSource"
+            url="jdbc:sqlserver://10.51.0.42:3319;database=FRM_Sichuan;" /> -->
+      	<Resource
+            name="jdbc/FRM_SC"
+            driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+            maxActive="20"
+            maxIdle="5"
+            maxWait="10000"
+            username="sa"
+            password="123456"
+            type="javax.sql.DataSource"
+            url="jdbc:sqlserver://localhost:1433;database=FRM_Sichuan;" />      	
+	<!-- CEMS oracle 数据库配置测试平台 -->
+ <!-- 	  <Resource
+            name="jdbc/CEMS"
+            driverClassName="oracle.jdbc.driver.OracleDriver"
+            maxActive="10"
+            maxIdle="2"
+            maxWait="10000"
+            username="cems_platform"
+            password="cems_platform"
+            type="javax.sql.DataSource"
+            url="jdbc:oracle:thin:@10.51.0.72:1521:oral"/>    -->
+     
+      <!-- CEMS oracle 数据库配置正式平台 -->
+<!-- 	  <Resource
+            name="jdbc/CEMS"
+            driverClassName="oracle.jdbc.driver.OracleDriver"
+            maxActive="10"
+            maxIdle="2"
+            maxWait="10000"
+            username="cems_platform"     
+            password="cems_platform"
+            type="javax.sql.DataSource"
+            url="jdbc:oracle:thin:@10.51.0.2:1521:oral2"/>  -->
+<!-- Xu FRM本地配置 -->
+	<!-- <Resource
+            name="jdbc/FRM_SC"
+            driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+            maxActive="20"
+            maxIdle="5"
+            maxWait="10000"
+            username="sa"
+            password="123456"
+            type="javax.sql.DataSource"
+            url="jdbc:sqlserver://127.0.0.1:1433;database=FRM_Sichuan;" /> -->
+		
+    <!-- 	CEMS sqlserver 数据库配置 -->
+	<Resource
+            name="jdbc/CEMS"
+            driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+            maxActive="10"
+            maxIdle="2"
+            maxWait="10000"
+            username="sa"
+            password="123456"
+            type="javax.sql.DataSource"
+            url="jdbc:sqlserver://127.0.0.1:1433;database=CEMS_SIMU;" />
+	
+	 <!-- 	LMIS  数据库配置 -->
+	<Resource
+            name="jdbc/LMIS"
+            driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+            maxActive="10"
+            maxIdle="2"
+            maxWait="10000"
+            username="sa"
+            password="123456"
+            type="javax.sql.DataSource"
+            url="jdbc:sqlserver://127.0.0.1:1433;database=CEMS_SIMU;" />
+	
+<!-- 	CEMS oracle 数据库配置
+	<Resource
+            name="jdbc/CEMS"
+            driverClassName="oracle.jdbc.driver.OracleDriver"
+            maxActive="10"
+            maxIdle="2"
+            maxWait="10000"
+            username="sa"
+            password="123456"
+            type="javax.sql.DataSource"
+            url="jdbc:oracle:thin:@127.0.0.1:1521:CEMS_SIMU" /> -->
+</Context>

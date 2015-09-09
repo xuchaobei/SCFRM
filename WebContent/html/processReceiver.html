@@ -1,0 +1,1471 @@
+<head><meta charset="utf-8"></head>
+<div class="content-box-large" >
+	<div class="panel-heading">
+		<div class="panel-title">报检数据</div>
+		<div class="panel-options">
+			<button id="querydecldata" class="btn btn-primary btn-sm">
+			<i class="glyphicon glyphicon-search"></i> 查询
+			</button>
+			<button id="givedecldata" class="btn btn-primary btn-sm">
+			<i class="glyphicon glyphicon-edit"></i> 转单
+ 		    </button>
+			<button id="rebackdecldata" class="btn btn-primary btn-sm">
+			<i class="glyphicon glyphicon-edit"></i> 调回
+			</button>
+			<button id="receivesuredecldata" class="btn btn-primary btn-sm">
+			<i class="glyphicon glyphicon-edit"></i> 接单确认
+			</button>
+			
+			<button id="directgodecldata" class="btn btn-primary btn-sm">
+			<i class="glyphicon glyphicon-edit"></i> 直接放行
+			</button>
+			<button id="lookfordecldata" class="btn btn-primary btn-sm">
+			<i class="glyphicon glyphicon-edit"></i> 查看报检数据
+			</button>
+			<button id="lookforgoodsdata" class="btn btn-primary btn-sm">
+			<i class="glyphicon glyphicon-edit"></i> 查看货物数据
+			</button>
+		</div>
+	</div>
+	<div class="panel-body">
+		<table class="table table-striped table-bordered" id="decldataTb">
+		<thead>
+		<tr>
+		<th>报检号</th>  
+		<th>报检日期</th>    
+		<th>企业代码</th>    
+		<th>企业名称</th>
+		<th>国家代码</th>
+		<th>出口国家</th>
+		<th>流程状态</th>  
+		<th>货物名称</th>  
+		<th>出证类型</th>  
+		<th>抽中</th>   
+		
+		</tr>
+		</thead>
+		</table>
+	</div>
+</div>
+<!-- 出口产品数据 -->
+<div class="content-box-large" >
+	<div class="panel-heading">
+		<div class="panel-title">出口产品数据</div>
+		<div class="panel-options">
+		<button id="addoutproductdata" class="btn btn-primary btn-sm">
+		<i class="glyphicon glyphicon-plus"></i> 新增产品
+		</button>
+		<button id="editoutproductdata" class="btn btn-primary btn-sm">
+		<i class="glyphicon glyphicon-edit"></i> 修改产品
+		</button>
+		<button id="updateoutproductdata" class="btn btn-primary btn-sm">
+		<i class="glyphicon glyphicon-edit"></i> 更改产品抽检
+		</button>
+		<button id="deleteoutproductdata" class="btn btn-primary btn-sm">
+		<i class="glyphicon glyphicon-remove"></i> 删除产品
+		</button>
+		</div>
+	</div>
+	<div class="panel-body">
+	<table class="table table-striped table-bordered" id="outproductdataTb">
+	<thead>
+	<tr>
+	<th>id号</th>
+	<th>产品编号</th>
+	<th>企业产品名称</th>    
+	<th>报检货物</th>
+	<th>基地名称</th>
+	<th>抽检率</th>
+	<th>抽中</th>
+	<th>抽中原因</th>   
+	<th>数重量</th>
+	<th>金额</th>
+	<th>企业自编码</th>
+	</tr>
+	</thead>
+	</table>
+	</div>
+</div>
+<!-- 监测项目 -->
+<div class="content-box-large" >
+	<div class="panel-heading">
+		<div class="panel-title">检测项目</div>
+		<div class="panel-options">
+		<button id="addcontrolitem" class="btn btn-primary btn-sm">
+		<i class="glyphicon glyphicon-plus"></i> 新增项目
+		</button>
+		<button id="updatecontrolitem" class="btn btn-primary btn-sm">
+		<i class="glyphicon glyphicon-edit"></i> 更改项目抽检
+		</button>
+		<button id="creditRelease" class="btn btn-primary btn-sm">
+		<i class="glyphicon glyphicon-edit"></i> 采信放行
+		</button>
+		<button id="cancleRelease" class="btn btn-primary btn-sm">
+		<i class="glyphicon glyphicon-edit"></i> 取消放行
+		</button>
+		<button id="watchthejiheBtn" class="btn btn-primary btn-sm">
+		<i class="glyphicon glyphicon-edit"></i> 集合查看
+		</button>
+		</div>
+	</div>
+	<div class="panel-body">
+	<table class="table table-striped table-bordered" id="controlitemTb">
+	<thead>
+	<tr>
+	<th>项目代码</th>
+	<th>项目名称</th> 
+	<th>限量要求</th> 
+	<th>抽检率</th>
+	<th>抽检</th>
+	<th>检测标准</th>
+	<th>放行模式</th>
+	<th>项目来源</th>
+	<th>送检</th>
+	<th>检测结果</th>
+	<th>检测机构</th>
+	<th>项目类别</th>
+	<th>集合</th>
+	</tr>
+	</thead>
+	</table>
+	</div>
+</div>
+
+<!--查询对话框 -->
+<div id="querydeclsinglepriveDialog" class="col-sm-4 col-md-offset-4 panel-info alertForm">
+<div class="content-box-header panel-heading"> 
+<div class="panel-title ">查询报检单证</div>
+<div class="panel-options">
+<a id="querydeclsinglepriveBtn" href="#" data-rel="collapse"><i
+class="glyphicon glyphicon-search"></i>查询</a> <a id="closedeclsinglepriveDialogBtn" href="#"
+data-rel="reload"><i class="glyphicon glyphicon-remove-circle"></i>取消</a>
+</div>
+</div>
+<div class="content-box-large box-with-header">
+<form class="form-horizontal" role="form">
+<div class="form-group">
+
+<label class="col-sm-4 control-label">报检号</label>
+<div class="col-sm-7">
+<div class="input-group">
+<input type="text" id="declnodeclsingleprive" class="form-control">
+</div></div>
+</div>
+<div class="form-group">
+<label class="col-sm-4 control-label">流程状态</label>
+<div class="col-sm-6">
+<div class="input-group">
+<!-- <input type="text" id="statusdeclsingleprive" class="form-control">
+<span id="sentstatusdeclsingleprive-select" class="input-group-addon"><i class="glyphicon glyphicon-chevron-down"></i></span>
+ -->
+ <select class="form-control" id="secledted" style="width: 189%">
+         <option>待接收</option>
+         <option>已接收</option>
+</select>
+ </div></div>
+</div>
+</form></div></div>
+
+
+<!-- 转单对话框 -->
+<div id="givethesinglepriveDialog" class="col-sm-5 col-md-offset-4 panel-info alertForm">
+<div class="content-box-header panel-heading"> 
+<div class="panel-title ">转单对话框</div>
+<div class="panel-options">
+<a id="suregivethesinglepriveBtn" href="#" data-rel="collapse"><i
+class="glyphicon glyphicon-floppy-save"></i>确认</a> <a id="closegivethesinglepriveDialogBtn" href="#"
+data-rel="reload"><i class="glyphicon glyphicon-remove-circle"></i>取消</a>
+</div>
+</div>
+<div class="content-box-large box-with-header">
+<form class="form-horizontal" role="form">
+<div class="form-group">
+
+<label class="col-sm-3 control-label">报检号</label>
+<div class="col-sm-7">
+<div class="input-group col-sm-12">
+<input type="text" id="declnogivethesingleprive" class="form-control" disabled="disabled">
+</div></div>
+</div>
+<div class="form-group">
+<label class="col-sm-3 control-label">检验机构*</label>
+<div class="col-sm-7">
+<div class="input-group">
+<input type="text" id="orgcodenamegivethesingleprive" class="form-control">
+<span id="sentorgcodenamegivete-select" class="input-group-addon"><i class="glyphicon glyphicon-chevron-down"></i></span>
+</div></div>
+</div>
+<div class="form-group">
+<label class="col-sm-3 control-label">检验部门*</label>
+<div class="col-sm-7">
+<div class="input-group">
+<input type="text" id="deptcodenamegivethesingleprive" class="form-control">
+<span id="sentdeptcodenamegivethesing-select" class="input-group-addon"><i class="glyphicon glyphicon-chevron-down"></i></span>
+</div></div>
+</div>
+</form></div></div>
+
+
+
+<!-- 新增出口报检产品数据 -->
+<div id="addoutcheckproductDialog" class="col-sm-6 col-md-offset-3 panel-info alertForm">
+<div class="content-box-header panel-heading"> 
+<div class="panel-title ">出口报检产品数据</div>
+<div class="panel-options">
+<a id="saveoutcheckproductBtn" href="#" data-rel="collapse"><i
+class="glyphicon glyphicon-floppy-save"></i>保存</a> <a id="closeqoutcheckproductDialogBtn" href="#"
+data-rel="reload"><i class="glyphicon glyphicon-remove-circle"></i>取消</a>
+</div>
+</div>
+<div class="content-box-large box-with-header">
+<form class="form-horizontal" role="form">
+<div class="form-group">     
+<label class="col-sm-3 control-label">报检货物</label>
+<div class="col-sm-7">
+<div class="input-group">
+<input type="text" id="bcheckgoodnanum" class="form-control">
+<span id="bcheckgoodnanum-search" class="input-group-addon"><i
+	class="glyphicon glyphicon-search"></i></span>
+</div></div>
+</div>
+<div class="form-group">
+<label class="col-sm-3 control-label">产品编号</label>
+<div class="col-sm-7">
+<div class="input-group">
+<input type="text" id="productcodeoutcheckproduct" class="form-control" disabled="disabled">
+<span class="input-group-addon">
+<a id="sproductoutcheckproduct" href="#" data-rel="collapse">... </a></span>
+</div></div>
+</div>
+<div class="form-group">
+<label class="col-sm-3 control-label">企业自编号</label>
+<div class="col-sm-7">
+<div class="input-group col-sm-12">
+<input type="text" id="entprozijidecodema" class="form-control" disabled="disabled">
+</div></div>
+</div>
+<div class="form-group">
+<label class="col-sm-3 control-label">原料基地</label>
+<div class="col-sm-7">
+<div class="input-group">
+<input type="text" id="baseconaoutcheckpro" class="form-control">
+<span id="sbaseconaoutcheckpro-search" class="input-group-addon"><i
+	class="glyphicon glyphicon-search"></i></span>
+</div></div>
+</div>
+<div class="form-group" id="chongzhongtheprodiv">
+<div class="col-sm-3" style="margin-left:14%">
+<div>
+<label>
+<input type="checkbox" id="samplingflgoutcheckpro" />&nbsp;&nbsp;产品抽中
+</label>
+
+</div></div>
+</div>
+</form></div></div>
+
+
+<!-- 企业产品查询 -->
+<div id="entproductquerydialog" class="col-sm-4 col-md-offset-4 panel-info alertForm">
+<div class="content-box-header panel-heading"> 
+<div class="panel-title ">企业产品查询</div>
+<div class="panel-options">
+<a id="checkedqentproductqueryDialogBtn" href="#"
+data-rel="reload"><i class="glyphicon glyphicon-floppy-save "></i>选中返回</a>
+<a id="cancelentproductqueryBtn" href="#" data-rel="collapse"><i
+class="glyphicon glyphicon-remove-circle"></i>取消</a> 
+</div>
+</div>
+<div class="content-box-large box-with-header">
+<form class="form-horizontal" role="form">
+<div class="form-group">
+
+<label class="col-sm-4 control-label">企业代码</label>
+<div class="col-sm-7">
+<div class="input-group">
+<input type="text" id="entcodeentproductquery" class="form-control" disabled="disabled">
+</div></div>
+</div>
+<div class="form-group" id="theoneisnotuse">
+<label class="col-sm-4 control-label">国家代码</label>
+<div class="col-sm-7">
+<div class="input-group">
+<input type="text" id="contryentproductquery" class="form-control">
+</div></div>
+</div>
+<div class="form-group">
+<label class="col-sm-4 control-label">产品名称</label>
+<div class="col-sm-6">
+<div class="input-group">
+<input type="text" id="productentproductquery" class="form-control">
+<span class="input-group-addon">
+	<a id="queryentproductqueryBtn" href="#" data-rel="collapse">
+	查询</a></span>
+</div></div>
+</div>
+</form>
+<table class="table table-striped table-bordered" id="entproductqueryTb">
+	<thead>
+	<tr>
+	<th>产品编号</th>
+	<th>企业产品名称</th>  
+	<th>企业自编号</th>
+	</tr>
+	</thead>
+</table>
+</div></div>
+
+<!-- 新增检测项目 -->
+<div id="additemcheckedDialog" class="col-sm-4 col-md-offset-4 panel-info alertForm">
+<div class="content-box-header panel-heading"> 
+<div class="panel-title ">新增检测项目</div>
+<div class="panel-options">
+<a id="sureadditemcheckedBtn" href="#" data-rel="collapse"><i
+class="glyphicon glyphicon-floppy-save"></i>确认</a> <a id="closeadditemcheckedDialogBtn" href="#"
+data-rel="reload"><i class="glyphicon glyphicon-remove-circle"></i>取消</a>
+</div>
+</div>
+<div class="content-box-large box-with-header">
+<form class="form-horizontal" role="form">
+<div class="form-group">
+
+<label class="col-sm-3 control-label">项目*</label>
+<div class="col-sm-9">
+<div class="input-group">
+<input type="text" id="itemconaadditemchecked" class="form-control">
+<!-- <span class="input-group-addon">
+<a id="sitemnacoadditemchecked" href="#" data-rel="collapse">... </a></span> -->
+<span id="sitemnacoadditemchecked-search" class="input-group-addon"><i
+	class="glyphicon glyphicon-search"></i></span>
+</div></div>
+</div>
+<div class="form-group">
+<label class="col-sm-3 control-label">检测标准</label>
+<div class="col-sm-9 ">
+<div class="input-group col-sm-12">
+<input type="text" id="detectionstdadditemchecked" class="form-control">
+</div></div>
+</div>
+<div class="form-group">
+<label class="col-sm-3 control-label">限量类型*</label>
+<div class="col-sm-9">
+<div class="input-group">
+<input type="text" id="limittypeadditemchecked" class="form-control" disabled="disabled" >
+<span id="sentlimitypechecked-select" class="input-group-addon"><i class="glyphicon glyphicon-chevron-down"></i></span>
+</div></div>
+</div>
+<div class="form-group">
+<label class="col-sm-3 control-label">限量值*</label>
+<div class="col-sm-9">
+<div class="input-group col-sm-12">
+<input type="text" id="detectionlimitadditemchecked" class="form-control" >
+</div></div>
+</div>
+<div class="form-group">
+<label class="col-sm-3 control-label">限量单位</label>
+<div class="col-sm-9">
+<div class="input-group col-sm-12">
+<input type="text" id="limitunitadditemchecked" class="form-control" >
+</div></div>
+</div>
+</form></div></div>
+
+<!-- 新增检测项目 -->
+<div id="creditReleaseDialog" class="col-sm-5 col-md-offset-4 panel-info alertForm">
+<div class="content-box-header panel-heading"> 
+<div class="panel-title ">采信放行</div>
+<div class="panel-options">
+<a id="sureCreditRelease" href="#" data-rel="collapse"><i
+class="glyphicon glyphicon-floppy-save"></i>确认放行</a> <a id="closeCreditRelease" href="#"
+data-rel="reload"><i class="glyphicon glyphicon-remove-circle"></i>取消</a>
+</div>
+</div>
+<div class="content-box-large box-with-header">
+<form class="form-horizontal" role="form">
+<div class="form-group">
+
+<label class="col-sm-3 control-label">检测项目*</label>
+<div class="col-sm-9">
+<div class="input-group col-sm-12">
+<input type="text" id="creditem" class="form-control" disabled="disabled" >
+</div></div>
+</div>
+<div class="form-group">
+<label class="col-sm-3 control-label">第三方检测机构*</label>
+<div class="col-sm-9">
+<div class="input-group">
+<input type="text" id="credithrdorg" class="form-control" >
+<span id="credithrdorg-select" class="input-group-addon">
+      <i class="glyphicon glyphicon-chevron-down"></i></span>
+</div></div>
+</div>
+<div class="form-group">
+<label class="col-sm-3 control-label">检测结果*</label>
+<div class="col-sm-9">
+<div class="input-group col-sm-12">
+<input type="text" id="credresult" class="form-control" >
+
+</div></div>
+</div>
+<div class="form-group">
+<label class="col-sm-3 control-label">结果单位</label>
+<div class="col-sm-9">
+<div class="input-group col-sm-12">
+<input type="text" id="creiunit" class="form-control">
+</div></div>
+</div>
+</form></div></div>
+<!-- 项目名称查询 -->
+<div id="foritemnamequeryDialog" class="col-sm-5 col-md-offset-4 panel-info alertForm2">
+<div class="content-box-header panel-heading"> 
+<div class="panel-title ">项目名称查询</div>
+<div class="panel-options">
+<a id="queryforitemnamequeryBtn" href="#" data-rel="collapse"><i
+class="glyphicon glyphicon-floppy-save"></i>查询</a>
+<a id="checkedforitemnamequery" href="#" data-rel="collapse"><i
+class="glyphicon glyphicon-floppy-save"></i>选中返回</a>
+ <a id="closeqforitemnamequeryDialogBtn" href="#"
+data-rel="reload"><i class="glyphicon glyphicon-remove-circle"></i>取消</a>
+</div>
+</div>
+<div class="content-box-large box-with-header">
+<form class="form-horizontal" role="form">
+<div class="form-group">
+
+<label class="col-sm-4 control-label">项目名称</label>
+<div class="col-sm-7">
+<div class="input-group">
+<input type="text" id="itemnameforitemnamequery" class="form-control">
+</div></div>
+</div>
+<div class="form-group">
+<label class="col-sm-4 control-label">风险类别</label>
+<div class="col-sm-6">
+<div class="input-group">
+<input type="text" id="riskclassforitemnamequery" class="form-control">
+<span id="sentriskclassitemquery-select" class="input-group-addon"><i class="glyphicon glyphicon-chevron-down"></i></span>
+</div></div>
+</div>
+</form>
+<table class="table table-striped table-bordered" id="foritemnamequeryTb">
+	<thead>
+	<tr>
+	<th>代码</th>
+	<th>名称</th>  
+	</tr>
+	</thead>
+</table>
+</div></div>
+
+
+<!-- 报检数据 -->
+<div id="datafordeclDialog" class="col-md-11  panel-info alertForm2">
+	<div class="content-box-header panel-heading">
+	<div class="panel-title ">报检数据</div>
+	<div class="panel-options">
+	 <a id="closeSearchConvCtrl" href="#" data-rel="reload"><i
+	    class="glyphicon glyphicon-remove-circle"></i>关闭</a>
+	</div>
+	</div>
+	<div class="content-box-large box-with-header">
+	<form class="form-horizontal" role="form">
+	<div class="form-group">
+	<label class="col-sm-1 control-label">报检号</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="declnodatafordecl" class="form-control" /> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">报检数据采集号</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="declgetdatafordecl" class="form-control" />	
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">报检单位注册号</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="declregdatafordecl" class="form-control">	
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">报检员代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="declpersondatafordecl" class="form-control">
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">报检日期</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="decldatedatafordecl" class="form-control">	
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">企业性质代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="entpropertydatafordecl" class="form-control">	
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">发货人代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="consicodedatafordecl" class="form-control">
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">发货人名称(中文)</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="concnamedatafordecl" class="form-control">	
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">发货人名称(外文)</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="consienamedatafordecl" class="form-control">	
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">收货人代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="coneecodedatafordecl" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">收货人名称(中文)</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="coneechinanamedatafordecl" class="form-control">	
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">收货人名称(外文)</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="coneeengnamedatafordecl" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">运输方式代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="transwaycodedatafordecl" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">运输工具号码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="transmeancodedatafordecl" class="form-control">	
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">吨位</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="tonnagedatafordecl" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">贸易方式代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="trademodecodatafordecl" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">货物存放地点代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="goodplaacodeedatafordecl" class="form-control">	
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">货物存放地点</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="goodpladrdatafordecl" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">用途代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="purposedatafordecl" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">发货日期</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="despdatedatafordecl" class="form-control">	
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">到货日期</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="arridatedatafordecl" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">卸毕日期</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="unloadatedatafordecl" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">启运口岸代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="despportdatafordecl" class="form-control">	
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">到达口岸代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="arricodepordatafordecl" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">入境口岸代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="entryportdatafordecl" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">经停口岸代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="vialcodpotrdatafordecl" class="form-control">	
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">目的地代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="despladatafordecl" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">贸易国地区代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="contradecodatafordecl" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">启运国家地区代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="sendcontryaredatafordecl" class="form-control">	
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">疫情代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="situacodedatafordecl" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">疫情级别</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="sitionlevledatafordecl" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">索赔有效期</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="counterclaimdatafordecl" class="form-control">	
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">合同号</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="contractdatafordecl" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">提单号</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="carriernotedatafordecl" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">许可证号</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="liencsedatafordecl" class="form-control">	
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">审批号</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="approvedatafordecl" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">生产单位注册号</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="prodregdatafordecl" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">换证凭单编号串</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="exchanotcoddatafordecl" class="form-control">	
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">换证凭单份数</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="exhagenonumdatafordecl" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">包装性能结果单编号串</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="packcapcoddatafordecl" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">危包使用结果单编号串</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="packuseresdatafordecl" class="form-control">	
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">随附单据代码串</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="sheettypedatafordecl" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">申请单证编码串</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="certtypedatafordecl" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">申请单证正本数串</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="cretorigialdatafordecl" class="form-control">	
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">申请单证副本数串</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="cercopiesdatafordecl" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">特殊检验检疫要求</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="specialcheckdatafordecl" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">标记及号码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="marknumdatafordecl" class="form-control">	
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">是否外商投资财产</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="ifforeignvesdatafordecl" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">检验方式代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="inspcodewaydatafordecl" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">施检机构代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="insomoedjidatafordecl" class="form-control">	
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">施检部门代码1</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="tochckedeptdatafordecl" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">施检部门代码2</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="tocehckdetptwodatafordecl" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">施检部门代码3</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="tochedepthreedatafordecl" class="form-control">	
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">施检部门代码4</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="tochoekfourdatafordecl" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">施检部门代码5</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="tochoeljiefivedatafordecl" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">报检类别代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="typefordecldatafordecl" class="form-control">	
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">业务处理状态</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="statfoprocessdatafordecl" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">计收费处理状态</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="feestoatusdatafordecl" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">货物总值(美元)</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="goostolvaluedatafordecl" class="form-control">	
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">货物总值(人民币)</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="totalogoodyuandatafordecl" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">操作员代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="operatcodedatafordecl" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">操作时间</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="operateimerdatafordecl" class="form-control">	
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">统计标志</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="sControlDept" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">废旧物品标识</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="wasteflagdatafordecl" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">通关状态</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="releasestusdatafordecl" class="form-control">	
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">鉴重方式代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="checkputypeldatafordecl" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">鉴重工作方式代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="choejlswoerddatafordecl" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">机构代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="outshipintersinglmesmark" class="form-control">	
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">部门代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="orgtheojwodddatafordecl" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">目的机构代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="deptingodatafordecl" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">流向标志</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="mudididatafordecl" class="form-control">	
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">传输标志</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="liuxiangflgdatafordecl" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">预录入员</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="chuanshudatafordecl" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">预录入时间</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="yulurupeodatafordecl" class="form-control">	
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">企业报检号</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="yultiemfodatafordecl" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">口岸内地标志</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="entdecohaodatafordecl" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">修改机构代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="kouanneidiflgdatafordecl" class="form-control">	
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">修改员代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="xiugaiorgdmdatafordecl" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">更改日期</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="xugaiperodatafordecl" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">查验标志</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="updatetimeojdatafordecl" class="form-control">	
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">预录入机构代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="chayanbzflodatafordecl" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">直通式标志</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="lurupreivorcodatafordecl" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">报关口岸代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="zhitongshiflodatafordecl" class="form-control">	
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">绿色通道资格标志</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="baoguankouancodatafordecl" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">自动审单标志</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="greetongdaozigbzhdatafordecl" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">是否退运</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="zidongshendanflgdatafordecl" class="form-control">	
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">联系人</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="iftuiyongflgdatafordecl" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">电话</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="contractperosndatafordecl" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">处理标志</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="thepohonnumbdatafordecl" class="form-control">	
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">电子监管标志(快速核放标志)</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="chlililimesflgdatafordecl" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">计算核放标志</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="dianzhichuliflgdatafordecl" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">运输工具名称</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="jishuanhefangbzhdatafordecl" class="form-control">	
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">监管标志</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="yunshutooglsdatafordecl" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">电子监管抽批标志</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="jianguanbaozhidatafordecl" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">货物组批号</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="dianeleccheckcoupijjdatafordecl" class="form-control">	
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">重发标志</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="huogooddgrouphaodatafordecl" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">机构内改派单标志</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="aganinsengdflgdatafordecl" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">CIQ2000系统分单标志</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="jigouneigsenglgofldatafordecl" class="form-control">	
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">出口食品接口单证处理标识</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="xiqxitfendanbaozohidatafordecl" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	
+	</form>
+	</div>
+</div>
+
+
+<!-- 货物数据 -->
+<div id="thedateforgoodsDialog" class="col-md-11  panel-info alertForm2">
+	<div class="content-box-header panel-heading">
+	<div class="panel-title">货物数据
+	</div>
+	<div class="panel-options"style="width: 50%">
+	
+		<a id="leftforgoodsBtn" href="#" data-rel="collapse"><i
+		class="glyphicon glyphicon-chevron-left"></i></a> 
+		<a id="rightforgoodsBtn" href="#" data-rel="collapse"><i
+		class="glyphicon glyphicon-chevron-right" style="margin-left: 5%"></i></a> 
+		<a id="closethedateforgoodsBtn" href="#" data-rel="collapse"><i
+   	    class="glyphicon glyphicon-remove-circle" style="margin-left: 65%"></i>关闭</a> 
+	
+	</div>
+	</div>
+	<div class="content-box-large box-with-header">
+	<form class="form-horizontal" role="form">
+	<div class="form-group">
+	<label class="col-sm-1 control-label">货物序号</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="huoxuhaogooddthedateforgoods" class="form-control" /> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">HS编码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="hsbianmaincvodethedateforgoods" class="form-control" />
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">货物名称(中文)</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="huowuchinasenamethedateforgoods" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">生产单位注册号</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="chendandanwihaothedateforgoods" class="form-control">
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">货物名称(外文)</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="nameforeigngoddthedateforgoods" class="form-control">	
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">规格</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="guizgehaothedateforgoods" class="form-control">	
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">产地代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="orignincodethedateforgoods" class="form-control">
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">原产国代码	</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="yuanchaoguodaimathedateforgoods" class="form-control">
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">重量</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="weightzhonglithedateforgoods" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">重量单位代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="zhonglainunitcodethedateforgoods" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">标准重量</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="stadwighotthedateforgoods" class="form-control">
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">标准重量单位代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="biaozhounweunticodthedateforgoods" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">数量</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="numbersosthedateforgoods" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">数量单位代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="numbsersjounitcodthedateforgoods" class="form-control">
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">标准数量</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="stdonumbersoenthedateforgoods" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">标准数量单位代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="stanqualityunitcodthedateforgoods" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">包装件数</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="packzhuanjiannumthedateforgoods" class="form-control">
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">包装种类代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="packtypecoothedateforgoods" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">币种</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="whickbizthedateforgoods" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">汇率</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="thetranslvthedateforgoods" class="form-control">
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">单价</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="singlepricethedateforgoods" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">货物总值</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="totlehuowuuuthedateforgoods" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">货物总值(美元)</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="goodsttoledollorthedateforgoods" class="form-control">
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">货物总值(人民币)	</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="goodrmbitothedateforgoods" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">CIQ编码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="ciqbianmaciqthedateforgoods" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">检验方式代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="wayjianyanthecoodethedateforgoods" class="form-control">
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">验证条件标识</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="yanzhengtaojianflgthedateforgoods" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">废旧物品标识</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="feijuoldthingflgthedateforgoods" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">鉴重方式代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="jianzhongwaycodthedateforgoods" class="form-control">
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">鉴重工作方式代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="jianworkwaycothedateforgoods" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">疫情代码串</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="yanqingcodstrthedateforgoods" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">疫情级别串	</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="yiqlevlstrthedateforgoods" class="form-control">
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">用途代码</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="usecodyontuthedateforgoods" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<label class="col-sm-1 control-label">通报序号串</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="tongbaoxuhaostrthedateforgoods" class="form-control"> 
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">生产批号</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="shencpihaothedateforgoods" class="form-control">
+	</div>
+	</div>
+	<label class="col-sm-1 control-label">货物组批号</label>
+	<div class="col-sm-3">
+	<div class="input-group">
+	<input type="text" id="googgrouppihzuthedateforgoods" class="form-control">
+	</div>
+	</div>
+	</div>
+	
+	</form>
+	
+	</div>
+</div>
+
+
+
+
+<!-- 集合项目 -->
+<div id="lookjiheitemDialog" class="col-sm-4 col-md-offset-4 panel-info alertForm">
+<div class="content-box-header panel-heading"> 
+<div class="panel-title ">集合项目</div>
+<div class="panel-options">
+<a id="closejiheitemdialogBtn" href="#" data-rel="collapse"><i
+class="glyphicon glyphicon-remove-circle"></i>关闭</a>
+</div>
+
+</div>
+<div class="content-box-large box-with-header">
+<table class="table table-striped table-bordered" id="jiheitemlookTb">
+		<thead>
+		<tr>
+		
+		<th>项目代码</th>    
+		<th>项目名称</th>
+		</tr>
+		</thead>
+		</table>
+</div></div>
+<
+<script src="js/processReceiver.js"></script>

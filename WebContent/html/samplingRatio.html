@@ -1,0 +1,131 @@
+<head><meta charset="utf-8"></head>
+<div class="content-box-large" >
+	<div class="panel-heading">
+		<div class="panel-title">产品抽检率设置</div>
+		<div class="panel-options">
+			<button id="editsamplingrad" class="btn btn-primary btn-sm">
+			<i class="glyphicon glyphicon-edit"></i> 修改
+			</button>
+		</div>
+	</div>
+	<div class="panel-body">
+		<table class="table table-striped table-bordered" id="prosampraditoTb">
+		<thead>
+		<tr>
+		<th>抽查验放等级</th>  
+		<th>等级值</th>    
+		<th>产品抽批率下限</th>
+		<th>产品抽批率上限</th>
+		</tr>
+		</thead>
+		</table>
+	</div>
+</div>
+<!-- productSubClass talbe -->
+<div class="content-box-large" >
+	<div class="panel-heading">
+		<div class="panel-title">项目抽检率设置</div>
+		<div class="panel-options">
+		<button id="edititemcouraidot" class="btn btn-primary btn-sm">
+		<i class="glyphicon glyphicon-edit"></i> 修改
+		</button>
+		</div>
+	</div>
+	<div class="panel-body">
+	<table class="table table-striped table-bordered" id="itemsamplraidtoTb">
+	<thead>
+	<tr>
+	<th>抽查验放等级</th>
+	<th>验放等级值</th>
+	<th>项目风险等级</th>
+	<th>风险等级值</th>
+	<th>项目抽批率下限</th>
+	<th>项目抽批率上限</th>
+	</tr>
+	</thead>
+	</table>
+	</div>
+</div>
+
+<div id="editprosmdialog" class="panel-info col-md-5 col-md-offset-4 alertForm">
+<div class="content-box-header panel-heading">
+	<div class="panel-title">修改产品抽检率</div>
+		<div class="panel-options">
+		<a id="confirmprosmbtn" href="#" data-rel="collapse"><i
+		class="glyphicon glyphicon-floppy-saved"></i>确认</a> <a
+		id="closeprosmdialog" href="#" data-rel="reload"><i
+		class="glyphicon glyphicon-remove-circle"></i>取消</a>
+		</div>
+</div>
+<div class="content-box-large box-with-header">
+	<form class="form-horizontal" role="form">
+		<div class="form-group">
+		<label class="col-sm-5 control-label">抽检验放等级</label>
+		<div class="col-sm-4">
+		<div class="input-group">
+		<input type="text" id="levelDesc" class="form-control" disabled="disabled">
+		</div>   
+		</div>
+		</div>
+	<div class="form-group">
+	<label class="col-sm-5 control-label">产品抽检下限(%)</label>
+	<div class="col-sm-4">
+	<input type="text" class="form-control" id="lowerSamplingRatio">
+	</div>
+	</div>
+		<div class="form-group">
+		<label class="col-sm-5 control-label">产品抽检上限(%)</label>
+		<div class="col-sm-4">
+		<input type="text" class="form-control" id="upSamplingRatio">
+		</div>
+		</div>
+	</form>
+</div>
+</div>
+
+<div id="edititemsmdialgo"  class="panel-info col-md-5 col-md-offset-4 alertForm">
+<div class="content-box-header panel-heading">
+<div class="panel-title">修改项目抽检率</div>
+<div class="panel-options">
+<a id="confismitemb" href="#" data-rel="collapse"><i
+class="glyphicon glyphicon-floppy-saved"></i>确认</a> <a
+id="closeedititemdialgo" href="#" data-rel="reload"><i
+class="glyphicon glyphicon-remove-circle"></i>取消</a>
+</div>
+</div>
+<div class="content-box-large box-with-header">
+<form class="form-horizontal" role="form">
+<div class="form-group">
+<label class="col-sm-5 control-label">抽检验放等级</label>
+<div class="col-sm-4">
+<div class="input-group">
+<input type="text" id="chyangolevle" class="form-control" disabled="disabled"> 
+</div>
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-5 control-label">项目风险等级</label>
+<div class="col-sm-4">
+<input type="text" class="form-control" id="itemrisklevle" disabled="disabled">
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-5 control-label">产品抽检下限(%)</label>
+<div class="col-sm-4">
+<input type="text" class="form-control" id="procoujianlower">
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-5 control-label">产品抽检上限(%)</label>
+<div class="col-sm-4">
+<input type="text" class="form-control" id="prochojupdg">
+</div>
+</div>
+</form>
+</div>
+</div>
+
+
+
+
+<script src="js/samplingRatio.js"></script>

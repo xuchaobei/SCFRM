@@ -1,0 +1,155 @@
+<head><meta charset="utf-8"></head>
+<div class="content-box-large">
+<div class="panel-heading">
+<div class="panel-title">基地管理</div>
+<div class="panel-options">
+<button id="search1" class="btn btn-primary btn-sm">
+<i class="glyphicon glyphicon-search"></i> 查询
+</button>
+<button id="add1" class="btn btn-primary btn-sm">
+<i class="glyphicon glyphicon-plus"></i> 新增
+</button>
+<button id="edit1" class="btn btn-primary btn-sm">
+<i class="glyphicon glyphicon-edit"></i> 修改
+</button>
+<button id="delete1" class="btn btn-primary btn-sm">
+<i class="glyphicon glyphicon-remove"></i> 删除
+</button>
+</div>
+</div>
+<div class="panel-body">
+<table class="table table-striped table-bordered" id="table1">
+<thead>
+<tr>
+<th>ID</th>
+<th>基地备案号</th>
+<th>基地名称</th>
+<th>地址</th>
+<th>分类等级</th>
+<th>评价分值</th>
+<th>基地面积</th>
+<th>种养殖品种</th>
+<th>所属机构</th>
+</tr>
+</thead>
+</table>
+</div>
+</div>
+<div id="table1Search"
+class="panel-info col-md-4 col-md-offset-4 alertForm">
+<div class="content-box-header panel-heading">
+<div class="panel-title">原料基地查询</div>
+<div class="panel-options">
+<a id="searchTable1" href="#" data-rel="collapse"><i
+class="glyphicon glyphicon-floppy-saved"></i>查询</a> <a
+id="closeTable1Search" href="#" data-rel="reload"><i
+class="glyphicon glyphicon-remove-circle"></i>取消</a>
+</div>
+</div>
+<div class="content-box-large box-with-header">
+<form class="form-horizontal" role="form">
+<div class="form-group">
+<label class="col-sm-4 control-label">基地备案号</label>
+<div class="col-sm-8">
+<input type="text" id="rBaseCode" class="form-control">
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-4 control-label">基地名称</label>
+<div class="col-sm-8">
+<input type="text" id="rBaseName" class="form-control">
+</div>
+</div>
+</form>
+</div>
+</div>
+<div id="table1Save"
+class="col-md-8 col-md-offset-2 panel-info alertForm">
+<div class="content-box-header panel-heading">
+<div class="panel-title">原料基地</div>
+<div class="panel-options">
+<a id="saveTable1" href="#" data-rel="collapse"><i
+class="glyphicon glyphicon-floppy-saved"></i>保存</a> <a
+id="closeTable1Save" href="#" data-rel="reload"><i
+class="glyphicon glyphicon-remove-circle"></i>取消</a>
+</div>
+</div>
+<div class="content-box-large box-with-header">
+<form class="form-horizontal" role="form">
+<div class="form-group">
+<label class="col-sm-2 control-label">基地备案号*</label>
+<div class="col-sm-4">
+<input type="text" id="sBaseCode" class="form-control" />
+</div>
+<label class="col-sm-2 control-label">基地名称*</label>
+<div class="col-sm-4">
+<input type="text" id="sBaseName" class="form-control" />
+</div>
+</div>
+
+<div class="form-group">
+<label class="col-sm-2 control-label">评价分值*</label>
+<div class="col-sm-4">
+<input type="text" id="sBaseEvl" class="form-control" />
+</div>
+
+<label class="col-sm-2 control-label">地址</label>
+<div class="col-sm-4">
+<input type="text" id="sAddress" class="form-control" />
+</div>
+</div>
+
+<div class="form-group">
+<label class="col-sm-2 control-label">种养殖品种</label>
+<div class="col-sm-4">
+<input type="text" id="sPlantKind" class="form-control" />
+</div>
+<label class="col-sm-2 control-label">备注</label>
+<div class="col-sm-4">
+<div class="input-group col-sm-12">
+<input type="text" id="sRemarks" class="form-control" />
+</div>
+</div>
+</div>
+
+<div class="form-group">
+<label class="col-sm-2 control-label">基地面积</label>
+<div class="col-sm-4">
+<input type="text" id="sArea" class="form-control" />
+</div>
+<label class="col-sm-2 control-label">所属企业</label>
+<div class="col-sm-4">
+<input type="text" id="sEntName" class="form-control" />
+</div>
+</div>
+
+<div class="form-group">
+<label class="col-sm-2 control-label">备案时间</label>
+<div class="col-sm-4">
+<div class="input-group col-sm-12">
+<div class="bfh-datepicker" id="sRegDate"
+data-format="y-m-d" data-date="today"></div>
+</div>
+</div>
+<label class="col-sm-2 control-label">所属机构</label>
+<div class="col-sm-4">
+<div class="input-group">
+<input type="text" id="sOrg" class="form-control"> <span
+id="sOrg-select" class="input-group-addon"><i
+class="glyphicon glyphicon-chevron-down"></i></span>
+</div>
+</div>
+</div>
+
+<!-- <div class="form-group">
+<label class="col-sm-2 control-label">备注</label>
+<div class="col-sm-10">
+<input type="text" id="sRemarks" class="form-control" />
+</div>
+</div> -->
+
+</form>
+</div>
+</div>
+<script src="js/BaseMng.js"></script>
+<script src="vendors/form-helpers/js/bootstrap-formhelpers.js"></script>

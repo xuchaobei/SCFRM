@@ -1,0 +1,229 @@
+<head><meta charset="utf-8"></head>
+<div class="content-box-large" >
+	<div class="panel-heading">
+		<div class="panel-title">报检数据</div>
+		<div class="panel-options">
+			<button id="querydecldata" class="btn btn-primary btn-sm">
+			<i class="glyphicon glyphicon-search"></i> 查询
+			</button>
+			<button id="receiverconcledecldata" class="btn btn-primary btn-sm">
+			<i class="glyphicon glyphicon-edit"></i> 接单撤销
+			</button>
+			<button id="givedecldata" class="btn btn-primary btn-sm">
+			<i class="glyphicon glyphicon-edit"></i> 评定确定
+			</button>
+			<button id="receivesuredecldata" class="btn btn-primary btn-sm">
+			<i class="glyphicon glyphicon-plus"></i> 打印标签
+			</button>
+			<button id="receiverconcledecldata" class="btn btn-primary btn-sm" >
+			<i class="glyphicon glyphicon-edit"></i> 读取检测报告
+			</button>
+		</div>
+	</div>
+	
+	<div class="panel-body">
+		<table class="table table-striped table-bordered" id="decldataTb">
+		<thead>
+		<tr>
+		<th>报检号</th>  
+		<th>报检日期</th>    
+		<th>企业代码</th>    
+		<th>企业名称</th>
+		<th>国家代码</th>
+		<th>出口国家</th>
+		<th>流程状态</th>  
+		<th>货物名称</th>  
+		<th>出证类型</th>  
+		<th>抽中</th>   
+		
+		</tr>
+		</thead>
+		</table>
+	</div>
+</div>
+
+<!-- 出口产品数据 -->
+<div class="content-box-large" >
+	<div class="panel-heading">
+		<div class="panel-title">出口产品数据</div>
+		<div class="panel-options">
+		<!-- <button id="addoutproductdata" class="btn btn-primary btn-sm">
+		<i class="glyphicon glyphicon-plus"></i> 保存
+		</button> -->
+		</div>
+	</div>
+	<div class="panel-body">
+	<table class="table table-striped table-bordered" id="outproductdataTb">
+	<thead>
+	<tr>
+	<th>id号</th>
+	<th>产品编号</th>
+	<th>企业产品名称</th>
+	<th>基地代码</th>
+	<th>基地名称</th>
+	<th>抽检率</th>
+	<th>抽中</th>
+	<th>现场查验合格性</th>
+	<th>标签合格性</th>
+	<th></th>
+	<th></th>
+	</tr>
+	</thead>
+	</table>
+	</div>
+</div>
+
+<!-- 报验数据 -->
+<div class="content-box-large" >
+	<div class="panel-heading">
+		<div class="panel-title">报验数据</div>
+		<div class="panel-options">
+		</div>
+	</div>
+	<div class="panel-body">
+	<table class="table table-striped table-bordered" id="baoyandataTb">
+	<thead>
+	<tr>
+	<th>LMIS报验号</th>
+	<th>送检机构</th>
+	<th>送检部门</th>
+	<th>送检人</th>
+	<th>送检时间</th>
+	<th>送检样品名称</th>
+	</tr>
+	</thead>
+	</table>
+	</div>
+</div>
+<!-- 样品项目数据 -->
+<div class="content-box-large" >
+	<div class="panel-heading">
+		<div class="panel-title">样品项目数据</div>
+		<div class="panel-options">
+		<button id="addxiangmuyanpdata" class="btn btn-primary btn-sm">
+		<i class="glyphicon glyphicon-plus"></i> 保存
+		</button>
+		<button id="allsaveotwo" class="btn btn-primary btn-sm">
+		<i class="glyphicon glyphicon-plus"></i> 全保存
+		</button>
+		</div>
+	</div>
+	<div class="panel-body">
+	<table class="table table-striped table-bordered" id="yangpingitemTb">
+	<thead>
+	<tr>
+	<th>id</th>
+	<th>LMIS报验号</th>
+	<th>LMIS样品号</th>
+	<th>样品ID</th>
+	<th>样品名称</th>
+	<th>项目代码</th>
+	<th>项目名称</th>
+	<th>限量要求</th>
+	<th>送检</th>
+	<th>接口</th>
+	<th>放行模式</th>
+	<th>检测机构</th>
+	<th>检测结果</th>
+	<th>结果单位</th> 
+	<th>合格性</th>
+	<th>作废</th>
+	<th></th>
+	
+	</tr>
+	</thead>
+	</table>
+	</div>
+</div>
+
+
+<!--查询对话框 -->
+<div id="querydeclsinglepriveDialog" class="col-sm-4 col-md-offset-4 panel-info alertForm">
+<div class="content-box-header panel-heading"> 
+<div class="panel-title ">单证查询</div>
+<div class="panel-options">
+<a id="querydeclsinglepriveBtn" href="#" data-rel="collapse"><i
+class="glyphicon glyphicon-search"></i>查询</a> <a id="closedeclsinglepriveDialogBtn" href="#"
+data-rel="reload"><i class="glyphicon glyphicon-remove-circle"></i>取消</a>
+</div>
+</div>
+<div class="content-box-large box-with-header">
+<form class="form-horizontal" role="form">
+<div class="form-group">
+
+<label class="col-sm-4 control-label">报检号</label>
+<div class="col-sm-7">
+<div class="input-group">
+<input type="text" id="declnodeclsingleprive" class="form-control">
+</div></div>
+</div>
+<div class="form-group">
+<label class="col-sm-4 control-label">流程</label>
+<div class="col-sm-6">
+<div class="input-group">
+<!-- <input type="text" id="statusdeclsingleprive" class="form-control">
+<span id="sentstatusdeclsingleprive-select" class="input-group-addon"><i class="glyphicon glyphicon-chevron-down"></i></span>
+ -->
+ <select class="form-control" id="secledted" style="width: 189%">
+         <option>待评定</option>
+         <option>已评定</option>
+</select>
+ </div></div>
+</div>
+</form></div></div>
+
+<!--查询对话框 -->
+<div id="multdeptstransDialog" class="col-sm-4 col-md-offset-4 panel-info alertForm">
+<div class="content-box-header panel-heading"> 
+<div class="panel-title ">多部门联合检验转单</div>
+<div class="panel-options">
+<a id="suretrans" href="#" data-rel="collapse"><i
+class="glyphicon glyphicon-search"></i>转单确认</a> <a id="closemultqDialog" href="#"
+data-rel="reload"><i class="glyphicon glyphicon-remove-circle"></i>取消</a>
+</div>
+</div>
+<div class="content-box-large box-with-header">
+<form class="form-horizontal" role="form">
+<div class="form-group">
+
+<label class="col-sm-4 control-label">报检号*</label>
+<div class="col-sm-7">
+<div class="input-group">
+<input type="text" id="multdecl" class="form-control" disabled="disabled">
+</div></div>
+</div>
+<div class="form-group">
+
+<label class="col-sm-4 control-label">转入机构*</label>
+<div class="col-sm-7">
+<div class="input-group">
+<input type="text" id="multinsporg" class="form-control" disabled="disabled">
+</div></div>
+</div>
+<div class="form-group">
+
+<label class="col-sm-4 control-label">转入部门*</label>
+<div class="col-sm-7">
+<div class="input-group">
+<input type="text" id="multdept" class="form-control" disabled="disabled">
+</div></div>
+</div>
+<div class="form-group">
+
+<label class="col-sm-4 control-label">检验员*</label>
+<div class="col-sm-7">
+<div class="input-group">
+<input type="text" id="multoperate" class="form-control">
+<span id="multoperate-select" class="input-group-addon"><i
+class="glyphicon glyphicon-chevron-down"></i></span>
+</div></div>
+</div>
+
+</form></div></div>
+
+<!-- 打印插件 -->
+<object classid="clsid:A5363F77-1B3A-3E9F-9F2B-D186787283AC" id="Pr" name="Pr" codebase="setup.exe" style="display:none" ></object>
+<p id="testReport" style="display:none;"><a href="" target="_blank"></a></p>
+
+
+<script src="js/qualifyevalue.js"></script>

@@ -1,0 +1,97 @@
+<head><meta charset="utf-8"></head>
+<div class="content-box-large" >
+	<div class="panel-heading">
+		<div class="panel-title">角色管理</div>
+		<div class="panel-options">
+			
+			<button id="addrole" class="btn btn-primary btn-sm">
+			<i class="glyphicon glyphicon-plus"></i> 新增
+			</button>
+			<button id="editrole" class="btn btn-primary btn-sm">
+			<i class="glyphicon glyphicon-edit"></i> 修改
+			</button>
+			<button id="deleterole" class="btn btn-primary btn-sm">
+			<i class="glyphicon glyphicon-remove"></i> 删除
+			</button>
+		
+		</div>
+	</div>
+	<div class="panel-body">
+		<table class="table table-striped table-bordered" id="roleTb">
+		<thead>
+		<tr>
+		<th>角色ID</th>       
+		<th>角色代码</th>
+		<th>角色名称</th>
+		<th>数据范围</th>
+		<th>操作等级</th>
+		</tr>
+		</thead>
+		</table>
+	</div>
+</div>
+
+<!-- addrole -->
+<div id="addRoleDialog" class="col-sm-6 col-md-offset-4 panel-info alertForm" style="height: 61%;margin-top: -6%">
+<div class="content-box-header panel-heading"> 
+<div class="panel-title ">新增角色</div>
+<div class="panel-options">
+<a id="saverole" href="#" data-rel="collapse"><i
+class="glyphicon glyphicon-floppy-save"></i>保存</a> <a id="closeDialogBtn" href="#"
+data-rel="reload"><i class="glyphicon glyphicon-remove-circle"></i>取消</a>
+</div>
+</div>
+<div class="content-box-large box-with-header" style="height: 143%">
+<form class="form-horizontal" role="form">
+<div class="form-group">
+
+<label class="col-sm-3 control-label">角色代码*</label>
+<div class="col-sm-6">
+<div class="input-group">
+<input type="text" id="arolecode" class="form-control">
+</div></div>
+</div>
+<div class="form-group">
+
+<label class="col-sm-3 control-label">角色名称*</label>
+<div class="col-sm-6">
+<div class="input-group">
+<input type="text" id="arolename" class="form-control">
+</div></div>
+</div>
+<div class="form-group">
+
+<label class="col-sm-3 control-label">操作等级*</label>
+<div class="col-sm-6">
+<div class="input-group">
+<input type="text" id="aoperatLevel" class="form-control">
+</div></div>
+</div>
+<div class="form-group">
+
+<label class="col-sm-3 control-label">数据范围*</label>
+<div class="col-sm-6">
+<div class="input-group" style="margin-top: 3%">
+<input type="radio" id="radept" name="radioo">本部门&nbsp;&nbsp;
+<input type="radio" id="raorg" name="radioo">本机构&nbsp;&nbsp;
+<input type="radio" id="ratotel" name="radioo">全局
+</div></div>
+</div>
+</form>
+<div id="setsleft" style="width: 94%;height: 63%;float: left; border: 1px solid #F00;" >
+			  				<div id="setsleftlist" style="width: 84%;height: 100%">
+			                      <div id="setsleftlisttop" style="width: 83%;height: 100%;overflow: scroll;background-color:#E3F7F7">
+			                           <table id="setsleftlistall" style="font-size:12px;border: 1;" width="74%" border="0" cellspacing="0" cellpadding="0">
+			                            
+			                                  <thead>
+			                                        
+			                                  </thead>
+			                           </table>
+			                      </div>
+			                         
+			                 </div>
+</div> 
+</div></div>
+
+
+<script src="js/roleManage.js"></script>          

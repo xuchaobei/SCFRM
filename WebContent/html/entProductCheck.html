@@ -1,0 +1,553 @@
+<head><meta charset="utf-8"></head>
+<div class="content-box-large" >
+	<div class="panel-heading">
+		<div class="panel-title">企业端输入的企业产品</div>
+		<div class="panel-options">
+			<button id="queryentproductCheck" class="btn btn-primary btn-sm">
+			<i class="glyphicon glyphicon-search"></i> 查询
+			</button>
+			<button id="getentproductCheck" class="btn btn-primary btn-sm">
+			<i class="glyphicon glyphicon-plus"></i> 详细数据
+			</button>
+		</div>
+	</div>
+	<div class="panel-body">
+		<table class="table table-striped table-bordered" id="entproductCheckTb">
+		<thead>
+		<tr>
+		<th>ID号</th>  
+		<th>企业代码</th>    
+		<th>企业名称</th>
+		<th>企业产品名称</th>    
+		<th>企业产品自编号</th>
+		<th>状态</th>    
+		<th>申报时间</th>
+		<th>备注</th>    
+		<th>产品编号</th>
+		</tr>
+		</thead>
+		</table>
+	</div>
+</div>
+
+<!-- queryentproductCheckDialog -->
+<div id="queryentproductCheckDialog" class="col-sm-4 col-md-offset-4 panel-info alertForm">
+<div class="content-box-header panel-heading"> 
+<div class="panel-title ">企业产品查询</div>
+<div class="panel-options">
+<a id="queryentproductCheckBtn" href="#" data-rel="collapse"><i
+class="glyphicon glyphicon-search"></i>查询</a> <a id="closequeryentproductCheckDialogBtn" href="#"
+data-rel="reload"><i class="glyphicon glyphicon-remove-circle"></i>取消</a>
+</div>
+</div>
+<div class="content-box-large box-with-header">
+<form class="form-horizontal" role="form">
+<div class="form-group">
+
+<label class="col-sm-4 control-label">企业名称</label>
+<div class="col-sm-7">
+<div class="input-group col-sm-12">
+<input type="text" id="entproductCheckentName" class="form-control">
+</div></div>
+</div>
+<div class="form-group">
+<label class="col-sm-4 control-label">企业产品名称</label>
+<div class="col-sm-7">
+<div class="input-group col-sm-12">
+<input type="text" id="entproductCheckentproductName" class="form-control">
+</div></div>
+</div>
+<div class="form-group">
+<label class="col-sm-4 control-label">状态</label>
+<div class="col-sm-7">
+<div class="input-group">
+<input type="text" id="entproductCheckstaus" class="form-control">
+<span id="sentproductstaus-select" class="input-group-addon"><i class="glyphicon glyphicon-chevron-down"></i></span>
+</div></div>
+</div>
+</form></div></div>
+
+
+<!-- checkprogressingentproductCheckDialog -->
+<div id="checkprogressingDialog" class="col-sm-5 col-md-offset-4 panel-info alertForm">
+<div class="content-box-header panel-heading"> 
+<div class="panel-title ">新生成产品编号</div>
+<div class="panel-options">
+<a id="checkprogressingBtn" href="#" data-rel="collapse"><i
+class="glyphicon glyphicon-floppy-save"></i>确认</a> <a id="closecheckprogressingDialogBtn" href="#"
+data-rel="reload"><i class="glyphicon glyphicon-remove-circle"></i>取消</a>
+</div>
+</div>
+<div class="content-box-large box-with-header">
+<form class="form-horizontal" role="form">
+<div class="form-group">
+
+<label class="col-sm-4 control-label">新生成的产品编号</label>
+<div class="col-sm-7">
+<div class="input-group col-sm-12">
+<input type="text" id="newgetproductcode" class="form-control" disabled="disabled">
+</div></div>
+</div>
+<div class="form-group">
+<label class="col-sm-4 control-label">产品名称</label>
+<div class="col-sm-7">
+<div class="input-group col-sm-12">
+<input type="text" id="checkprogressingproname" class="form-control" >
+</div></div>
+</div></form></div></div>
+
+
+
+<!-- registerentproductCheckDialog -->
+<div id="continuecheckproductDialog" class="col-sm-10 col-md-offset-1 panel-info alertForm2">
+<div class="content-box-header panel-heading"> 
+<div class="panel-title ">系统中已有的产品</div>
+<div class="panel-options">
+<a id="surenewproduct" href="#" data-rel="collapse">
+     <i class="glyphicon glyphicon-floppy-save"></i>新产品</a> 
+<a id="hadoweproduct" href="#" data-rel="reload">
+     <i class="glyphicon glyphicon-floppy-save"></i>已有产品</a>
+<a id="compareproducts" href="#" data-rel="collapse">
+     <i class="glyphicon glyphicon-floppy-save"></i>产品数据比对</a> 
+<a id="closecontinuecheckproDialog" href="#" data-rel="reload">
+     <i class="glyphicon glyphicon-remove-circle"></i>取消</a>
+</div>
+</div>
+<div class="content-box-large box-with-header">
+  <table class="table table-striped table-bordered" id="continuecheckproductTb">
+			<thead>
+			<tr>
+			<th>id</th>    
+			<th>产品编号</th>
+			<th>产品名称</th>    
+			</tr>
+			</thead>
+		</table>
+</div></div>
+
+
+
+
+
+<!-- registerentproductCheckDialog -->
+<div id="registerentproductCheckDialog" class="col-sm-5 col-md-offset-4 panel-info alertForm">
+<div class="content-box-header panel-heading"> 
+<div class="panel-title ">输入驳回理由</div>
+<div class="panel-options">
+<a id="registerentproductCheckBtn" href="#" data-rel="collapse"><i
+class="glyphicon glyphicon-floppy-save"></i>确认</a> <a id="closeregisterentproductCheckDialogBtn" href="#"
+data-rel="reload"><i class="glyphicon glyphicon-remove-circle"></i>取消</a>
+</div>
+</div>
+<div class="content-box-large box-with-header">
+<textarea class="form-control" rows="8" id="rejectreasonbad"></textarea>
+</div></div>
+
+
+
+
+<!-- addentproductCheckDialog -->
+<div id="entproductInputDetailDataDialog" class="col-sm-11  panel-info alertForm2">
+<div class="content-box-header panel-heading"> 
+<div class="panel-title ">企业填写的企业产品详细数据</div>
+<div class="panel-options">
+<a id="checkentproductInputDetailDataBtn" href="#" data-rel="collapse"><i
+    class="glyphicon glyphicon-floppy-save"></i>审核</a> 
+<a id="regtentproductInputDetailDataBtn" href="#"
+    data-rel="reload"><i class="glyphicon glyphicon-floppy-save"></i>驳回</a>
+<a id="backentproductInputDetailDataBtn" href="#" data-rel="collapse"><i
+    class="glyphicon glyphicon-remove-circle"></i>返回</a>
+</div>
+</div>
+<div class="content-box-large box-with-header">
+<form class="form-horizontal" role="form">
+<div class="form-group">
+
+<label class="col-sm-1 control-label">ID号</label>
+<div class="col-sm-3">
+<div class="input-group col-sm-12">
+<input type="text" id="entproInputid" class="form-control">
+</div></div>
+<label class="col-sm-1 control-label">企业代码</label>
+<div class="col-sm-3">
+<div class="input-group col-sm-12">
+<input type="text" id="entproInputentcode" class="form-control">
+</div></div>
+<label class="col-sm-1 control-label">企业名称</label>
+<div class="col-sm-3">
+<div class="input-group col-sm-12">
+<input type="text" id="entproInputentname" class="form-control">
+</div></div>
+
+</div>
+
+<div class="form-group">
+<label class="col-sm-1 control-label">产品自编号</label>
+<div class="col-sm-3">
+<div class="input-group col-sm-12">
+<input type="text" id="entproInputentprocode" class="form-control">
+<!-- <span id="scomeinspOrg-select" class="input-group-addon"><i class="glyphicon glyphicon-chevron-down"></i></span> -->
+</div></div>
+<label class="col-sm-1 control-label">产品名称</label>
+<div class="col-sm-3">
+<div class="input-group col-sm-12">
+<input type="text" id="entproInputentproname" class="form-control">
+<!-- <span id="sriskcontrolMeasu-select" class="input-group-addon"><i class="glyphicon glyphicon-chevron-down"></i></span> -->
+</div></div>
+<label class="col-sm-1 control-label">状态</label>
+<div class="col-sm-3">
+<div class="input-group col-sm-12">
+<input type="text" id="entproInputentstatus" class="form-control">
+<!-- <span id="sspemanagerequire-select" class="input-group-addon"><i class="glyphicon glyphicon-chevron-down"></i></span> -->
+</div></div>
+</div>
+
+<div class="form-group">
+<label class="col-sm-1 control-label">产品大类</label>
+<div class="col-sm-3">
+<div class="input-group col-sm-12">
+<input type="text" id="entproInputproclass" class="form-control">
+</div></div>
+<label class="col-sm-1 control-label">产品小类</label>
+<div class="col-sm-3">
+<div class="input-group col-sm-12">
+<input type="text" id="entproInputprosubclass" class="form-control">
+</div></div>
+<label class="col-sm-1 control-label">加工方式</label>
+<div class="col-sm-3">
+<div class="input-group col-sm-12">
+<input type="text" id="entproInputprocemethod" class="form-control">
+</div></div>
+</div>
+
+<div class="form-group">
+<label class="col-sm-1 control-label">包装类型</label>
+<div class="col-sm-3">
+<div class="input-group col-sm-12">
+<input type="text" id="entproInputpacktype" class="form-control">
+</div></div>
+<label class="col-sm-1 control-label">预期用途</label>
+<div class="col-sm-3">
+<div class="input-group col-sm-12">
+<input type="text" id="entproInputintenduse" class="form-control">
+</div></div>
+<label class="col-sm-1 control-label">加工程度</label>
+<div class="col-sm-3">
+<div class="input-group col-sm-12">
+<input type="text" id="entproInputprodegree" class="form-control">
+</div></div>
+</div>
+
+<div class="form-group">
+<label class="col-sm-1 control-label">储存条件</label>
+<div class="col-sm-3">
+<div class="input-group col-sm-12">
+<input type="text" id="entproInputstoragecondi" class="form-control">
+</div></div>
+<label class="col-sm-1 control-label">备注</label>
+<div class="col-sm-3">
+<div class="input-group col-sm-12">
+<input type="text" id="entproInputentremarks" class="form-control">
+</div></div>
+<label class="col-sm-1 control-label">申报时间</label>
+<div class="col-sm-3">
+<div class="input-group col-sm-12">
+<input type="text" id="entproInputappdatetime" class="form-control">
+</div></div>
+</div>
+<div class="form-group">
+<label class="col-sm-1 control-label">审核部门</label>
+<div class="col-sm-3">
+<div class="input-group col-sm-12">
+<input type="text" id="entproInputcheckorg" class="form-control">
+</div></div>
+<label class="col-sm-1 control-label">审核时间</label>
+<div class="col-sm-3">
+<div class="input-group col-sm-12">
+<input type="text" id="entproInputcheckdate" class="form-control">
+</div></div>
+<label class="col-sm-1 control-label">退回原因</label>
+<div class="col-sm-3">
+<div class="input-group col-sm-12">
+<input type="text" id="entproInputrefusereason" class="form-control">
+</div></div>
+</div>
+<div class="form-group">
+<label class="col-sm-1 control-label">产品编号</label>  
+<div class="col-sm-3">
+<div class="input-group col-sm-12">
+<input type="text" id="entproInputproductcode" class="form-control">
+</div></div>
+<label class="col-sm-1 control-label">编号名称</label>
+<div class="col-sm-3">
+<div class="input-group col-sm-12">
+<input type="text" id="entproInputproductname" class="form-control">
+</div></div>
+</div></form>
+
+<!-- //// -->
+<div>
+<ul id="myTab" class="nav nav-tabs">
+   <li class="active">
+       <a href="#materisource" data-toggle="tab">原料</a>
+   </li>
+   <li>
+   	   <a href="#accessorysource" data-toggle="tab">辅料</a>
+   </li>
+   <li>
+   	   <a href="#addtiveth" data-toggle="tab">添加剂</a>
+   </li>
+  
+</ul>
+<div id="myTabContent" class="tab-content">
+   <div class="tab-pane  in active" id="materisource">
+        <table class="table table-striped table-bordered" id="newmaterisourceTb">
+			<thead>
+			<tr>
+			<th>原料大类</th>    
+			<th>原料小类</th>
+			<th>原料细类</th>    
+			<th>原料来源</th>
+			<th>主原料</th>    
+			</tr>
+			</thead>
+		</table>
+     
+   </div>
+   <div class="tab-pane fade" id="accessorysource">
+	      <table class="table table-striped table-bordered" id="newacessorysTb">
+				<thead>
+				<tr>
+				<th>辅料名称</th>    
+				<th>用途</th>
+				<th>使用环节</th>    
+				</tr>
+				</thead>
+			</table>
+   </div>
+   <div class="tab-pane fade" id="addtiveth">
+	      <table class="table table-striped table-bordered" id="newaddtivetionTb">
+					<thead>
+					<tr>
+					<th>添加剂</th>
+					<th>用途</th>    
+					<th>使用环节</th>
+					<th>使用量</th>    
+					</tr>
+					</thead>
+		   </table>
+   </div>
+   
+</div>
+</div>
+<!-- /// -->
+
+</div>
+</div> 
+
+
+<div id="compareproductDataDialog" class="col-sm-12 col-md-offset-0 panel-info alertForm2">
+<div class="content-box-header panel-heading col-sm-12"> 
+<div class="panel-title ">产品数据比对</div>
+<div class="panel-options">
+<a id="backompareproductDataaBtn" href="#" data-rel="collapse"><i
+    class="glyphicon glyphicon-floppy-save"></i>返回</a>
+</div>
+</div>
+<div class="content-box-large box-with-header col-sm-12">
+<div  style="width: 49%;height: 100%;float: left;">已审产品详细数据
+<form class="form-horizontal" role="form">
+<div class="form-group">
+<label class="col-sm-2 control-label">产品编号</label>
+<div class="col-sm-3">
+<div class="input-group">
+<input type="text" id="comparedialogprocode" class="form-control"> 
+</div></div>
+<label class="col-sm-2 control-label">产品名称</label>
+<div class="col-sm-3">
+<div class="input-group">
+<input type="text" id="comparedialogproname" class="form-control">
+</div></div>
+</div>
+
+<div class="form-group">
+<label class="col-sm-2 control-label">产品大类</label>
+<div class="col-sm-3">
+<div class="input-group">
+<input type="text" id="comparedialogprobigclass" class="form-control">
+
+</div></div>
+<label class="col-sm-2 control-label">产品小类</label>
+<div class="col-sm-3">
+<div class="input-group">
+<input type="text" id="comparedialogprosmalclass" class="form-control">
+
+</div></div>
+</div>
+
+<div class="form-group">
+<label class="col-sm-2 control-label">加工方式</label>
+<div class="col-sm-3">
+<div class="input-group">
+<input type="text" id="comparedialogprogway" class="form-control">
+</div></div>
+<label class="col-sm-2 control-label">包装类型</label>
+<div class="col-sm-3">
+<div class="input-group">
+<input type="text" id="comparedialogpropackway" class="form-control">
+</div></div>
+</div>
+
+<div class="form-group">
+<label class="col-sm-2 control-label">预期用途</label>
+<div class="col-sm-3">
+<div class="input-group">
+<input type="text" id="comparedialogintenduse" class="form-control">
+</div></div>
+<label class="col-sm-2 control-label">审核时间</label>
+<div class="col-sm-3">
+<div class="input-group">
+<input type="text" id="comparedialogcheckdates" class="form-control">
+</div></div>
+</div>
+
+
+<div class="form-group">
+<label class="col-sm-2 control-label">审核部门</label>
+<div class="col-sm-3">
+<div class="input-group">
+<input type="text" id="comparedialogcheckdeptment" class="form-control">
+</div></div>
+</div></form>
+<div>
+<ul id="mycodetailTab" class="nav nav-tabs">
+   <li class="active">
+       <a href="#comparedialogmatedata" data-toggle="tab">原料数据</a>
+   </li>
+  
+</ul>
+<div id="comdetailTabContent" class="tab-content">
+   <div class="tab-pane  in active" id="comparedialogmatedata">
+        <table class="table table-striped table-bordered" id="comparedetaildataTb">
+			<thead>
+			<tr>
+			<th>原料大类</th>    
+			<th>原料小类</th>
+			<th>原料细类</th>    
+			<th>原料来源</th>
+			<th>主原料</th>    
+			</tr>
+			</thead>
+		</table>
+     
+   </div>  
+</div>
+</div>
+</div> 
+<div style="width: 1%;height: 309px;float: left;background-color: #EDEADA"></div> 
+<div style="width: 49%;height: 100%;float: left;">被审产品详细数据
+
+<form class="form-horizontal" role="form">   
+<div class="form-group">
+<label class="col-sm-2 control-label">企业自编号</label>   
+<div class="col-sm-3">
+<div class="input-group">
+<input type="text" id="copdiaentselfcode" class="form-control">
+</div></div>
+<label class="col-sm-2 control-label">产品名称</label>
+<div class="col-sm-3">
+<div class="input-group">
+<input type="text" id="copdiaproname" class="form-control">
+</div></div>
+</div>
+
+<div class="form-group">
+<label class="col-sm-2 control-label">产品大类</label>
+<div class="col-sm-3">
+<div class="input-group">
+<input type="text" id="copdiaproclas" class="form-control">
+
+</div></div>
+<label class="col-sm-2 control-label">产品小类</label>
+<div class="col-sm-3">
+<div class="input-group">
+<input type="text" id="copdiaprosubcls" class="form-control">
+
+</div></div>
+</div>
+
+<div class="form-group">
+<label class="col-sm-2 control-label">加工方式</label>
+<div class="col-sm-3">
+<div class="input-group">
+<input type="text" id="copdiaprgway" class="form-control">
+</div></div>
+<label class="col-sm-2 control-label">包装类型</label>
+<div class="col-sm-3">
+<div class="input-group">
+<input type="text" id="copdiapackway" class="form-control">
+</div></div>
+</div>
+
+<div class="form-group">
+<label class="col-sm-2 control-label">预期用途</label>
+<div class="col-sm-3">
+<div class="input-group">
+<input type="text" id="copdiaintenuse" class="form-control">
+</div></div>
+<label class="col-sm-2 control-label">申报时间</label>
+<div class="col-sm-3">
+<div class="input-group">
+<input type="text" id="copdiaforchecktime" class="form-control">
+</div></div>
+</div>
+
+
+
+
+</form>
+<div style="margin-top: 16%">
+<ul id="mybecheckedTab" class="nav nav-tabs">
+   <li class="active">
+       <a href="#becheckedmatsource" data-toggle="tab">原料</a>
+   </li>
+  
+</ul>
+<div id="mybecheckdTabContent" class="tab-content">
+   <div class="tab-pane  in active" id="becheckedmatsource">
+        <table class="table table-striped table-bordered" id="combecheckedTb">
+			<thead>
+			<tr>
+			<th>原料大类</th>    
+			<th>原料小类</th>
+			<th>原料细类</th>    
+			<th>原料来源</th>
+			<th>主原料</th>    
+			</tr>
+			</thead>
+		</table>
+     
+   </div>  
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="js/entProductCheck.js"></script>

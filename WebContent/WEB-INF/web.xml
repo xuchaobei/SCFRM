@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	<display-name>SCFRM</display-name>
+
+	<filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<welcome-file-list>
+		<welcome-file>login.html</welcome-file>   
+	</welcome-file-list>
+	<session-config>
+	<session-timeout>300</session-timeout>    
+	</session-config>
+	<servlet>
+		<servlet-name>FRMTimer</servlet-name>
+		<servlet-class>cn.gov.scciq.timer.FRMTimerServlet</servlet-class>
+		<!-- 设置定时任务的启动停止 -->
+		<init-param>
+			<param-name>startCEMSTask</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<init-param>
+			<param-name>startLRPTask</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet>
+		<servlet-name>DataCopyTimer</servlet-name>
+		<servlet-class>cn.gov.scciq.timer.DataCopyServlet</servlet-class>
+		<!-- 设置定时任务的启动停止 -->
+		<init-param>
+			<param-name>startCopy</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+</web-app>
+

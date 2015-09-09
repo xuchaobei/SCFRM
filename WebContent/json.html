@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="author" content="chao.xu" />
+<title>JSON 示例</title>
+<script src="js/lib/jquery-1.10.1.min.js" type="text/javascript"></script>
+<script src="js/json-example.js" type="text/javascript"></script>
+</head>
+<body>
+    <div>以form表单形式提交数据</div>
+    <form action="HelloJsonAction_submit">
+        <label>ID:</label><input name="id" type="text"/>
+        <label>姓名:</label><input name="name" type="text"/>
+        <input type="submit" value="提交">
+    </form>
+    <br>
+    
+    <div>不以表单形式提交数据</div>
+    <label>ID:</label><input id="normal_id" type="text"/>
+    <label>姓名:</label><input id="normal_name" type="text"/>
+    <div>
+    <br>
+    <button id="normal_submit" type="button" >普通方式post</button>
+    <button id="normal_get" type="button" >普通方式get</button>
+    </div>
+    <br>
+    <div>server返回结果</div>
+    <table id="result">
+        <thead>
+        <tr>
+        <td>ID</td>
+        <td>姓名</td>
+        </tr>
+        </thead>
+    </table>
+</body>
+</html>
