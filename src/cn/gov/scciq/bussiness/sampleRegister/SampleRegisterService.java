@@ -1013,7 +1013,7 @@ public class SampleRegisterService {
 			String labSampleID = labSampleList.get(i).getLabSampleID();
 			sampleItemList.clear();
 			
-			for (int j = 0; i < labItemList.size(); j++){
+			for (int j = 0; j < labItemList.size(); j++){
 				SendLabSampleItemDto labItem = labItemList.get(j);
 				if(labItem.getLabSampleID().equals(labSampleID)){
 					sampleItemList.add(labItem);						
