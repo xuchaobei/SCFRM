@@ -1633,7 +1633,7 @@ $("#multoperate-select").click(function(){
 	})
 	
 	//读取检测报告
-	$("#receiverconcledecldata").bind('click', function(){	
+	$("#readTestResult").bind('click', function(){	
 		if(decldataRow==null){
 			alert("请选择要打印检测报告的报检记录");
 			return;
