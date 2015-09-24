@@ -1643,7 +1643,7 @@ $("#multoperate-select").click(function(){
 			for(var i = 0; i < baoyandatatable.rows().data().length; i++){
 				var applyNo = baoyandatatable.row(i).data().applyNo;
 				//需要替换成正确的ip地址
-				$("#testReport a").attr("href","http://10.38.0.95:85/shared/file.gsp?sid=missing&fileid="+applyNo);
+				$("#testReport a").attr("href","http://10.38.0.95:85/BizReport_Query/GetReportList?BizNo="+applyNo);
 				$("#testReport a")[0].click();	
 			}
 		}
